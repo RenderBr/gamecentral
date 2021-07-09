@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-		<?php include_once('cfg/cdns.php'); ?>
+		<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/cdns.php'); ?>
 		<meta name="description" content="GameCentral, aiming to be the preeminent independent looking-for-group platform built for players all around the world.">
 		<meta name="keywords" content="gaming, lfg, discord lfg, video game, looking for group, looking for squad">
 		<meta name="robots" content="index, follow">
@@ -31,11 +31,11 @@
 							<p class="light noselect" style="font-size: 17px;text-shadow: 2px 2px 2px #151515 !important;">the <a style='color:#59d059;'>best</a> place to look for a gaming group! </p>
                             <!-- Signup form-->
 							<?php
-							
-							if($_GET['r'] == 1){
+
+							if(isset($_GET['r']) == 1){
 								echo '<button type="button" class="btn btn-primary">Registered! <i class="bi bi-check-circle"></i></button>';
 							}else{
-							
+
                             echo '<form name="emailSignup" action="/func/registerEmail.php">
 								<a class="sm-text">ENTER EMAIL TO BE NOTIFIED ON RELEASE</a>
                                 <div class="input-group input-group-lg">
@@ -55,7 +55,7 @@
         <section class="features-icons bg-dark1 text-center">
             <div class="container">
                 <div class="row">
-                    
+
                     <div class="col-lg-4">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
                             <div class="features-icons-icon d-flex"><i class="bi-person-plus-fill m-auto text-primary"></i></div>
@@ -94,13 +94,13 @@
 						<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <path fill="#FA4D56" d="M20.9,-33.9C32.8,-24.9,52.2,-28.8,55.2,-24.5C58.1,-20.3,44.7,-7.9,34.6,-0.9C24.5,6.2,17.7,7.8,14.6,14C11.4,20.3,11.8,31,7,39.4C2.3,47.9,-7.7,54.1,-20.5,56.4C-33.2,58.7,-48.7,57.2,-55.3,48.5C-61.9,39.8,-59.7,24,-52.9,13C-46,2,-34.5,-4.2,-29.3,-12.4C-24.1,-20.6,-25.1,-30.7,-21.3,-43.4C-17.5,-56.1,-8.7,-71.3,-2.1,-68C4.5,-64.7,9,-42.9,20.9,-33.9Z" transform="translate(100 100)" style="z-index: -1;"/>
 </svg></div>
-						
+
 <div style="position: absolute;margin-left:6%;margin-top:-25%;transform: scale(0.2)rotate(35deg);" class="col-lg-4">
 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <path fill="#B4EB34" d="M47,-61.4C47.4,-46.6,24.8,-23.3,17.2,-7.6C9.6,8.1,16.9,16.2,16.5,30C16.2,43.8,8.1,63.3,-5.8,69.1C-19.7,74.9,-39.4,67,-44.7,53.2C-50.1,39.4,-41.1,19.7,-36.8,4.3C-32.6,-11.1,-33,-22.3,-27.6,-37.1C-22.3,-51.9,-11.1,-70.4,6.1,-76.5C23.3,-82.5,46.6,-76.2,47,-61.4Z" transform="translate(100 100)" style="z-index: -1;"/>
 </svg></div>
 
-						
+
 						<div style="position: absolute;margin-left:-3%;margin-top:-11.5%;transform: scale(0.2)rotate(59deg);" class="col-lg-4">
 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <path fill="#24A148" d="M47,-61.4C47.4,-46.6,24.8,-23.3,17.2,-7.6C9.6,8.1,16.9,16.2,16.5,30C16.2,43.8,8.1,63.3,-5.8,69.1C-19.7,74.9,-39.4,67,-44.7,53.2C-50.1,39.4,-41.1,19.7,-36.8,4.3C-32.6,-11.1,-33,-22.3,-27.6,-37.1C-22.3,-51.9,-11.1,-70.4,6.1,-76.5C23.3,-82.5,46.6,-76.2,47,-61.4Z" transform="translate(100 100)" style="z-index: -1;"/>
@@ -139,7 +139,7 @@
 </svg></div>
                     <div class="col-lg-6 text-white showcase-img" style="background-position: center;background-image: url('https://gamecentral.online/images/minecraft.webp');border-radius: 45px;transform: scale(0.8);"></div>
                     <div class="col-lg-6 my-auto showcase-text">
-					
+
                         <h2 style='position:relative;z-index: 2;'>Discover... or <u>promote</u>!</h2>
                         <p style='position:relative;z-index: 2;' class="lead mb-0">Find fantastic ranked game servers of any kind, along with providing users a way to promote their own servers. </p>
                     </div>
@@ -174,7 +174,7 @@
                         <ul class="list-inline mb-2">
                             <li class="list-inline-item"><a href="mailto:GameCentralDevelopment@gmail.com">Send us an email!</a></li>
                         </ul>
-						
+
                         <p class="text-muted small mb-4 mb-lg-0">&copy; Game Central 2021. All Rights Reserved.</p>
                     </div>
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
@@ -199,10 +199,10 @@
         <script src="js/scripts.js"></script>
 		<script>
 		function stoppedTyping(){
-			if($("#email").val().length > 4) { 
-				$("#button-submit").prop("disabled", false); 
-			} else { 
-				$("#button-submit").prop("disabled", true); 
+			if($("#email").val().length > 4) {
+				$("#button-submit").prop("disabled", false);
+			} else {
+				$("#button-submit").prop("disabled", true);
 			}
     }
 		</script>

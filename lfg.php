@@ -1,19 +1,28 @@
 <?php
-session_start();
+include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/cdns.php');
+
 if($_SESSION['username']){
 
 }else{
 	header("Location: /");
 }
-$gameLFG = $_GET['g'];
-$userLFG = $_GET['u'];
+if(isset($_GET['g'])){
+	$gameLFG = $_GET['g'];
+}else{
+	$gameLFG = NULL;
+}
+if(isset($_GET['u'])){
+	$userLFG = $_GET['u'];
+}else{
+	$userLFG = NULL;
+}
+
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
-		<?php include_once('cfg/cdns.php'); ?>
 		<meta name="description" content="GameCentral looking for group page, here is the best place to find all sorts of people who are looking for games to play.">
 		<meta name="keywords" content="gaming, lfg, discord lfg, video game, looking for group, looking for squad, gc">
 		<meta name="robots" content="index, follow">
@@ -34,7 +43,7 @@ $userLFG = $_GET['u'];
 
 		<br>
 		<div class='bg-dark1 container' style="padding-bottom: 25px;max-width: 100rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);margin-top: 2.5%;width:80%;"><div class='text-center'>
-		<h4 style='padding-top: 18.5px;'>Looking for a group? We got you.</h4><?php include_once('modules/gameSearch.php'); ?><hr class='nav-break'></div>
+		<h4 style='padding-top: 18.5px;'>Looking for a group? We got you.</h4><?php include_once('/modules/gameSearch.php'); ?><hr class='nav-break'></div>
 
 		<label><p class="sm-text noselect">LOOKING FOR GROUP BROWSER</p></label>
 
@@ -42,9 +51,7 @@ $userLFG = $_GET['u'];
 <div class='container-fluid bg-dark2 px-4 mt-2' style='max-width:98%;height:max-content;padding: 15px 0 15px 0px;border-radius: 10px;'>
 <?php
 
-session_start();
-include_once('.../cfg/cdns.php');
-include_once('/var/www/html/gamecentral.online/public_html/modules/viewGroupButton.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/modules/viewGroupButton.php');
 $sql = "SELECT * FROM lfgPosts WHERE public = 0 AND expired = 0 ORDER BY date_created DESC LIMIT 25";
 if($gameLFG){
 	$sql = "SELECT * FROM lfgPosts WHERE public = 0 AND expired = 0 AND game = '$gameLFG' ORDER BY date_created DESC LIMIT 25";
@@ -74,7 +81,7 @@ if ($result->num_rows > 0) {
 		if($currentGroup <= 0){
 			$expiry = true;
 		}else{
-			unset($countdown);
+			$countdown = NULL;
 		}
 
 		if($expiryDate){
@@ -129,7 +136,7 @@ if ($result->num_rows > 0) {
 		if ($result2->num_rows > 0) {
 
 		  while($row2 = $result2->fetch_assoc()) {
-			  viewGroupButton($groupid, $_SESSION['username']);
+			  viewGroupButton($groupid, $_SESSION['username'], $conn);
 			  echo "<button id='" . $groupid . "' value='" . $groupid . "' class='btn btn-danger' onclick='leaveGroup(this)'>Leave!</button>";
 			  if($_SESSION['username'] == $user){
 				echo "<button value='" . $groupid . "' onclick='deleteGroup(this)' title='Delete this group!' class='sm-text btn'><i class='bi bi-x'></i></button>";
@@ -141,7 +148,7 @@ if ($result->num_rows > 0) {
 		  }
 
 		}else{
-			viewGroupButton($groupid, $_SESSION['username']);
+			viewGroupButton($groupid, $_SESSION['username'], $conn);
 			if($currentGroup < $groupSize){
 			echo "<button id='" . $groupid . "' value='" . $groupid . "' onclick='joinGroup(this)' class='btn btn-success'>Join group!</button>";
 			}
@@ -280,6 +287,3 @@ function joinGroup (button) {
 	box-shadow: none !important;
 }
 </style>
-<?php
-$conn->close();
-?>

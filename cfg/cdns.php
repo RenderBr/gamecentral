@@ -1,3 +1,11 @@
+<?php
+if(session_status() == PHP_SESSION_NONE){
+    //session has not started
+    session_start();
+}
+include_once ($_SERVER['DOCUMENT_ROOT'] . '/func/checkLFG.php');
+ ?>
+
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -41,14 +49,11 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');</style>
 
 <?php
-/* Create table doesn't return a resultset */
 
 
 function isMobile() {
     return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
 }
-include_once('/var/www/html/gamecentral.online/public_html/func/checkLFG.php');
-session_start();
 if($_SESSION['username']){
 	$loggedUser = $_SESSION['username'];
 }else{

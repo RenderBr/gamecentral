@@ -34,7 +34,7 @@
     var refresh;
 
     function loadChat(){
-        $('#chat-area').load('/modules/getChat.php?g=<?php echo $id; ?>', function(){
+        $('#chat-area').load("/modules/getChat.php?g=<?php echo $id; ?>", function(){
 			element.scrollTop = element.scrollHeight;
            refresh = setTimeout(loadChat, 5000);
         });
@@ -44,7 +44,7 @@ function send(){
 	if(text.val() == ""){
 		loadChat();
 	}else{
-		$.get('https://gamecentral.online/func/processMsg.php?' + $('#chatBox').serialize());
+		$.get("/func/processMsg.php?" + $('#chatBox').serialize());
 		$('#sendie').val('');
 		loadChat();
 	}

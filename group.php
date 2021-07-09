@@ -3,8 +3,8 @@
     <head>
 	<?php
 		session_start();
-		include_once('cfg/cdns.php');
-		include_once('modules/joinLeaveGroupButton.php');
+		include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/cdns.php');
+		include_once($_SERVER['DOCUMENT_ROOT'] . '/modules/joinLeaveGroupButton.php');
 		$group = $_GET['g'];
 		$uName = $_SESSION['username'];
 		if($uName){
@@ -35,7 +35,7 @@
 		  while($row = $result->fetch_assoc()) {
 
 			  $myRole = $row['groupRole'];
-
+        $notAMember = 0;
 		  }
 		}else{
 			$notAMember = 1;
@@ -153,14 +153,14 @@
 				if ($result2->num_rows > 0) {
 
 				while($row = $result2->fetch_assoc()) {
+            $gMember = $row['username'];
 						if($gMember == $uName){
 							$yes = 1;
 						}
-						$gMember = $row['username'];
 						if($gMember == $owner){
 							$role = "<a class='gray ms-1 noselect'>[OWNER]</a>";
 						}else{
-							unset($role);
+              $role = NULL;
 						}
 
 						$sql3 = "SELECT * FROM users WHERE username = '$gMember'";
@@ -212,8 +212,6 @@
 	var value = kv / 1000;
 	$('#karma').attr("style", "color: " + getColor(value) + " !important");
 	$('#karma2').attr("style", "color: " + getColor(value) + " !important");
-
-	$('#discord').click(function () { copyToClipboard("<?php echo $usersDiscord; ?>"); });
 
 	function copyToClipboard(text) {
 		var $temp = $("<input>");

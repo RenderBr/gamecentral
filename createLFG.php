@@ -1,6 +1,10 @@
 <?php
 session_start();
-$atLimit = $_GET['l'];
+if(isset($_GET['l'])){
+	$atLimit = $_GET['l'];
+}else{
+	$atLimit = NULL;
+}
 
 if($_SESSION['username']){
 }else{
@@ -31,10 +35,10 @@ $self = $_SESSION['username'];
     </head>
     <body style='background: url(/images/generate.png)'>
 	<?php include_once('modules/navbar.php'); ?>
-		
-		
+
+
 		<br>
-		<div class='bg-dark1 container' style="padding-bottom: 25px;max-width: 27rem;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);margin-top: 2.5%;"><div class='text-center'>
+		<div class='bg-dark1 container mb-4 pb-1' style="max-width: 27rem;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);margin-top: 2.5%;"><div class='text-center'>
 		<h4 class='noselect' style='padding-top: 18.5px;'>Create <u>your group!</u></h4></div>
 		<form action='/func/createLFG.php' method='POST'>
 		<label for='groupname'><p class="sm-text">GROUP NAME</p></label>
@@ -45,7 +49,7 @@ $self = $_SESSION['username'];
 		<div class="input-group input-group-md sm"><textarea id='description' name="description" type="textarea" class="dark-box form-control" placeholder="Tell the world about your group... how can people join you in your game?" aria-label="Tell the world about your group..." aria-describedby="button-submit" /></textarea></div>
 		<label for='discordInvite'><p class="sm-text discord">DISCORD INVITE</p></label>
 		<div class="input-group input-group-md sm"><input id='discordInvite' name="discordInvite" type="text" class="dark-box form-control" placeholder="https://discord.gg/3tTmTWZHrS..." aria-label="Enter your full Discord invite link" aria-describedby="button-submit" /></div>
-		
+
 		<div class='row'>
 		<div class='col'>
 				<label for='visibility'><p class="sm-text">VISIBILITY</p></label>
@@ -58,7 +62,7 @@ $self = $_SESSION['username'];
 				<label for='groupSize'><p class="sm-text">GROUP SIZE</p></label>
 				<select class="form-select dark-box" id='groupSize' name='groupSize' aria-label="Group size selector">
 				<option id='deleteThis' selected>Select a game!</option>
-					
+
 				</select>
 		</div>
 		</div>
@@ -71,14 +75,14 @@ $self = $_SESSION['username'];
 		<p class='sm-text' style='font-size: 12px;'>If nobody joins your group within two hours, it will be deleted automatically.</p>
 		</div>
 		<?php
-	
-				if($atLimit){
+
+				if($atLimit != NULL){
 			echo "<div style='max-width: 27rem;margin-top:0.5rem;' class='noselect container alert alert-danger' role='alert'>
 						<i style='margin-right:0.2rem;' class='bi bi-exclamation-circle'></i> We've noticed that you are currently at the max group limit for default users (3), please remove a group before proceeding.
 				</div>";
 		}
 		?>
-	
+
         <!-- Bootstrap core JS-->
         <!-- Core theme JS-->
     </body>
@@ -97,10 +101,10 @@ $self = $_SESSION['username'];
             success:function(data){
               $("#gameList").html(data);
               $("#gameList").fadeIn();
-            }  
+            }
           });
         }else{
-          $("#gameList").html("");  
+          $("#gameList").html("");
           $("#gameList").fadeOut();
         }
       });
@@ -121,7 +125,7 @@ $self = $_SESSION['username'];
 			}
 			});
 			}else{
-				
+
 			}
           });
       });

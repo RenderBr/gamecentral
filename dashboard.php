@@ -1,5 +1,4 @@
 <?php
-session_start();
 if($_SESSION['username']){
 
 }else{
@@ -11,7 +10,7 @@ if($_SESSION['username']){
 <!DOCTYPE html>
 <html lang="en">
     <head>
-		<?php include_once('cfg/cdns.php'); ?>
+		<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/cdns.php'); ?>
 		<meta name="description" content="GameCentral dashboard, here you may find other groups, and more.">
 		<meta name="keywords" content="gaming, lfg, discord lfg, video game, looking for group, looking for squad, gc dashboard">
 		<meta name="robots" content="index, follow">
@@ -31,7 +30,7 @@ if($_SESSION['username']){
 	<?php include_once('modules/navbar.php'); ?>
 
 		<br>
-		<div class='bg-dark1 container mt-1 mb-1 pb-4' style="max-width: 100rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);width:80%;"><div class='text-center'>
+		<div class='bg-dark1 container mt-2 mb-4 pb-4' style="max-width: 100rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);width:80%;"><div class='text-center'>
 		<h4 class='pt-3'>Hey, welcome back! How's it going, <u><?php echo $_SESSION['username']; ?></u>?</h4><hr class='nav-break'></div>
 
 		<?php include_once('modules/recentposts.php'); ?>
@@ -48,6 +47,3 @@ if($_SESSION['username']){
 	box-shadow: none !important;
 }
 </style>
-<?php
-$conn->close();
-?>

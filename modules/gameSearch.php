@@ -1,31 +1,31 @@
 <?php
-	include_once('../cfg/cdns.php');
+	include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/cdns.php');
 
 
 ?>
 			<div class="form-group">
 				<form method="GET" action='/lfg'>
 					<div class="auto-widget">
-					<form class='form-group'>  
+					<form class='form-group'>
 						<div class="row">
 							<div class="col">
 							  	<input placeholder="GAME FILTER" autocomplete="off" class="dark-box form-control" id="gameSearch" type="text" name="g"/>
 								<div id='gameList'></div>
 							</div>
 					</form>
-					<form class='form-group'>  
+					<form class='form-group'>
 							<div class="col">
 							  	<input placeholder="USER SEARCH" autocomplete="off" class="dark-box form-control" id="userSearch" type="text" name="u"/>
 								<div id='userList'></div>
 								</div>
 					</form>
 
-					
+
 					</div>
 				</form>
 			</div>
-			
-			
+
+
 <script type="text/javascript">
   $(document).ready(function(){
       $("#gameSearch").on("keyup", function(){
@@ -39,10 +39,10 @@
             success:function(data){
               $("#gameList").html(data);
               $("#gameList").fadeIn();
-            }  
+            }
           });
         }else{
-          $("#gameList").html("");  
+          $("#gameList").html("");
           $("#gameList").fadeOut();
         }
       });
@@ -52,7 +52,7 @@
         $('#gameSearch').val($(this).text());
         $('#gameList').fadeOut("fast");
       });
-	  
+
 	   $("#userSearch").on("keyup", function(){
         var user = $(this).val();
         if (user !=="") {
@@ -64,10 +64,10 @@
             success:function(data){
               $("#userList").html(data);
               $("#userList").fadeIn();
-            }  
+            }
           });
         }else{
-          $("#userList").html("");  
+          $("#userList").html("");
           $("#userList").fadeOut();
         }
       });
@@ -77,6 +77,6 @@
         $('#userSearch').val($(this).text());
         $('#userList').fadeOut("fast");
       });
-	  
+
   });
 </script>

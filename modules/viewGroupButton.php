@@ -2,23 +2,12 @@
 
 echo "<a style='display:none;'>Loaded ViewGroupButton Module</a>";
 
-function viewGroupButton(int $id, $myUsername){
-			
-	$servername = "localhost";
-	$username = "2admin";
-	$password = "Wv9bGBaolonxw98w";
-	$dbname = "gamecentral";
-	$adminPassword = "admin420";
+function viewGroupButton(int $id, $myUsername, $conn){
 
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	// Check connection
-	if ($conn->connect_error) {
-	  die("Connection failed: " . $conn->connect_error);
-	} 
-		
+	include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/conn.php');
+
 	$sql = "SELECT * FROM groupMembers WHERE groupid = $id AND username = '$myUsername'";
-	
+
 	$result = $conn->query($sql);
 
 	if ($result->num_rows > 0) {

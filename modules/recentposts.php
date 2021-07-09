@@ -5,9 +5,8 @@
 <div class='container-fluid bg-dark2 px-4 mt-2' style='max-width:98%;height:max-content;padding: 15px 0 15px 0px;border-radius: 10px;'>
 <?php
 
-session_start();
-include_once('.../cfg/cdns.php');
-include_once('/var/www/html/gamecentral.online/public_html/modules/viewGroupButton.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/cdns.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/modules/viewGroupButton.php');
 $sql = "SELECT * FROM lfgPosts WHERE public = 0 AND expired = 0 ORDER BY date_created DESC LIMIT 5";
 $result = $conn->query($sql);
 
@@ -31,7 +30,7 @@ if ($result->num_rows > 0) {
 		if($currentGroup <= 0){
 			$expiry = true;
 		}else{
-			unset($countdown);
+			$countdown = NULL;
 		}
 
 		if($expiryDate){
@@ -90,7 +89,7 @@ if ($result->num_rows > 0) {
 		if ($result2->num_rows > 0) {
 
 		  while($row2 = $result2->fetch_assoc()) {
-			  viewGroupButton($groupid, $_SESSION['username']);
+			  viewGroupButton($groupid, $_SESSION['username'], $conn);
 			  echo "<button id='" . $groupid . "' value='" . $groupid . "' class='btn btn-danger' onclick='leaveGroup(this)'>Leave!</button>";
 			  if($_SESSION['username'] == $user){
 				echo "<button value='" . $groupid . "' onclick='deleteGroup(this)' title='Delete this group!' class='sm-text btn'><i class='bi bi-x'></i></button>";
@@ -102,7 +101,7 @@ if ($result->num_rows > 0) {
 		  }
 
 		}else{
-			viewGroupButton($groupid, $_SESSION['username']);
+			viewGroupButton($groupid, $_SESSION['username'], $conn);
 			if($currentGroup < $groupSize){
 			echo "<button id='" . $groupid . "' value='" . $groupid . "' onclick='joinGroup(this)' class='btn btn-success'>Join group!</button>";
 			}

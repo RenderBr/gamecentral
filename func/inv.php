@@ -1,14 +1,14 @@
 <?php
-include_once('../cfg/cdns.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/conn.php');
 session_start();
 $self = $_SESSION['username'];
 
 $invCode = $_GET['i'];
 
 if($invCode){
-	
+
 	if($self){
-	
+
 
 	$sql = "SELECT * FROM groupInvCodes WHERE code = '$invCode' AND active = 1";
 	$result = $conn->query($sql);
@@ -21,20 +21,20 @@ if($invCode){
 		  $notifs = $conn->query("UPDATE groupInvCodes SET uses=uses+1 WHERE id=$invId");
 		  header("Location: /group?g=" . $invGroupId);
 	  }
-	  
+
 	}else{
 		header("Location: /");
 	}
-	
-	
-	
-	
+
+
+
+
 }else{
 	header("Location: /login?r=/func/inv?i=" . $invCode);
 }
-	
-	
-	
+
+
+
 }else{
 	header("Location: /");
 }

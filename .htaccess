@@ -1,7 +1,7 @@
 php_value upload_max_filesize 10240M
 php_value post_max_size 10250M
 php_value safe_mode off
-php_value session.cookie_domain ".gamecentral.online"
+php_value session.cookie_domain "localhost"
 
 RewriteEngine On
 RewriteBase /

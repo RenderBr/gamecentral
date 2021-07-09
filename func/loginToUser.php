@@ -1,15 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "2admin";
-$password = "Wv9bGBaolonxw98w";
-$dbname = "gamecentral";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-} 
+include_once('../cfg/conn.php');
 
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -22,8 +12,8 @@ if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
 	$hashed_password = $row['password'];
-	$user = $row['username'];	
-	
+	$user = $row['username'];
+
 	if (password_verify($password, $hashed_password)) {
 	session_start();
 	$_SESSION['username'] = $user;
@@ -33,7 +23,7 @@ if ($result->num_rows > 0) {
 	}else{
 	 header("Location: /");
 	}
-	
+
 	} else {
 		if($redirect){
 			header("Location: /login?f=1&r=" . $redirect);

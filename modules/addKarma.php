@@ -1,13 +1,9 @@
 <?php
 
-include_once('../cfg/cdns.php');
-session_start();
-
-
-
+include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/cdns.php');
 
 function addKarmaButton($user){
-		
+
 		echo "
 	<button type='button' id='addKarmaButton' class='btn btn-success btn-sm ms-1 rounded' onclick='addKarma()'>+</button>
 
@@ -29,10 +25,9 @@ function addKarmaButton($user){
 	}
 
 	</script>";
-		
-	
-	
+
+
+
 }
 
 ?>
-
