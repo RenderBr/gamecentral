@@ -18,8 +18,8 @@ function addKarmaButton($user){
 				u: '" . $user . "',
 			},
 		success:function(data){
-					var newKarma = parseInt($('#karma').html()) + 2;
-					$('#karma').html('' + newKarma);
+					var newKarma = parseInt($('#karma').html(data));
+					$('#karma').html('' + data);
 				}
 	});
 	}
@@ -44,8 +44,8 @@ function removeKarmaButton($user){
 				u: '" . $user . "',
 			},
 		success:function(data){
-					var newKarma = parseInt($('#karma').html()) - 2;
-					$('#karma').html('' + newKarma);
+					var newKarma = parseInt($('#karma').html(data));
+					$('#karma').html('' + data);
 				}
 	});
 	}

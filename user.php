@@ -24,7 +24,7 @@
 			  $discordVerified = $row['discordVerified'];
         $userLastSeen = $row['lastLoggedIn'];
 
-        if($getFriendCount = $conn->query("SELECT * FROM friends WHERE friendCombo LIKE '$usersname' AND accepted = 1")){
+        if($getFriendCount = $conn->query("SELECT * FROM friends WHERE friendCombo LIKE '%{$usersname}%' AND accepted = 1")){
 
           				$friendCount = $getFriendCount->num_rows;
 
@@ -61,7 +61,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
-    <body style='background: url(<?php echo $usersbg; ?>)'>
+    <body style='background: url(<?php echo $usersbg; ?>);background-repeat: round;background-size: cover;'>
 	<?php include_once('modules/navbar.php'); ?>
 
 		<br><div class='bg-dark1 container user rounded'>
@@ -94,7 +94,6 @@
 		echo "<label>
 			<p class='sm-text' style='color:white; !important;'>
 			";
-      echo $friendCount;
 			if($friendCount == 1){
 				echo $friendCount . " FRIEND";
 			}
