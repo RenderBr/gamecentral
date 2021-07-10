@@ -64,12 +64,12 @@
     <body style='background: url(<?php echo $usersbg; ?>);background-repeat: round;background-size: cover;'>
 	<?php include_once('modules/navbar.php'); ?>
 
-		<br><div class='bg-dark1 container user rounded'>
+		<br><div class='bg-dark1 container user pt-2 rounded'>
 		<div class='text-center'>
 			<a title='User ID, not a placement.' style='text-decoration:none;' class='sm-text noselect mt-1'>#<?php echo $usersid; ?></a>
 			<?php
 
-			if($isGC){
+			if(isset($isGC)){
 				echo "<br><img title='Verified GC Associate' style='max-width: 15%;' class='noselect' src='/images/logo-03.png'></img>";
 			}else{
 				echo "<br>";
@@ -326,6 +326,15 @@
 .box {
    display: flex;
    align-items:center;
+}
+#rem{
+  width: 100% !important;
+}
+#acceptF{
+  width: 100% !important;
+}
+#addF{
+  width:100% !important;
 }
 </style>
 <?php

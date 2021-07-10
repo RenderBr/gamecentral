@@ -120,13 +120,12 @@ echo '
 }
 
 .user{
-	padding-bottom: 5px !important;
+  padding-bottom:10px !important;
 	max-width: 20rem !important;
 	height: max-content !important;
 	box-shadow: bax !important;
 	-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72) !important;
 	box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72) !important;
-	margin-top: 2.5% !important;
 }
 
 .news{

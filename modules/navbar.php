@@ -68,6 +68,9 @@
 						<li class='nav-item'>
 							<a class='nav-link' aria-current='page' href='/createLFG'>Create a group!</a>
 						</li>
+						<li class='nav-item'>
+							<a class='nav-link' aria-current='page' href='/findAFriend'>Find a Friend!</a>
+						</li>
 					</ul>
 
 					<span class='d-flex'>
@@ -79,6 +82,7 @@
 
 							  <ul class='dropdown-menu dark-box' aria-labelledby='dropdownMenuButton1'>
 								<li><a class='dropdown-item gray' href='/user?u=" . $_SESSION['username'] . "'><i class='bi bi-person me-1'></i></i>My Profile</a></li>
+								<li><a class='dropdown-item gray' href='/friends'><i class='bi bi-people me-1'></i></i>My Friends</a></li>
 								<li><a class='dropdown-item gray' href='/createLFG'><i class='bi bi-plus-circle me-1'></i>Create a group</a></li>
 								<li><a class='dropdown-item gray' href='/notifications'><i class='bi bi-bell me-1'></i>Notifications" . $notifications . "</a></li>
 								<li><a class='dropdown-item gray' href='/settings'><i class='bi bi-gear me-1'></i>Settings</a></li>

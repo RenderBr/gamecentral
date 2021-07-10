@@ -5,7 +5,12 @@ $self = $_SESSION['username'];
 if(!$self){
 	header("Location: /");
 }
-$friend = $_GET['u'];
+if(isset($friendFAF)){
+	$friend = $friendFAF;
+}else{
+	$friend = $_GET['u'];
+}
+
 $friendcombo = $self . " - " . $friend;
 $friendcombo2 = $friend . " - " . $self;
 if($self == $friend){
@@ -61,6 +66,7 @@ if($self == $friend){
 <script>
 
 function removeFriend(){
+	if(confirm("Are you sure you want to remove <?php echo $friend; ?> as a friend?")){
 	$.ajax({
                 type: 'POST',
                 url: '/func/friendManager.php',
@@ -73,6 +79,7 @@ function removeFriend(){
 					$("#rem").html("Removed!");
                 }
             });
+					}
 }
 
 function addFriend(){

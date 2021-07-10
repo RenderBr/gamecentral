@@ -13,13 +13,13 @@ if($_SESSION['username']){
 <html lang="en">
     <head>
 		<?php include_once('cfg/cdns.php'); ?>
-		<meta name="description" content="GameCentral notifications, manage friend requests, group invites, and more.">
-		<meta name="keywords" content="gaming, lfg, discord lfg, video game, looking for group, looking for squad, gc notifications, notif manager">
+		<meta name="description" content="GameCentral friends page, manage friends here!">
+		<meta name="keywords" content="gaming, lfg, discord lfg, video game, looking for group, looking for squad, gc friends, friend manager">
 		<meta name="robots" content="index, follow">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="language" content="English">
-		<title><?php echo $websitename . " - notifications!"; ?></title>
-		<meta name="title" content="GameCentral - notifications!">
+		<title><?php echo $websitename . " - my friends!"; ?></title>
+		<meta name="title" content="GameCentral - my friends!">
         <!-- Favicon-->
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
@@ -33,9 +33,9 @@ if($_SESSION['username']){
 
 		<br>
 		<div class='bg-dark1 container' style="padding-bottom: 25px;max-width: 100rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);margin-top: 2.5%;width:80%;"><div class='text-center'>
-		<h4 style='padding-top: 18.5px;'>Your notifications? Right here.</h4><hr class='nav-break'></div>
+		<h4 style='padding-top: 18.5px;'>All your friends, <u>in one place...</u></h4><hr class='nav-break'></div>
 
-		<label><p class="sm-text noselect">NOTIFICATIONS</p></label>
+		<label><p class="sm-text noselect">MY FRIENDS</p></label>
 
 
 <div class='container-fluid bg-dark2 px-4 mt-2' style='max-width:98%;height:max-content;padding: 15px 0 15px 0px;border-radius: 10px;'>
@@ -50,65 +50,46 @@ function get_string_between($string, $start, $end){
     return substr($string, $ini, $len);
 }
 
-include_once('cfg/cdns.php');
 	?>
 
 	<div class='row gx-2'>
 
 	<?php
-	$sql = "SELECT * FROM notifications WHERE seen = 0 AND user = '$self' ORDER BY date_created DESC LIMIT 25";
+	$sql = "SELECT * FROM friends WHERE friendCombo LIKE '%{$self}%' ORDER BY accepted ASC";
 	$result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
 
 	while($row = $result->fetch_assoc()) {
 
-		$id = $row['id'];
-		$type = $row['type'];
-		$seen = $row['seen'];
-		$associatedId = $row['associatedId'];
-		$date_created = $row['date_created'];
-
-		if($type == "friendRequest"){
-
-		$sql1 = "SELECT * FROM friends WHERE id = $associatedId";
-		$result1 = $conn->query($sql1);
-
-		if ($result1->num_rows > 0) {
-
-		  while($row1 = $result1->fetch_assoc()) {
-
-			$friendcombo = $row1['friendCombo'];
+			$friendcombo = $row['friendCombo'];
 			$friendUser = str_replace($self,"",$friendcombo);
 			$friendUser = str_replace(" - ","",$friendUser);
+			$accepted = $row['accepted'];
 
-			echo "<div id='" . $id . "l' class='d-flex bg-darkest rounded mt-2 align-items-center'>
+			echo "<div class='d-flex bg-darkest rounded mt-2 align-items-center'>
 			<div class='me-auto p-2'>
-				<a class='sm-text noselect me-2'>#" . $id . "</a>
-				<a style='color:white;' href='/user?u=" . $friendUser . "'>" . $friendUser . " <a class='gray'>&nbsp;has requested to become friends with you.</a> </a>
+				<a class='sm-text noselect me-2'></a>
+				<a style='color:white;' href='/user?u=" . $friendUser . "'>" . $friendUser . "</a>
 			</div>
-			<div class='p-2'>
+			<div class='p-2'>";
 
-			<button id='acceptF' value='" . $friendUser . "' onclick='acceptFriend(this)' title='Friend request pending!' class='btn btn-secondary'>Accept request!</button><br>
+			if($accepted == 1){
+			echo "<button id='acceptF' value='" . $friendUser . "' onclick='removeFriend(this)' title='Remove " . $friendUser . " from your friends list!' class='btn btn-danger btn-lg'>Remove friend!</button><br>
 			";
-
-
+			}else{
+				echo "<button id='acceptF' value='" . $friendUser . "' onclick='removeFriend(this)' title='Remove your friend request to " . $friendUser . "!' class='btn btn-secondary btn-lg'>Remove your friend request!</button><br>";
 			}
+
+			echo "</div></div>";
+
+
 		}
-		echo "</div></div>";
-
-
-
-
-
-
-	}
-  }
 } else {
 	echo "
 
 	<div class='d-flex align-items-center justify-content-center' style='height: inherit;'>
-        <a class='sm-text' style='text-decoration:none;'><i style='margin-right:7px;' class='bi bi-exclamation-circle'></i>No notifications to be displayed!</a>
+        <a class='sm-text' style='text-decoration:none;'><i style='margin-right:7px;' class='bi bi-exclamation-circle'></i>You do not have any friends! Go and add some!</a>
     </div>
 
 	";
@@ -146,21 +127,23 @@ a{
 
 <script>
 
-function acceptFriend(button){
+function removeFriend(button){
+	if(confirm("Are you sure you want to remove <?php echo $friend; ?> as a friend?")){
 	        $.ajax({
                 type: 'POST',
                 url: '/func/friendManager.php',
 				data: {
 					friend: $(button).val(),
 					self: "<?php echo $self; ?>",
-					action: "accept"
+					action: "remove"
 				},
                 success: function(data) {
-					$(button).html("Accepted!");
-					$(button).removeClass("btn-secondary");
-					$(button).addClass("btn-success");
+					$(button).html("Successfully removed!");
+					$(button).removeClass("btn-danger");
+					$(buton).addClass("btn-success");
                 }
             });
+					}
 }
 </script>
 

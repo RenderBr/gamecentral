@@ -20,7 +20,7 @@ if($action == "add" && $friend && $self){
 				}
 
 		}
-	
+
 }
 
 if($action == "remove" && $friend && $self){
@@ -28,29 +28,29 @@ if($action == "remove" && $friend && $self){
 
 	if ($conn->query($sql) === TRUE) {
 	}
-	
+
 }
 
 if($action == "accept" && $friend && self){
 	$sql = "UPDATE friends SET accepted=1 WHERE friendCombo = '$friendcombo' OR friendCombo = '$friendcombo2'";
-	
+
 	if (mysqli_query($conn, $sql)) {
-		
+
 	$sql = "SELECT * FROM friends WHERE friendCombo = '$friendcombo' OR friendCombo = '$friendcombo2' AND accepted=1";
 	$result = $conn->query($sql);
 
-	if ($result->num_rows > 0) {	
+	if ($result->num_rows > 0) {
 
 		while($row = $result->fetch_assoc()) {
 			$notifId = $row['id'];
 		}
 	}
-		
+
 	} else {
 	}
-	
+
 	$sql = "UPDATE notifications SET seen=1 WHERE associatedId = '$notifId'";
-	
+
 	if (mysqli_query($conn, $sql)) {
 	} else {
 	}
