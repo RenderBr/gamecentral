@@ -43,7 +43,7 @@ if(isset($_GET['u'])){
 
 		<br>
 		<div class='bg-dark1 container' style="padding-bottom: 25px;max-width: 100rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);margin-top: 2.5%;width:80%;"><div class='text-center'>
-		<h4 style='padding-top: 18.5px;'>Looking for a group? We got you.</h4><?php include_once('/modules/gameSearch.php'); ?><hr class='nav-break'></div>
+		<h4 style='padding-top: 18.5px;'>Looking for a group? We got you.</h4><?php include_once($_SERVER['DOCUMENT_ROOT'] . '/modules/gameSearch.php'); ?><hr class='nav-break'></div>
 
 		<label><p class="sm-text noselect">LOOKING FOR GROUP BROWSER</p></label>
 
@@ -280,6 +280,9 @@ function joinGroup (button) {
 		</div>
     </body>
 </html>
+
+<script src='https://unpkg.com/@wanoo21/countdown-time@1.2.0/dist/countdown-time.js'></script>
+
 
 <style>
 .btn-primary:focus{

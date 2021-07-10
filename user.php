@@ -212,7 +212,7 @@
 					$groupdId = $row['groupid'];
 					$dateJoined = $row['date_joined'];
 
-					$sql2 = "SELECT * FROM lfgPosts WHERE id = '$groupdId'";
+					$sql2 = "SELECT * FROM lfgPosts WHERE id = '$groupdId' AND expired = 0 AND public = 0";
 					$result2 = $conn->query($sql2);
 
 

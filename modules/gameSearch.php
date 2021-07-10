@@ -48,9 +48,10 @@
       });
 
       // click one particular city name it's fill in textbox
-      $(document).on("click","li", function(){
+      $(document).on("click","#goToGame", function(){
         $('#gameSearch').val($(this).text());
         $('#gameList').fadeOut("fast");
+				window.location.replace("/lfg?g=" + $(this).text());
       });
 
 	   $("#userSearch").on("keyup", function(){
@@ -73,9 +74,10 @@
       });
 
       // click one particular city name it's fill in textbox
-      $(document).on("click","li", function(){
+      $(document).on("click","#goToUser", function(){
         $('#userSearch').val($(this).text());
         $('#userList').fadeOut("fast");
+				window.location.replace("/lfg?u=" + $(this).text());
       });
 
   });

@@ -1,7 +1,7 @@
     <?php
 	include_once('../cfg/cdns.php');
-     
-    	
+
+
 	if (isset($_POST['game'])) {
 
   		$output = "";
@@ -16,7 +16,7 @@
   		$result = $conn->query($query);
 		$gameIds = [];
 
-  		$output = '<ul class="list-unstyled">';		
+  		$output = '<ul class="list-unstyled">';
 
   		if ($result->num_rows > 0) {
   			while ($row = $result->fetch_array()) {
@@ -26,12 +26,12 @@
   		}else{
   			  $output .= '<li class="listitem dark-box"> Game not in database!</li>';
   		}
-  		
+
 	  	$output .= '</ul>';
 	  	echo $output;
 	}
     ?>
-	
+
 	<style type="text/css">
     .list-unstyled{
       margin-top: 0px;
@@ -46,7 +46,9 @@
       background: #f0f0f0;
     }
 	</style>
-	
+
 	<script>
-	
+  $("#goToGame").click(function(){
+    window.location.href="lfg?u=" + $("#gameNameB").html();
+  });
 	</script>

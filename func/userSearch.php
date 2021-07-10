@@ -1,7 +1,7 @@
     <?php
-	include_once('../cfg/cdns.php');
-     
-    	
+	include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/cdns.php');
+
+
 	if (isset($_POST['user'])) {
 
   		$output = "";
@@ -16,22 +16,21 @@
   		$result = $conn->query($query);
 		$userIds = [];
 
-  		$output = '<ul class="list-unstyled">';		
+  		$output = '<ul class="list-unstyled">';
 
   		if ($result->num_rows > 0) {
   			while ($row = $result->fetch_array()) {
-				$userNameL = $row['name'];
-  				$output .= '<li name="u" id="goToUser" href="/lfg?g=' . ucwords($row['username']) . '" class="listitem dark-box sm-text"><img class="icon-sm me-1 rounded-circle" src="' . $row['avatar'] . '"></img><a id="userNameB">'.ucwords($row['username']).'</a></li>';
+  				$output .= '<li name="u" id="goToUser" value="' . ucwords($row['username']) . '" href="/lfg?g=' . ucwords($row['username']) . '" class="listitem dark-box sm-text"><img class="icon-sm me-1 rounded-circle" src="' . $row['avatar'] . '"></img><a id="userNameB">'.ucwords($row['username']).'</a></li>';
   			}
   		}else{
   			  $output .= '<li class="listitem dark-box"> User not in database!</li>';
   		}
-  		
+
 	  	$output .= '</ul>';
 	  	echo $output;
 	}
     ?>
-	
+
 	<style type="text/css">
     .list-unstyled{
       margin-top: 0px;
@@ -46,11 +45,11 @@
       background: #f0f0f0;
     }
 	</style>
-	
+
 	<script>
-	
+
 	$("#goToUser").click(function(){
 		window.location.href="lfg?u=" + $("#userNameB").html();
 	});
-	
+
 	</script>
