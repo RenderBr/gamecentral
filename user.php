@@ -3,7 +3,7 @@
     <head>
 	<?php
 		include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/cdns.php');
-		include_once($_SERVER['DOCUMENT_ROOT'] . "/modules/addKarma.php");
+		include_once($_SERVER['DOCUMENT_ROOT'] . "/modules/karmaButtons.php");
 		$user = $_GET['u'];
 
 		$sql = "SELECT * FROM users WHERE username = '$user' || id = '$user'";
@@ -22,16 +22,15 @@
 			  $isGC = $row['gc'];
 			  $usersDiscord = $row['discord'];
 			  $discordVerified = $row['discordVerified'];
+        $userLastSeen = $row['lastLoggedIn'];
 
-        if($getFriendCount = mysqli_query($conn, "SELECT * FROM friends WHERE friendCombo LIKE '$user' AND approved = 1")){
+        if($getFriendCount = $conn->query("SELECT * FROM friends WHERE friendCombo LIKE '$usersname' AND accepted = 1")){
 
           				$friendCount = $getFriendCount->num_rows;
 
-                  mysqli_free_result($friendCount);
 
         }else{
-
-          $friendCount = 0;
+          $friendCount = NULL;
         }
 
 			  if($isGC == 1){
@@ -95,17 +94,28 @@
 		echo "<label>
 			<p class='sm-text' style='color:white; !important;'>
 			";
+      echo $friendCount;
 			if($friendCount == 1){
 				echo $friendCount . " FRIEND";
 			}
 			if($friendCount > 1){
 				echo $friendCount . " FRIENDS";
 			}
-			echo "
+
+        if($_SESSION['username'] == $usersname){
+
+        }else{
+          removeKarmaButton($usersname);
+        }
+        echo "
 				<a id='karma'>" . $userskarma .  "</a>
 				<a id='karma2'>KARMA</a>";
-				addKarmaButton($usersname);
-				echo "
+        if($_SESSION['username'] == $usersname){
+
+        }else{
+				      addKarmaButton($usersname);
+        }
+        echo "
 			</p>
 		</label>";
 		?>
@@ -283,6 +293,7 @@
 
 <script>
 
+
 	function getColor(value){
 		//value from 0 to 1
 		var hue=(value*100).toString(10);
@@ -293,6 +304,7 @@
 	var value = kv / 1000;
 	$('#karma').attr("style", "color: " + getColor(value) + " !important");
 	$('#karma2').attr("style", "color: " + getColor(value) + " !important");
+
 
 	$('#discord').click(function () { copyToClipboard("<?php echo $usersDiscord; ?>"); });
 

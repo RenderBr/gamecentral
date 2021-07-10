@@ -76,6 +76,9 @@ echo '<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">';
 echo '
 <style>
+.no-border{
+  border:none !important;
+}
 .no-bs{
 	box-shadow:none !important;
 }
