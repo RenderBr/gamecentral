@@ -61,7 +61,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
-    <body style='background: url(<?php echo $usersbg; ?>);background-repeat: round;background-size: cover;'>
+    <body style='background: url(<?php echo $usersbg; ?>);background-repeat: none;background-size: cover;'>
 	<?php include_once('modules/navbar.php'); ?>
 
 		<br><div class='bg-dark1 container user pt-2 rounded'>
