@@ -23,7 +23,7 @@
 
 		<div class='bg-dark1 container pb-3 mb-4 rounded' style="max-width: 27rem;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);"><div class='text-center'>
 		<h4 style='padding-top: 18.5px;'>Forgot your password? <u>It's okay</u>...</h4></div>
-		<form action='/func/sendForgetPasswordemail.php' method='POST'>
+		<form action='/func/sendForgetPasswordEmail.php' method='POST'>
 		<label for='email'><p class="sm-text">YOUR EMAIL</p></label>
 		<div class="input-group input-group-md sm"><input id='email' name="email" type="text" class="dark-box form-control" placeholder="Type your email..." aria-label="Enter your email..." aria-describedby="button-submit" /></div>
 		<div class='text-center'>
