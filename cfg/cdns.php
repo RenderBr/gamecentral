@@ -35,6 +35,11 @@ include_once ($_SERVER['DOCUMENT_ROOT'] . '/func/checkLFG.php');
 </script>
 
 <script>
+
+  function hide(hideThis){
+    $(hideThis).remove();
+  }
+
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -54,7 +59,7 @@ include_once ($_SERVER['DOCUMENT_ROOT'] . '/func/checkLFG.php');
 function isMobile() {
     return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
 }
-if($_SESSION['username']){
+if(isset($_SESSION['username'])){
 	$loggedUser = $_SESSION['username'];
 }else{
 	$loggedUser = "Guest";
@@ -121,7 +126,7 @@ echo '
 
 .user{
   padding-bottom:10px !important;
-	max-width: 20rem !important;
+	max-width: 35rem !important;
 	height: max-content !important;
 	box-shadow: bax !important;
 	-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72) !important;

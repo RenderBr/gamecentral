@@ -17,6 +17,15 @@ if(isset($_GET['u'])){
 	$userLFG = NULL;
 }
 
+if(isset($_GET['p'])){
+	$pageOffset = $_GET['p'];
+}else{
+	$pageOffset = 0;
+}
+
+if($pageOffset < 0){
+	header("Location: /lfg");
+}
 
 ?>
 
@@ -42,17 +51,25 @@ if(isset($_GET['u'])){
 	<?php include_once('modules/navbar.php'); ?>
 
 		<br>
-		<div class='bg-dark1 container' style="padding-bottom: 25px;max-width: 100rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);margin-top: 2.5%;width:80%;"><div class='text-center'>
-		<h4 style='padding-top: 18.5px;'>Looking for a group? We got you.</h4><?php include_once($_SERVER['DOCUMENT_ROOT'] . '/modules/gameSearch.php'); ?><hr class='nav-break'></div>
+		<div class='bg-dark1 container pb-3 mb-4 rounded' style="max-width: 100rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);width:80%;"><div class='text-center'>
+		<h4 class='pt-2 pb-1 noselect'><a class='me-1 noselect'>🔭</a>Looking for a group? We got you.</h4><?php include_once($_SERVER['DOCUMENT_ROOT'] . '/modules/gameSearch.php'); ?><div class='container text-center'>
+		<nav aria-label="Page navigation">
+		  <ul class="pagination">
+		    <li class="page-item"><a id='previous' class="page-link dark-box" href="/lfg?p=<?php echo $pageOffset-10; ?>">Previous</a></li>
+		    <li class="page-item"><a id='next' class="page-link dark-box" href="/lfg?p=<?php echo $pageOffset+10; ?>">Next</a></li>
+		  </ul>
+		</nav>
+		</div><hr class='nav-break'></div>
+		</div>
 
-		<label><p class="sm-text noselect">LOOKING FOR GROUP BROWSER</p></label>
+		<label><p class="sm-text noselect mt-1">LOOKING FOR GROUP BROWSER</p></label>
 
 
-<div class='container-fluid bg-dark2 px-4 mt-2' style='max-width:98%;height:max-content;padding: 15px 0 15px 0px;border-radius: 10px;'>
+<div class='container-fluid bg-dark2 px-4' style='max-width:98%;height:max-content;padding: 15px 0 15px 0px;border-radius: 10px;'>
 <?php
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/modules/viewGroupButton.php');
-$sql = "SELECT * FROM lfgPosts WHERE public = 0 AND expired = 0 ORDER BY date_created DESC LIMIT 25";
+$sql = "SELECT * FROM lfgPosts WHERE public = 0 AND expired = 0 ORDER BY date_created DESC LIMIT 10 OFFSET " . $pageOffset . "";
 if($gameLFG){
 	$sql = "SELECT * FROM lfgPosts WHERE public = 0 AND expired = 0 AND game = '$gameLFG' ORDER BY date_created DESC LIMIT 25";
 }
@@ -61,8 +78,10 @@ if($userLFG){
 }
 
 $result = $conn->query($sql);
+$numRows = $result->num_rows;
 
 if ($result->num_rows > 0) {
+
 	?>
 
 	<div class='row gx-2'>
@@ -166,22 +185,24 @@ if ($result->num_rows > 0) {
 
   }
 } else {
-	echo "
+	$noResults = true;
+	echo "<script>hide('#next');</script>
 
 	<div class='d-flex align-items-center justify-content-center' style='height: inherit;'>
         <a class='sm-text' style='text-decoration:none;'><i style='margin-right:7px;' class='bi bi-exclamation-circle'></i>No posts to be displayed!</a>
     </div>
 
 	";
+
 }
 
 $conn->close();
 
 
 ?>
+</div>
+</div>
 
-</div>
-</div>
 <style>
 .vertical-center {
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */

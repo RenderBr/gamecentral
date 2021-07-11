@@ -23,6 +23,7 @@
 			  $usersDiscord = $row['discord'];
 			  $discordVerified = $row['discordVerified'];
         $userLastSeen = $row['lastLoggedIn'];
+        $banner = $row['bannerImage'];
 
         if($getFriendCount = $conn->query("SELECT * FROM friends WHERE friendCombo LIKE '%{$usersname}%' AND accepted = 1")){
 
@@ -64,33 +65,109 @@
     <body style='background: url(<?php echo $usersbg; ?>);background-repeat: none;background-size: cover;'>
 	<?php include_once('modules/navbar.php'); ?>
 
-		<br><div class='bg-dark1 container user pt-2 rounded'>
-		<div class='text-center'>
-			<a title='User ID, not a placement.' style='text-decoration:none;' class='sm-text noselect mt-1'>#<?php echo $usersid; ?></a>
-			<?php
+		<br><div class='bg-dark1 container user pb-1 rounded' style='padding:0px;'>
+			<div class='container-fluid bg-warning bg-gradient rounded' style="background: url(<?php echo $banner; ?>) !important;" width=100%>
+			<img class='rounded-circle mb-1 border border-dark border-5 mt-2' width=128rem height=128rem src='<?php echo $usersav; ?>'><?php
+				$sql5 = "SELECT * FROM badges WHERE user = '$usersname' AND userid = '$usersid'";
+					$result5 = $conn->query($sql5);
 
-			if(isset($isGC)){
-				echo "<br><img title='Verified GC Associate' style='max-width: 15%;' class='noselect' src='/images/logo-03.png'></img>";
-			}else{
-				echo "<br>";
-			}
+					if ($result5->num_rows > 0) {
+					// output data of each row
+						while($row = $result5->fetch_assoc()) {
+							$badge = $row['badge'];
+							$dateAwarded = $row['date_created'];
+
+
+							$sql6 = "SELECT * FROM badgeTypes WHERE badgeName = '$badge'";
+							$result6 = $conn->query($sql6);
+
+							if ($result6->num_rows > 0) {
+							// output data of each row
+								while($row = $result6->fetch_assoc()) {
+									$badgeName = $row['badgeName'];
+									$badgeIcon = $row['badgeIcon'];
+									$badgeDescription = $row['badgeDescription'];
+
+                  echo "<a style='vertical-align:none !important;' class='ms-1'>";
+
+									if($badgeName === "Day One"){
+										echo "<img width=32 class='me-1' src='" . $badgeIcon . "' title='" . $badgeName . " - " . $badgeDescription . "\n\nAwarded - " . $dateAwarded . "'>";
+									}
+
+                  if($badgeName === "Bug Hunter"){
+                    echo "<img width=32 class='me-1' src='" . $badgeIcon . "' title='" . $badgeName . " - " . $badgeDescription . "\n\nAwarded - " . $dateAwarded . "'>";
+                  }
+
+                  echo "</a>";
+								}
+
+							}
+
+
+						}
+					}
 
 			?>
-			<h4><?php echo $usersname; ?></h4>
-			<img class='rounded mb-1' height=50% width=50% src='<?php echo $usersav; ?>'>
-			<hr class='nav-break'>
-		</div>
+    </div>
+    <div class='container rounded pt-1'>
+  <div class='d-flex align-items-center'>
+     <div class="me-auto p-2 bd-highlight"><h4 style='margin-bottom:0px !important;'><?php echo $usersname; ?><a title='User ID, not a placement.' style='text-decoration:none;' class='noselect mt-3 ms-1 gray'>#<?php echo $usersid; ?></a></h4>
+</div>
+     <div class='p-2'>			<a class='me-2'><?php
+
+     			if($usersrole == 0){
+     				echo "
+     				<label>
+     					<p style='color:white !important;' class='sm-text'>DEFAULT</p>
+     				</label>";
+     			}
+     			if($usersrole == 1){
+     				echo "
+     				<label>
+     					<p style='color:#5539cc !important;text-shadow: 1px 1px 1px #FF3900;' class='sm-text'>CONTENT CREATOR</p>
+     				</label>";
+     			}
+     			if($usersrole == 2){
+     				echo "
+     				<label>
+     					<p style='color:#f77e36 !important;font-size: 13px;' class='sm-text'>MODERATOR</p>
+     				</label>";
+     			}
+     			if($usersrole == 3){
+     				echo "
+     				<label>
+     					<p style='color:#e35500 !important;text-shadow:2px 2px 1px rgba(56,20,13,0.22);font-size: 14px;' class='sm-text'>ADMIN</p>
+     				</label>";
+     			}
+     			if($usersrole == 4){
+     				echo "
+     				<label>
+     					<p style='color: #ee0c0c !important;text-shadow:5px 2px 8px rgba(56,20,13,0.92);font-size: 15px;' class='sm-text'>OPERATOR</p>
+     				</label>";
+     			}
+     			if($usersrole == 12){
+     				echo "
+     				<label>
+     					<p style='color: #535353 !important;text-shadow:5px 2px 8px rgba(56,20,13,0.92);font-size: 0.5px;' class='sm-text noselect'>john</p>
+     				</label>";
+     			}
+     			?></a><?php include_once('modules/friend.php'); ?></div>
+  </div>
+  <hr class='nav-break'>
+
 
 		<label>
-			<p class="sm-text">BIO</p>
+			<p class="sm-text">BIO<?php
+                  if(isset($isGC)){
+                  echo "<img title='Verified GC Associate' style='max-width: 5%;' class='noselect ms-1' src='/images/logo-03.png'>";
+           			}else{
+           			} ?></p>
 		</label>
-
 		<p style='margin-bottom:0.75rem !important;'>
 			<?php echo $usersbio; ?>
 		</p>
 
 		<?php
-		include_once('modules/friend.php');
 		echo "<label>
 			<p class='sm-text' style='color:white; !important;'>
 			";
@@ -118,6 +195,7 @@
 			</p>
 		</label>";
 		?>
+  </div>
 
 		</div>
 			<?php
@@ -149,56 +227,6 @@
 
 			?>
 			</div>
-
-		</div>
-
-		<div class='bg-dark1 container user rounded mt-1'>
-
-			<hr class='nav-break'>
-			<label>
-				<p class="sm-text noselect">ROLE <?php if($usersrole == 12){ echo "????"; } ?></p>
-			</label>
-			<hr class='nav-break'>
-
-			<?php
-
-			if($usersrole == 0){
-				echo "
-				<label>
-					<p style='color:white !important;' class='sm-text'>DEFAULT</p>
-				</label>";
-			}
-			if($usersrole == 1){
-				echo "
-				<label>
-					<p style='color:#5539cc !important;text-shadow: 1px 1px 1px #FF3900;' class='sm-text'>CONTENT CREATOR</p>
-				</label>";
-			}
-			if($usersrole == 2){
-				echo "
-				<label>
-					<p style='color:#f77e36 !important;font-size: 13px;' class='sm-text'>MODERATOR</p>
-				</label>";
-			}
-			if($usersrole == 3){
-				echo "
-				<label>
-					<p style='color:#e35500 !important;text-shadow:2px 2px 1px rgba(56,20,13,0.22);font-size: 14px;' class='sm-text'>ADMIN</p>
-				</label>";
-			}
-			if($usersrole == 4){
-				echo "
-				<label>
-					<p style='color: #ee0c0c !important;text-shadow:5px 2px 8px rgba(56,20,13,0.92);font-size: 15px;' class='sm-text'>OPERATOR</p>
-				</label>";
-			}
-			if($usersrole == 12){
-				echo "
-				<label>
-					<p style='color: #535353 !important;text-shadow:5px 2px 8px rgba(56,20,13,0.92);font-size: 0.5px;' class='sm-text noselect'>john</p>
-				</label>";
-			}
-			?>
 
 		</div>
 
@@ -244,49 +272,6 @@
 			}
 			?>
 
-			<div class='bg-dark1 container user rounded mt-1 mb-3'>
-
-			<hr class='nav-break'>
-			<label>
-				<p class="sm-text noselect">BADGES</p>
-			</label>
-			<hr class='nav-break'>
-
-			<?php
-				$sql5 = "SELECT * FROM badges WHERE user = '$usersname' AND userid = '$usersid'";
-					$result5 = $conn->query($sql5);
-
-					if ($result5->num_rows > 0) {
-					// output data of each row
-						while($row = $result5->fetch_assoc()) {
-							$badge = $row['badge'];
-							$dateAwarded = $row['date_created'];
-
-
-							$sql6 = "SELECT * FROM badgeTypes WHERE badgeName = '$badge'";
-							$result6 = $conn->query($sql6);
-
-							if ($result6->num_rows > 0) {
-							// output data of each row
-								while($row = $result6->fetch_assoc()) {
-									$badgeName = $row['badgeName'];
-									$badgeIcon = $row['badgeIcon'];
-									$badgeDescription = $row['badgeDescription'];
-
-									if($badgeName === "Day One"){
-										echo "<img width=32 src='" . $badgeIcon . "' title='" . $badgeName . " - " . $badgeDescription . "\n\nAwarded - " . $dateAwarded . "'>";
-									}
-
-								}
-
-							}
-
-
-						}
-					}
-
-			?>
-			</div>
     </body>
 </html>
 
@@ -326,15 +311,6 @@
 .box {
    display: flex;
    align-items:center;
-}
-#rem{
-  width: 100% !important;
-}
-#acceptF{
-  width: 100% !important;
-}
-#addF{
-  width:100% !important;
 }
 </style>
 <?php

@@ -41,8 +41,8 @@
     </head>
     <body class='bg-dark3'>
 	<?php include_once('modules/navbar.php'); ?>
-	
-		<br><div class='bg-dark1 container news rounded mb-3'>
+
+		<br><div class='bg-dark1 container news rounded mb-4 pb-3'>
 		<div class='text-center'>
 			<h2 class='mt-2 display-2'><?php echo $newsTitle; ?></h2>
 			<hr class='nav-break'>
@@ -59,19 +59,19 @@
 
 		<p style='margin-bottom:0.75rem !important;'>
 			<?php echo $newsContent; ?>
-		</p>		
+		</p>
 
 
 		</div>
 			<?php
 
-			
+
 			?>
 			</div>
-			
+
 		</div>
-		
-	
+
+
     </body>
 </html>
 
@@ -85,11 +85,11 @@
 
 	var kv = parseInt($('#karma').text())
 	var value = kv / 1000;
-	$('#karma').attr("style", "color: " + getColor(value) + " !important"); 
-	$('#karma2').attr("style", "color: " + getColor(value) + " !important"); 
-	
+	$('#karma').attr("style", "color: " + getColor(value) + " !important");
+	$('#karma2').attr("style", "color: " + getColor(value) + " !important");
+
 	$('#discord').click(function () { copyToClipboard("<?php echo $usersDiscord; ?>"); });
-	
+
 	function copyToClipboard(text) {
 		var $temp = $("<input>");
 		$("body").append($temp);
@@ -97,7 +97,7 @@
 		document.execCommand("copy");
 		$temp.remove();
 }
-	
+
 </script>
 
 <style>

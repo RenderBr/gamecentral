@@ -32,13 +32,13 @@ if($_SESSION['username']){
 	<?php include_once('modules/navbar.php'); ?>
 
 		<br>
-		<div class='bg-dark1 container' style="padding-bottom: 25px;max-width: 100rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);margin-top: 2.5%;width:80%;"><div class='text-center'>
-		<h4 style='padding-top: 18.5px;'>Your notifications? Right here.</h4><hr class='nav-break'></div>
+		<div class='bg-dark1 container mb-4 pb-3 rounded' style="padding-bottom: 25px;max-width: 100rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);width:80%;"><div class='text-center'>
+		<h4 class='noselect pt-2 pb-1'><i class="bi bi-bell me-1"></i>Your notifications? Right here.</h4><hr class='nav-break'></div>
 
 		<label><p class="sm-text noselect">NOTIFICATIONS</p></label>
 
 
-<div class='container-fluid bg-dark2 px-4 mt-2' style='max-width:98%;height:max-content;padding: 15px 0 15px 0px;border-radius: 10px;'>
+<div class='container-fluid bg-dark2 px-4' style='max-width:98%;height:max-content;padding: 15px 0 15px 0px;border-radius: 10px;'>
 <?php
 
 function get_string_between($string, $start, $end){

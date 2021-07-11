@@ -26,6 +26,7 @@ if($_SESSION['username']){
 			  $mybg = $row['bg'];
 			  $mydiscord = $row['discord'];
 				$myStatus = $row['status'];
+				$myBanner = $row['bannerImage'];
 		  }
 
 		}
@@ -49,7 +50,7 @@ if($_SESSION['username']){
 		<?php include_once('modules/navbar.php'); ?>
 
 		<br>
-		<div class='bg-dark1 container pb-1 mb-4' style="max-width: 50rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);">
+		<div class='bg-dark1 container pb-3 mb-4 rounded' style="max-width: 50rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);">
 		<div class='text-center'>
 			<h4 class='noselect pt-2 pb-1'><i class="bi bi-gear gray me-2"></i>Settings</h4>
 			<hr class='nav-break' style='margin-bottom:0.5rem !important;'>
@@ -94,6 +95,15 @@ if($_SESSION['username']){
 			<br>
 			<input name='a' type='text' id='avatar' class='dark-box form-control' value='<?php echo $myavatar; ?>'><p class='sm-text noselect'><strong>Notice:</strong> Image link must be direct, and use the HTTPS security protocol. Currently, there's no way to upload directly to Game Central, so we do recommend using something like <a style='text-decoration:none;color:white;' href='https://imgbb.com/'>ImgBB and copying the image link once uploaded.</a> Image uploading to GC will be implemented in the future.</p></input>
 			<input form='form2' type="submit" style="display: none"></input>
+			</form>
+
+			<!--- BANNER -->
+			<form id='form2' class='mb-3' method='post' action='/func/changeBanner.php'>
+			<label style='margin-right:0.5rem;' class='noselect sm-text' for='banner'>BANNER</label>
+			<br>
+			<input name='b' type='text' id='banner' class='dark-box form-control' value='<?php echo $myBanner; ?>'></input>
+			<input form='form2' type="submit" style="display: none"></input>
+			<p class='sm-text noselect'>If you are having difficulty with this, please read the avatar notice text.</p>
 			</form>
 
 			<!--- BG IMAGE -->

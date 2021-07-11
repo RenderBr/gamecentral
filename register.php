@@ -2,7 +2,7 @@
 session_start();
 $key = $_GET['inv'];
 
-if($_SESSION['username']){
+if(isset($_SESSION['username'])){
 	header("Location: /");
 }else{
 	session_destroy();
@@ -19,18 +19,18 @@ if($_SESSION['username']){
 			if(!$key){
 				header("Location: /woah");
 			}else{
-				
-				$sql = "SELECT * from regTokens WHERE token = '$key' AND used = 0"; 
-				
+
+				$sql = "SELECT * from regTokens WHERE token = '$key' AND used = 0";
+
 				$result = $conn->query($sql);
 
 				if ($result->num_rows > 0) {
 				// output data of each row
-				
+
 				}else{
 					header("Location: /woah");
 				}
-				
+
 			}
 
 
@@ -54,9 +54,9 @@ if($_SESSION['username']){
     </head>
     <body style='background: url(/images/generate.png)'>
 	<?php include_once('modules/navbar.php'); ?>
-		
+
 		<br>
-		<div class='bg-dark1 container' style="padding-bottom: 25px;max-width: 27rem;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);margin-top: 2.5%;"><div class='text-center'>
+		<div class='bg-dark1 container pb-3 mb-4 rounded' style="max-width: 27rem;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);"><div class='text-center'>
 		<h4 style='padding-top: 18.5px;'>Register for an account!</h4></div>
 		<form action='/func/registerUser.php' method='POST'>
 		<label for='email'><p class="sm-text">EMAIL</p></label>
@@ -118,7 +118,7 @@ if($_SESSION['username']){
 				<option value="9">29</option>
 				<option value="10">30</option>
 				<option value="10">31</option>
-			</select>	
+			</select>
 		</div>
 		<div class="col">
 			<select class="form-select dark-box" id='dob' name='year' aria-label="Year selector">
@@ -247,7 +247,7 @@ if($_SESSION['username']){
 		<a style='text-decoration:none;color: #0d6efd;' href='/login'><p style='font-size: 12px;'>Already have an account?</p></a>
 		<p style='font-size:12px;' class='sm-text'>By registering, you agree to our Terms of Service and Privacy Policy.</p>
 		</div>
-	
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

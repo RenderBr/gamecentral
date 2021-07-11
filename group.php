@@ -109,9 +109,9 @@
     <body class='bg-dark3'>
 	<?php include_once('modules/navbar.php'); ?>
 
-		<br><div class='bg-dark1 container news rounded mb-3'>
+		<br><div class='bg-dark1 container news rounded mb-4 pb-3'>
 		<div class='text-center'>
-			<h2 class='mt-2 mb-0' style='margin-bottom:1rem;'><?php echo $groupName; ?><img class='icon-md ms-1' title='<?php echo $gameName; ?>' src='<?php echo $gameSmIcon; ?>'></h2>
+			<h2 class='mb-0' style='margin-bottom:1rem;'><?php echo $groupName; ?><img class='icon-md ms-1' title='<?php echo $gameName; ?>' src='<?php echo $gameSmIcon; ?>'></h2>
 				<?php
 				if($notAMember == 1){
 					echo "<button id='" . $group . "' value='" . $group . "' onclick='joinGroup(this)' class='btn btn-success'>Join group!</button>";

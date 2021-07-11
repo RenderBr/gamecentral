@@ -38,8 +38,8 @@ $self = $_SESSION['username'];
 
 
 		<br>
-		<div class='bg-dark1 container mb-4 pb-1' style="max-width: 27rem;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);margin-top: 2.5%;"><div class='text-center'>
-		<h4 class='noselect' style='padding-top: 18.5px;'>Create <u>your group!</u></h4></div>
+		<div class='bg-dark1 container mb-4 pb-3 rounded' style="max-width: 27rem;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);"><div class='text-center'>
+		<h4 class='pt-2 pb-1 noselect'><i class="bi bi-pencil-square noselect me-1"></i>Create <u>your group</u>!</h4><hr class='nav-break'></div>
 		<form action='/func/createLFG.php' method='POST'>
 		<label for='groupname'><p class="sm-text">GROUP NAME</p></label>
 		<div class="input-group input-group-md sm"><input id='groupname' name="groupname" type="text" class="dark-box form-control" placeholder="My Epic CS:GO Squad" aria-label="Enter a name for your group..." aria-describedby="button-submit" /></div>

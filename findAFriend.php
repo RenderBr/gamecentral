@@ -66,6 +66,17 @@ function isFriends($friend, $otherFriend, $conn){
 	}
 }
 
+if(isset($_GET['p'])){
+	$pageOffset = $_GET['p'];
+}else{
+	$pageOffset = 0;
+}
+
+if($pageOffset < 0){
+	header("Location: /findAFriend");
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -90,9 +101,15 @@ function isFriends($friend, $otherFriend, $conn){
 	<?php include_once('modules/navbar.php'); ?>
 
 		<br>
-		<div class='bg-dark1 container' style="padding-bottom: 25px;max-width: 100rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);margin-top: 2.5%;width:80%;"><div class='text-center'>
-		<h4 style='padding-top: 18.5px;'>Feeling alone? <u>Find a friend</u>!</h4></div><?php include_once($_SERVER['DOCUMENT_ROOT'] . '/modules/friendSearch.php'); ?><hr class='nav-break'></div>
-
+		<div class='bg-dark1 container pb-3 mb-4 rounded' style="max-width: 100rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);width:80%;"><div class='text-center'>
+		<h4 class='noselect pt-2 pb-1'><i class="bi bi-person-lines-fill me-1 noselect"></i>Feeling lonely? <u>Find a friend</u>!</h4></div><?php include_once($_SERVER['DOCUMENT_ROOT'] . '/modules/friendSearch.php'); ?></div>
+    <nav aria-label="Page navigation">
+      <ul class="pagination">
+        <li class="page-item"><a id='previous' class="page-link dark-box" href="/findAFriend?p=<?php echo $pageOffset-10; ?>">Previous</a></li>
+        <li class="page-item"><a id='next' class="page-link dark-box" href="/findAFriend?p=<?php echo $pageOffset+10; ?>">Next</a></li>
+      </ul>
+    </nav>
+    <hr class='nav-break'>
 		<label><p class="sm-text noselect">FIND FRIENDS</p></label>
 
 
@@ -100,7 +117,7 @@ function isFriends($friend, $otherFriend, $conn){
 	<div class='row gx-2'>
 <?php
 
-$sql = "SELECT * FROM users ORDER BY RAND()";
+$sql = "SELECT * FROM users ORDER BY RAND() LIMIT 10 OFFSET $pageOffset";
 
 $result = $conn->query($sql);
 
@@ -144,10 +161,11 @@ if ($result->num_rows > 0) {
 		//echo "<div id='" . $groupid . "l' style='border-radius:5px;' class='container bg-darkest p-4 position-relative mt-2'><a class='sm-text noselect me-2'>#" . $groupid . "</a><a style='color:white;' href='/user?u=" . $user . "'>" . $user . " <a class='gray'>&nbsp;is looking to play</a> </a><img title='" . $gameTooltip . "' width=32 class='ms-1' src='" . $iconSm . "'></img><a class='sm-text ms-1'>" . $gameName . ",</a> <a class='gray'>with a group of <a id='" . $groupid . "n'>" . $currentGroup . "</a> / " . $groupSize . " players. " . $groupName . "<div style='transform: translate(0%, -50%) !important;' class='position-absolute top-50 end-0 translate-middle'><a class='sm-text noselect' id='" . $groupid . "t'>" . $currentGroup . "</a><a class='sm-text noselect me-3'> / " . $groupSize . "</a>";
 	}
 } else {
-	echo "
+
+	echo "<script>hide('#next')</script>
 
 	<div class='d-flex align-items-center justify-content-center' style='height: inherit;'>
-        <a class='sm-text' style='text-decoration:none;'><i style='margin-right:7px;' class='bi bi-exclamation-circle'></i>Nobody on the website? Huh? Must be an error... Please report this to someone immediately!</a>
+        <a class='sm-text' style='text-decoration:none;'><i style='margin-right:7px;' class='bi bi-exclamation-circle'></i>No users on this page!</a>
     </div>
 
 	";
@@ -249,11 +267,6 @@ function joinGroup (button) {
 
 
 </script>
-
-<hr class='nav-break mt-2'>
-
-
-
 		</div>
     </body>
 </html>

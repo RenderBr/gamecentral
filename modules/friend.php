@@ -14,7 +14,7 @@ if(isset($friendFAF)){
 $friendcombo = $self . " - " . $friend;
 $friendcombo2 = $friend . " - " . $self;
 if($self == $friend){
-
+	echo "<a id='settings' title='Settings' href='/settings' class='btn btn-secondary'><i class='bi bi-gear'></i></a><br>";
 }else {
 
 
@@ -28,7 +28,7 @@ if($self == $friend){
 			if($accepted == 1){
 				echo "<button id='rem' onclick='removeFriend()' title='Remove friend!' class='btn btn-danger'><i class='bi bi-person-x'></i></button><br>";
 			}else{
-				echo "<button title='Friend request pending!' class='btn btn-secondary'>Request pending...</button><br>";
+				echo "<button id='req' title='Friend request pending!' class='btn btn-secondary'>Request pending...</button><br>";
 			}
 
 
