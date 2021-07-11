@@ -49,7 +49,9 @@ if(isset($_GET['r'])){
 		<input name='r' style='display:none;' value='<?php echo $redirect; ?>'>
 		</form>
 		<p class='sm-text'>If you'd like to register, please join our <a href='https://discord.gg/GVn8teTR6V' style='color:#7289DA;text-decoration:underline;'>Discord and contact an admin!</a></p>
-		</div>
+    <p class='sm-text'>Forgot your password? <a href='/forgetPassword.php' style='color:#ffff !important;text-decoration:underline;'>click here to reset it!</a></p>
+
+    </div>
 
 
 		<?php
