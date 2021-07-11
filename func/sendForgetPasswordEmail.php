@@ -56,7 +56,7 @@ try {
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Reset your GameCentral account password!';
-    $mail->Body    = '<a>Please click here: <a href="localhost/forgotPassword?token=' . $gennedToken . '">to reset your password!</a>';
+    $mail->Body    = '<a>Please click here: <a href="https://gamecentral.online/forgotPassword?token=' . $gennedToken . '">to reset your password!</a>';
 
     $mail->send();
     echo 'Message has been sent';
