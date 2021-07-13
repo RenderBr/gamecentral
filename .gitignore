@@ -3,3 +3,5 @@
 func/.htaccess
 phpmyadmin/*
 .htaccess
+.htaccess
+cfg/conn.php
