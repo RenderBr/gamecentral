@@ -46,9 +46,3 @@
       background: #f0f0f0;
     }
 	</style>
-
-	<script>
-  $("#goToGame").click(function(){
-    window.location.href="lfg?u=" + $("#gameNameB").html();
-  });
-	</script>

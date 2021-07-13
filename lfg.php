@@ -294,10 +294,6 @@ function joinGroup (button) {
 
 </script>
 
-<hr class='nav-break mt-2'>
-
-
-
 		</div>
     </body>
 </html>

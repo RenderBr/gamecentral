@@ -5,3 +5,5 @@ phpmyadmin/*
 .htaccess
 .htaccess
 cfg/conn.php
+.htaccess
+cfg/conn.php

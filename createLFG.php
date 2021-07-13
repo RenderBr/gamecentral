@@ -97,7 +97,10 @@ $self = $_SESSION['username'];
             url:"/func/gameSearch.php",
             type:"POST",
             cache:false,
-            data:{game:game},
+            data:{
+							game:game,
+							isCreate: "true"
+						},
             success:function(data){
               $("#gameList").html(data);
               $("#gameList").fadeIn();
