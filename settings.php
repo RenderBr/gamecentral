@@ -93,7 +93,7 @@ if($_SESSION['username']){
 			<form id='form2' class='mb-3' method='post' action='/func/changeAvatar.php'>
 			<label style='margin-right:0.5rem;' class='noselect sm-text' for='avatar'>AVATAR</label>
 			<br>
-			<input name='a' type='text' id='avatar' class='dark-box form-control' value='<?php echo $myavatar; ?>'><p class='sm-text noselect'><strong>Notice:</strong> Image link must be direct, and use the HTTPS security protocol. Currently, there's no way to upload directly to Game Central, so we do recommend using something like <a style='text-decoration:none;color:white;' href='https://imgbb.com/'>ImgBB and copying the image link once uploaded.</a> Image uploading to GC will be implemented in the future.</p></input>
+			<input name='a' type='text' id='avatar' class='dark-box form-control' value='<?php echo $myavatar; ?>'><p class='sm-text noselect'><strong>Notice:</strong> Image link must be direct (make sure the link ends in .PNG or .JPG, etc), and it must use the HTTPS security protocol . Currently, there's no way to upload directly to Game Central. Image uploading to GC will be implemented in the future.</p></input>
 			<input form='form2' type="submit" style="display: none"></input>
 			</form>
 
