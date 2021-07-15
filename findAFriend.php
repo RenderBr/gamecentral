@@ -29,9 +29,9 @@ function isFriends($friend, $otherFriend, $conn){
 				while($row = $result->fetch_assoc()) {
 					$accepted = $row['accepted'];
 					if($accepted == 1){
-						echo "<button id='rem' onclick='removeFriend()' title='Remove friend!' class='btn btn-danger'><i class='bi bi-person-x'></i></button><br>";
+						echo "<button id='rem' value='" . $otherFriend . "' onclick='removeFriend(this)' title='Remove friend!' class='btn btn-danger'><i class='bi bi-person-x'></i></button><br>";
 					}else{
-						echo "<button title='Friend request pending!' class='btn btn-secondary'>Request pending...</button><br>";
+						echo "<button value='" . $otherFriend . "' title='Friend request pending!' class='btn btn-secondary'>Request pending...</button><br>";
 					}
 
 
@@ -46,15 +46,15 @@ function isFriends($friend, $otherFriend, $conn){
 				while($row = $result->fetch_assoc()) {
 					$accepted = $row['accepted'];
 					if($accepted == 1){
-						echo "<button id='rem' onclick='removeFriend()' title='Remove friend!' class='btn btn-danger'><i class='bi bi-person-x'></i></button><br>";
+						echo "<button value='" . $otherFriend . "' id='rem' onclick='removeFriend(this)' title='Remove friend!' class='btn btn-danger'><i class='bi bi-person-x'></i></button><br>";
 					}else{
-						echo "<button id='acceptF' onclick='acceptFriend()' title='Friend request pending!' class='btn btn-secondary'>Accept request!</button><br>";
+						echo "<button value='" . $otherFriend . "' id='acceptF' onclick='acceptFriend(this)' title='Friend request pending!' class='btn btn-secondary'>Accept request!</button><br>";
 					}
 
 
 				}
 			}else{
-				echo "<button id='addF' onclick='addFriend()' title='Add friend!' class='btn btn-success'><i class='bi bi-person-plus'></i></button><br>";
+				echo "<button value='" . $otherFriend . "' id='addF' onclick='addFriend(this)' title='Add friend!' class='btn btn-success'><i class='bi bi-person-plus'></i></button><br>";
 			}
 
 			}
@@ -194,77 +194,56 @@ a{
 
 <script>
 
-function joinGroup (button) {
-      $.ajax({
-        url: "/func/joinGroup.php", //the page containing php script
-        type: "POST", //request type
-        data: {
-			u: "<?php echo $_SESSION['username']; ?>",
-			gid:$(button).val()
-		},
-		success:function(data){
-			$(button).html("Leave!");
-			$(button).attr("onclick", "leaveGroup(this)");
-			$(button).removeClass("btn-success");
-			$(button).addClass("btn-danger");
-			var groupid = $(button).val();
-			var n = document.getElementById('' + groupid + 'n');
-			var t = document.getElementById('' + groupid + 't');
-			var currentPlayers = parseInt(n.textContent);
-			$(button).before('<a id="gpage' + groupid + '" class="btn btn-secondary me-2" href="/group?g=' + groupid + '">Open Group Page</a>');
+function removeFriend(button){
+	if(confirm("Are you sure you want to remove " +  $(button).val() + " as a friend?")){
+	$.ajax({
+                type: 'POST',
+                url: '/func/friendManager.php',
+				data: {
+					friend: $(button).val(),
+					self: "<?php echo $self; ?>",
+					action: "remove"
+				},
+                success: function(data) {
+					             $(button).html("Removed!");
+                }
+            });
+					}
+}
 
-			n.textContent = currentPlayers + 1 + "";
-			t.textContent = currentPlayers + 1 + "";
+function addFriend(button){
+	        $.ajax({
+                type: 'POST',
+                url: '/func/friendManager.php',
+				data: {
+					friend: $(button).val(),
+					self: "<?php echo $self; ?>",
+					action: "add"
+				},
+                success: function(data) {
+					$(button).html("Requested!");
+					$(button).removeClass("btn-danger");
+					$(button).addClass("btn-secondary");
+                }
+            });
+}
 
-			}
-     });
- }
-
- function leaveGroup (button) {
-      $.ajax({
-        url: "/func/leaveGroup.php", //the page containing php script
-        type: "POST", //request type
-        data: {
-			u: "<?php echo $_SESSION['username']; ?>",
-			gid:$(button).val()
-		},
-		success:function(data){
-			$(button).html("Join group!");
-			$(button).attr("onclick", "joinGroup(this)");
-			$(button).removeClass("btn-danger");
-			$(button).addClass("btn-success");
-			var groupid = $(button).val();
-			var n = document.getElementById('' + groupid + 'n');
-			var t = document.getElementById('' + groupid + 't');
-			var currentPlayers = parseInt(n.textContent);
-			$("#gpage" + groupid).remove();
-
-			n.textContent = currentPlayers - 1 + "";
-			t.textContent = currentPlayers - 1 + "";
-
-       }
-     });
- }
-
-  function deleteGroup (button) {
-      $.ajax({
-        url: "/func/deleteGroup.php", //the page containing php script
-        type: "POST", //request type
-        data: {
-			u: "<?php echo $_SESSION['username']; ?>",
-			gid:$(button).val()
-		},
-		success:function(data){
-			var groupid = $(button).val();
-			$('#' + groupid + 'l').empty();
-			$('#' + groupid + 'l').remove();
-
-
-       }
-     });
- }
-
-
+function acceptFriend(button){
+	        $.ajax({
+                type: 'POST',
+                url: '/func/friendManager.php',
+				data: {
+					friend: $(button).val(),
+					self: "<?php echo $self; ?>",
+					action: "accept"
+				},
+                success: function(data) {
+					$(button).html("Accepted!");
+					$(button).removeClass("btn-secondary");
+					$(button).addClass("btn-success");
+                }
+            });
+}
 
 </script>
 		</div>
