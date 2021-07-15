@@ -17,19 +17,13 @@ if(!$self){
 
 include_once('../cfg/cdns.php');
 
-	$sql = "INSERT INTO servers (serverName, serverDescription, poster, isOwner, forGame, ip, port, bannerImage)
+	$sql54 = "INSERT INTO servers (serverName, serverDescription, poster, isOwner, forGame, ip, port, bannerImage)
 VALUES ('$serverName', '$serverDescription', '$self', $serverIsOwner, '$serverGame', '$serverIp', $serverPort, '$bannerImage')";
 
-	if ($conn->query($sql) === TRUE) {
+	if ($conn->query($sql54) === TRUE) {
 		 $createdServerId = $conn->insert_id;
+		 header("Location: /server?id=" . $createdServerId);
 	} else {
 		header("Location: /servers");
 	}
-
-	if ($conn->query($sql) === TRUE) {
-	  header("Location: /server?id=" . $createdServerId);
-	} else {
-		header("Location: /servers");
-	}
-
 ?>

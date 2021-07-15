@@ -109,8 +109,6 @@ $self = $_SESSION['username'];
             cache:false,
             data:{game:game},
             success:function(data){
-              $("#groupSize").append(data);
-			  $("#deleteThis").remove();
 			}
 			});
 			}else{
