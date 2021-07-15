@@ -66,7 +66,10 @@
 							<a class='nav-link' aria-current='page' href='/createLFG'>Create a group!</a>
 						</li>
 						<li class='nav-item'>
-							<a class='nav-link' aria-current='page' href='/findAFriend'>Find a Friend!</a>
+							<a class='nav-link' aria-current='page' href='/findAFriend'>Users</a>
+						</li>
+						<li class='nav-item'>
+							<a class='nav-link' aria-current='page' href='/servers'>Game Servers</a>
 						</li>
 						<li class='nav-item'>
 							<a class='nav-link' aria-current='page' href='/lfg'>LFG</a>

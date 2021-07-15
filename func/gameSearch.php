@@ -4,6 +4,7 @@
 
 	if (isset($_POST['game'])) {
 
+
   		$output = "";
   		$gameL = $_POST['game'];
   		$query = "SELECT * FROM games WHERE name LIKE '%$gameL%' OR shortName LIKE '%$gameL%' ORDER BY CASE
@@ -13,6 +14,15 @@
 			ELSE 3
 			END
 		LIMIT 3";
+    if(isset($_POST['isCreateServer'])){
+      $query = "SELECT * FROM games WHERE name LIKE '%$gameL%' AND serverSupport = 1 OR shortName LIKE '%$gameL%' AND serverSupport = 1 ORDER BY CASE
+			WHEN name LIKE '$gameL' THEN 1
+			WHEN name LIKE '$gameL%' THEN 2
+			WHEN name like '%$gameL' THEN 4
+			ELSE 3
+			END
+		LIMIT 3";
+    }
   		$result = $conn->query($query);
 		$gameIds = [];
 

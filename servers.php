@@ -53,11 +53,12 @@ if($pageOffset < 0){
 
 		<br>
 		<div class='bg-dark1 container pb-3 mb-4 rounded' style="max-width: 100rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);width:80%;"><div class='text-center'>
-		<h4 class='pt-2 pb-1 noselect'><a class='me-1 noselect'></a>Want to play on a server? <u>Boom</u>!💥</h4><?php include_once($_SERVER['DOCUMENT_ROOT'] . '/modules/gameServerSearch.php'); ?><div><div class='container text-center'>
+		<h4 class='pt-2 pb-1 noselect'><a class='me-1 noselect'></a>Want to <u>find a new server</u>? Boom!💥</h4><?php include_once($_SERVER['DOCUMENT_ROOT'] . '/modules/gameServerSearch.php'); ?><div><div class='container-fluid text-center'>
 		<nav aria-label="Page navigation">
 		  <ul class="pagination">
 		    <li class="page-item"><a id='previous' class="page-link dark-box" href="/servers?p=<?php echo $pageOffset-10; ?>">Previous</a></li>
 		    <li class="page-item"><a id='next' class="page-link dark-box" href="/servers?p=<?php echo $pageOffset+10; ?>">Next</a></li>
+				<li class="page-item"><a id='next' class="page-link dark-box bg-success" href="/createServer">Create a server!</a></li>
 		  </ul>
 		</nav>
 		</div><hr class='nav-break'></div>
@@ -158,12 +159,12 @@ if ($result->num_rows > 0) {
 		echo "<div id='" . $rank . "l' class='d-flex bg-darkest rounded mt-2 align-items-center'>
 		<div class='me-auto p-2'>
 			<a title='Rank " . $rank . " out of " . $rank . "' class='sm-text noselect me-2'>#" . $rank . "</a>
-			<img title='" . $serverName . "' width=512rem height=68rem height= class='img-fluid' src='" . $banner . "' style='overflow:hidden;'><br>
-			<h2 style='color:white;' class='ms-4'>" . $serverName . $serverStatus .  "<img src='" . $iconSm . "' title='" . $gameTooltip . "' class='icon-sm ms-2'> <a class='sm-text'>(" . $votes . " votes)</a> </h2>
+			<a href='/server?id=" . $serverId . "'><img title='" . $serverName . "' width=512rem height=68rem class='img-fluid rounded border border-dark' src='" . $banner . "' style='overflow:hidden;'></a><br>
+			<a href='/server?id=" . $serverId . "'><h2 style='color:white;' class='ms-4'>" . $serverName . $serverStatus .  "</a><img src='" . $iconSm . "' title='" . $gameTooltip . "' class='icon-sm ms-2'> <a class='sm-text'>(" . $votes . " votes)</a> </h2>
 			<a class='gray ms-4'>" . $description . "</a>
 		</div>
-		<div class='p-2'><a class='gray me-2'>" . $serverAddress . $serverPort . "</a><a href='/server?s=" . $serverId . "' class='btn btn-success me-2 ms-1'>View more info...</a><a class='sm-text noselect' id='" . $rank . "t'>" . $currentPlayerCount . "</a>
-		<a class='sm-text noselect me-3'> / " . $maxPlayerCnt . "</a>
+		<div class='p-2'><button onclick='copyThis(this)' value='" . $serverAddress . $serverPort . "' id='copyIP' title='click to copy IP' class='gray me-2 btn btn-outline-secondary'><i class='me-2 bi bi-clipboard-plus' style='color:white;'></i>" . $serverAddress . $serverPort . "</button><a href='/server?id=" . $serverId . "' class='btn btn-success me-2 ms-1'>View more info...</a><div class='d-flex justify-content-center border border-dark mt-2'><a class='sm-text noselect' id='" . $rank . "t'>Players online: " . $currentPlayerCount . " </a>
+		<a class='sm-text noselect ms-1 me-3'> / " . $maxPlayerCnt . "</a></div>
 
 
 
@@ -182,7 +183,7 @@ if ($result->num_rows > 0) {
 	echo "<script>hide('#next');</script>
 
 	<div class='d-flex align-items-center justify-content-center' style='height: inherit;'>
-        <a class='sm-text' style='text-decoration:none;'><i style='margin-right:7px;' class='bi bi-exclamation-circle'></i>No posts to be displayed!</a>
+        <a class='sm-text' style='text-decoration:none;'><i style='margin-right:7px;' class='bi bi-exclamation-circle'></i>No servers are currently listed!</a>
     </div>
 
 	";
@@ -197,6 +198,9 @@ $conn->close();
 </div>
 
 <style>
+#copyIP:focus{
+	background-color:none !important;
+}
 .vertical-center {
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
 
@@ -220,8 +224,22 @@ a{
     </body>
 </html>
 
-<script src='https://unpkg.com/@wanoo21/countdown-time@1.2.0/dist/countdown-time.js'></script>
+<script>
 
+function copyThis(button){
+	copyToClipboard($(button).val());
+}
+
+
+function copyToClipboard(text) {
+	var $temp = $("<input>");
+	$("body").append($temp);
+	$temp.val(text).select();
+	document.execCommand("copy");
+	$temp.remove();
+	}
+
+</script>
 
 <style>
 .btn-primary:focus{

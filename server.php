@@ -3,6 +3,9 @@
     <head>
 	<?php
 		include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/cdns.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/func/getMCServer.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/modules/voteServerButton.php');
+
 		$serverId = $_GET['id'];
 
 		$sql = "SELECT * FROM servers WHERE id = '$serverId'";
@@ -31,10 +34,43 @@
     		$description = $row['serverDescription'];
     		$votes = $row['votes'];
 
+        if($serverGame == "Minecraft"){
+          $serverStatus = getMCStatus($serverAddress, $serverPort);
+
+          if($serverStatus == true){
+          $currentPlayerCount = getMCPlayerCnt($serverAddress, $serverPort);
+          $maxPlayerCnt = getMCMaxPlayerCnt($serverAddress, $serverPort);
+          $serverStatus = "<a class='ms-1 sm-text text-success noselect'>ONLINE!</a>";
+        }else{
+          $currentPlayerCount = "0";
+          $maxPlayerCnt = "0";
+          $serverStatus = "<a class='ms-1 sm-text text-danger noselect'>OFFLINE!</a>";
+        }
+
+        if(isset($serverPort)){
+          $serverPort = ":" . $serverPort;
+        }else{
+          $serverPort = NULL;
+        }
+
+        }
+
         if(isset($rank)){
           $rank = $rank;
         }else{
           $rank = NULL;
+        }
+
+        $sql = "SELECT * FROM games WHERE name = '$serverGame'";
+        $result = $conn->query($sql);
+
+
+        if ($result->num_rows > 0) {
+    		  // output data of each row
+    		  while($row = $result->fetch_assoc()) {
+              $icon = $row['sm_icon'];
+              $shortname = $row['shortName'];
+          }
         }
 
 		  }
@@ -42,8 +78,6 @@
 		}else{
 			header("Location: /servers");
 		}
-
-    if($)
 
 		?>
 		<meta name="description" content="<?php echo $serverName . " - " . $description;?>">
@@ -65,14 +99,14 @@
 	<?php include_once('modules/navbar.php'); ?>
 
 		<br><div class='bg-dark1 container user pb-1 rounded' style='padding:0px;'>
-			<div class='container-fluid bg-warning bg-gradient rounded' style="background: url(<?php echo $banner; ?>) !important;" width=100%>
-			<img class='rounded-circle mb-1 border border-dark border-5 mt-2' width=128rem height=128rem src='https://gamecentral.online/images/generate.png'>
+			<div class='container-fluid bg-warning bg-gradient rounded' style="background: url(<?php echo $banner; ?>) no-repeat !important;background-size: contain !important;" width=100%>
+			<img title='This is a <?php echo $serverGame; ?> server!' class='rounded-circle mb-1 mt-2' width=128rem height=128rem src='<?php echo $icon; ?>'>
     </div>
     <div class='container rounded pt-1'>
   <div class='d-flex align-items-center'>
-     <div class="me-auto p-2 bd-highlight"><h4 style='margin-bottom:0px !important;'><?php echo $serverName; ?><a title='Server ranking <?php echo $rank; ?> out of <?php echo $serversTotal; ?>' style='text-decoration:none;' class='noselect mt-3 ms-1 gray'>#<?php echo $rank; ?></a></h4>
+     <div class="me-auto p-2 bd-highlight"><h4 style='margin-bottom:0px !important;'><?php echo $serverName; ?><a title='Server ranking <?php echo $rank; ?> out of <?php echo $serversTotal; ?>' style='text-decoration:none;' class='noselect mt-3 ms-1 gray'>#<?php echo $rank . $serverStatus; voteButton($serverId, $conn); ?></a></h4>
 </div>
-     <div class='p-2'>			<a class='me-2'></div>
+     <div class='p-2'><a></div>
   </div>
   <hr class='nav-break'>
 
@@ -86,22 +120,20 @@
 
     <label>
 			<p class="sm-text">SERVER ADDRESS</p>
+		</label><br>
+		<p title='click to copy IP' class='btn' id='copyThis' style='margin-bottom:0.75rem !important;color:white;padding:0 !important;'>
+			<?php echo $serverAddress . $serverPort; ?><i class="ms-2 bi bi-clipboard-plus"></i>
+		</p><br>
+
+    <label>
+			<p class="sm-text">PLAYERS ONLINE</p>
 		</label>
 		<p style='margin-bottom:0.75rem !important;'>
-			<?php echo $serverAddress . $serverPort; ?>
+			<?php echo $currentPlayerCount . " / " . $maxPlayerCnt; ?>
 		</p>
 
-		<?php
-		echo "<label>
-			<p class='sm-text' style='color:white; !important;'>
-			";
-
-
-
-        echo "
-			</p>
-		</label>";
-		?>
+    <a class='gray sm-text'>Are you the owner of this server? Would you like to modify information or remove it? <a class='sm-text' style='color:white !important;' href='mailto:julian@gamecentral.online'>Contact us via email...</a></a>
+   </a>
   </div>
 
 		</div>
@@ -128,7 +160,7 @@
 	$('#karma2').attr("style", "color: " + getColor(value) + " !important");
 
 
-	$('#discord').click(function () { copyToClipboard("<?php echo $usersDiscord; ?>"); });
+	$('#copyThis').click(function () { copyToClipboard("<?php echo $serverAddress . $serverPort; ?>"); });
 
 	function copyToClipboard(text) {
 		var $temp = $("<input>");
