@@ -6,14 +6,14 @@
 			<div class="form-group">
 				<form style='margin-bottom:0px !important;' method="GET" action='/lfg'>
 					<div class="auto-widget">
-					<form class='form-group'>
+					<form class='form-group' style='margin:0px !important;'>
 						<div class="row">
 							<div class="col">
 							  	<input placeholder="GAME FILTER" autocomplete="off" class="dark-box form-control" id="gameSearch" type="text" name="g"/>
 								<div id='gameList'></div>
 							</div>
 					</form>
-					<form class='form-group'>
+					<form class='form-group' style='margin:0px !important;'>
 							<div class="col">
 							  	<input placeholder="USER SEARCH" autocomplete="off" class="dark-box form-control" id="userSearch" type="text" name="u"/>
 								<div id='userList'></div>

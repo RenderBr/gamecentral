@@ -67,18 +67,28 @@ if ($result->num_rows > 0) {
 			$friendUser = str_replace(" - ","",$friendUser);
 			$accepted = $row['accepted'];
 
+			$sql = "SELECT * FROM users WHERE username = '$friendUser'";
+			$result = $conn->query($sql);
+
+			if ($result->num_rows > 0) {
+
+				while($row = $result->fetch_assoc()) {
+					$avatar = $row['avatar'];
+				}
+			}
+
 			echo "<div class='d-flex bg-darkest rounded mt-2 align-items-center'>
 			<div class='me-auto p-2'>
 				<a class='sm-text noselect me-2'></a>
-				<a style='color:white;' href='/user?u=" . $friendUser . "'>" . $friendUser . "</a>
+				<img class='sm-icon rounded-circle ms-1 me-1' width=32 height=32 src='" . $avatar . "'><a style='color:white;' href='/user?u=" . $friendUser . "'>" . $friendUser . "</a>
 			</div>
 			<div class='p-2'>";
 
 			if($accepted == 1){
-			echo "<button id='acceptF' value='" . $friendUser . "' onclick='removeFriend(this)' title='Remove " . $friendUser . " from your friends list!' class='btn btn-danger btn-lg'>Remove friend!</button><br>
+			echo "<button id='acceptF' value='" . $friendUser . "' onclick='removeFriend(this)' title='Remove " . $friendUser . " from your friends list!' class='btn btn-danger btn'>Remove friend!</button><br>
 			";
 			}else{
-				echo "<button id='acceptF' value='" . $friendUser . "' onclick='removeFriend(this)' title='Remove your friend request to " . $friendUser . "!' class='btn btn-secondary btn-lg'>Remove your friend request!</button><br>";
+				echo "<button id='acceptF' value='" . $friendUser . "' onclick='removeFriend(this)' title='Remove your friend request to " . $friendUser . "!' class='btn btn-secondary btn'>Remove your friend request!</button><br>";
 			}
 
 			echo "</div></div>";

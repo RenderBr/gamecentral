@@ -70,6 +70,18 @@ $adminPassword = "admin420";
 
 include_once('conn.php');
 
+
+function isAdmin($conn, $self){
+  $isAdmin = $conn->query("SELECT * from users WHERE username = '$self' AND role > 1");
+  if($isAdmin->num_rows > 0){
+    $_SESSION['isAdmin'] = true;
+    return true;
+  }else{
+    $_SESSION['isAdmin'] = false;
+    return false;
+  }
+}
+
 //DELETE EMPTY GROUPS
 $conn->query("DELETE FROM lfgPosts where currentUsers = 0");
 $notifs = $conn->query("SELECT * from notifications WHERE user = '$loggedUser' AND seen = 0");

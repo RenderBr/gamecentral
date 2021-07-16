@@ -52,14 +52,14 @@ if($pageOffset < 0){
 
 		<br>
 		<div class='bg-dark1 container pb-3 mb-4 rounded' style="max-width: 100rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);width:80%;"><div class='text-center'>
-		<h4 class='pt-2 pb-1 noselect'><a class='me-1 noselect'>🔭</a>Looking for a group? We got you.</h4><?php include_once($_SERVER['DOCUMENT_ROOT'] . '/modules/gameSearch.php'); ?><div class='container text-center'>
+		<h4 class='pt-2 pb-1 noselect'><a class='me-1 noselect'>🔭</a>Looking for a group? We got you.</h4><?php include_once($_SERVER['DOCUMENT_ROOT'] . '/modules/gameSearch.php'); ?>
 		<nav aria-label="Page navigation">
 		  <ul class="pagination">
 		    <li class="page-item"><a id='previous' class="page-link dark-box" href="/lfg?p=<?php echo $pageOffset-10; ?>">Previous</a></li>
 		    <li class="page-item"><a id='next' class="page-link dark-box" href="/lfg?p=<?php echo $pageOffset+10; ?>">Next</a></li>
 		  </ul>
 		</nav>
-		</div><hr class='nav-break'></div>
+		<hr class='nav-break'></div>
 		</div>
 
 		<label><p class="sm-text noselect mt-1">LOOKING FOR GROUP BROWSER</p></label>

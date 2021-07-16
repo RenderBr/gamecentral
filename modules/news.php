@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 }
 
 
-$sql6 = "SELECT * FROM blogs";
+$sql6 = "SELECT * FROM blogs ORDER by date_created DESC";
 $result6 = $conn->query($sql6);
 
 if ($result6->num_rows > 0) {

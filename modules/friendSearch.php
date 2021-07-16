@@ -4,7 +4,7 @@
 
 ?>
 			<div class="form-group">
-				<form method="GET" action='/lfg'>
+				<form method="GET" action='/lfg' style='margin:0px !important;'>
 					<div class="auto-widget">
 						<div class="row">
 					<form class='form-group'>
