@@ -1,8 +1,7 @@
 <?php
 session_start();
-$self = $_SESSION['username'];
-if($_SESSION['username']){
-
+if(isset($_SESSION['username'])){
+	$self = $_SESSION['username'];
 }else{
 	header("Location: /");
 }
@@ -13,7 +12,7 @@ if($_SESSION['username']){
 <html lang="en">
     <head>
 		<?php include_once('cfg/cdns.php'); ?>
-		<meta name="description" content="GameCentral friends page, manage friends here!">
+		<meta name="description" content="GameCentral friends page, manage your friends here!">
 		<meta name="keywords" content="gaming, lfg, discord lfg, video game, looking for group, looking for squad, gc friends, friend manager">
 		<meta name="robots" content="index, follow">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -39,19 +38,6 @@ if($_SESSION['username']){
 
 
 <div class='container-fluid bg-dark2 px-4' style='max-width:98%;height:max-content;padding: 15px 0 15px 0px;border-radius: 10px;'>
-<?php
-
-function get_string_between($string, $start, $end){
-    $string = ' ' . $string;
-    $ini = strpos($string, $start);
-    if ($ini == 0) return '';
-    $ini += strlen($start);
-    $len = strpos($string, $end, $ini) - $ini;
-    return substr($string, $ini, $len);
-}
-
-	?>
-
 	<div class='row gx-2'>
 
 	<?php
@@ -68,30 +54,31 @@ if ($result->num_rows > 0) {
 			$accepted = $row['accepted'];
 
 			$sql = "SELECT * FROM users WHERE username = '$friendUser'";
-			$result = $conn->query($sql);
+			$result1 = $conn->query($sql);
 
-			if ($result->num_rows > 0) {
+			if ($result1->num_rows > 0) {
 
-				while($row = $result->fetch_assoc()) {
-					$avatar = $row['avatar'];
+				while($row1 = $result1->fetch_assoc()) {
+					$avatar = $row1['avatar'];
+								echo "<div class='d-flex bg-darkest rounded mt-2 align-items-center'>
+								<div class='me-auto p-2'>
+									<a class='sm-text noselect me-2'></a>
+									<img class='sm-icon rounded-circle ms-1 me-1' width=32 height=32 src='" . $avatar . "'><a style='color:white;' href='/user?u=" . $friendUser . "'>" . $friendUser . "</a>
+								</div>
+								<div class='p-2'>";
+
+								if($accepted == 1){
+								echo "<button id='acceptF' value='" . $friendUser . "' onclick='removeFriend(this)' title='Remove " . $friendUser . " from your friends list!' class='btn btn-danger btn'>Remove friend!</button><br>
+								";
+								}else{
+									echo "<button id='acceptF' value='" . $friendUser . "' onclick='removeFriend(this)' title='Remove your friend request to " . $friendUser . "!' class='btn btn-secondary btn'>Remove your friend request!</button><br>";
+								}
+
+								echo "</div></div>";
 				}
 			}
 
-			echo "<div class='d-flex bg-darkest rounded mt-2 align-items-center'>
-			<div class='me-auto p-2'>
-				<a class='sm-text noselect me-2'></a>
-				<img class='sm-icon rounded-circle ms-1 me-1' width=32 height=32 src='" . $avatar . "'><a style='color:white;' href='/user?u=" . $friendUser . "'>" . $friendUser . "</a>
-			</div>
-			<div class='p-2'>";
 
-			if($accepted == 1){
-			echo "<button id='acceptF' value='" . $friendUser . "' onclick='removeFriend(this)' title='Remove " . $friendUser . " from your friends list!' class='btn btn-danger btn'>Remove friend!</button><br>
-			";
-			}else{
-				echo "<button id='acceptF' value='" . $friendUser . "' onclick='removeFriend(this)' title='Remove your friend request to " . $friendUser . "!' class='btn btn-secondary btn'>Remove your friend request!</button><br>";
-			}
-
-			echo "</div></div>";
 
 
 		}
@@ -138,7 +125,7 @@ a{
 <script>
 
 function removeFriend(button){
-	if(confirm("Are you sure you want to remove <?php echo $friend; ?> as a friend?")){
+	if(confirm("Are you sure you want to remove " + $(button).val() + " as a friend?")){
 	        $.ajax({
                 type: 'POST',
                 url: '/func/friendManager.php',
