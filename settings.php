@@ -85,6 +85,7 @@ if($_SESSION['username']){
 				<a class='sm-text' style='text-decoration:none;margin-bottom:0px;'><?php echo $myusername; ?> is...</a>
 			</span>
 			<input name='s' type='text' id='status' class='dark-box form-control' value='<?php echo $myStatus; ?>'></input>
+			<button form='form4' id="sideButton2" class='btn btn-outline-success input-group-text' type='submit'><i class="bi bi-check-circle"></i></button>
 		</div>
 			<p class='sm-text noselect'>This will be featured on the <a href='/findAFriend'><strong>Find a Friend</strong></a> page</p>
 			</form>
@@ -93,16 +94,25 @@ if($_SESSION['username']){
 			<form id='form2' class='mb-3' method='post' action='/func/changeAvatar.php'>
 			<label style='margin-right:0.5rem;' class='noselect sm-text' for='avatar'>AVATAR</label>
 			<br>
-			<input name='a' type='text' id='avatar' class='dark-box form-control' value='<?php echo $myavatar; ?>'><p class='sm-text noselect'><strong>Notice:</strong> Image link must be direct (make sure the link ends in .PNG or .JPG, etc), and it must use the HTTPS security protocol . Currently, there's no way to upload directly to Game Central. Image uploading to GC will be implemented in the future.</p></input>
-			<input form='form2' type="submit" style="display: none"></input>
+			<div class="input-group">
+				<input name='a' type='text' id='avatar' class='dark-box form-control' value='<?php echo $myavatar; ?>'></input>
+				<input form='form2' type="submit" style="display: none"></input>
+				<button form='form2' id="sideButton" class='btn btn-outline-success input-group-text rounded rounded-right' type='submit' style='border-top-right-radius: 0.25rem !important;
+border-bottom-right-radius: 0.25rem !important;'><i class="bi bi-check-circle"></i></button>
+				<p class='sm-text noselect'><strong>Notice:</strong> Image link must be direct (make sure the link ends in .PNG or .JPG, etc), and it must use the HTTPS security protocol . Currently, there's no way to upload directly to Game Central. Image uploading to GC will be implemented in the future.</p>
+			</div>
+
 			</form>
 
 			<!--- BANNER -->
-			<form id='form2' class='mb-3' method='post' action='/func/changeBanner.php'>
+			<form id='form6' class='mb-3' method='post' action='/func/changeBanner.php'>
 			<label style='margin-right:0.5rem;' class='noselect sm-text' for='banner'>BANNER</label>
 			<br>
-			<input name='b' type='text' id='banner' class='dark-box form-control' value='<?php echo $myBanner; ?>'></input>
-			<input form='form2' type="submit" style="display: none"></input>
+			<div class="input-group">
+				<input name='b' type='text' id='banner' class='dark-box form-control' value='<?php echo $myBanner; ?>'></input>
+				<button form='form6' id="sideButton" class='btn btn-outline-success input-group-text' type='submit'><i class="bi bi-check-circle"></i></button>
+			</div>
+			<input form='form6' type="submit" style="display: none"></input>
 			<p class='sm-text noselect'>If you are having difficulty with this, please read the avatar notice text.</p>
 			</form>
 
@@ -110,17 +120,25 @@ if($_SESSION['username']){
 			<form name='form3' class='mb-3' method='POST' id='form3' action='/func/changeBackground.php'>
 			<label style='margin-right:0.5rem;' class='noselect sm-text' for='bg'>BACKGROUND</label>
 			<br>
-			<input name='bg' type='text' id='bg' class='dark-box form-control' value='<?php echo $mybg; ?>'></input>
+			<div class="input-group">
+				<input name='bg' type='text' id='bg' class='dark-box form-control' value='<?php echo $mybg; ?>'></input>
+				<button form='form3' id="sideButton" class='btn btn-outline-success input-group-text' type='submit'><i class="bi bi-check-circle"></i></button>
+			</div>
 			<input form='form3' type="submit" style="display: none"></input>
 			<p class='sm-text noselect'>If you are having difficulty with this, please read the avatar notice text.</p>
 			</form>
 
 
 			<!--- DISCORD -->
-			<form name='form4' class='mb-3' method='POST' id='form4' action='/func/connectDiscord.php'>
+			<form name='form7' class='mb-3' method='POST' id='form7' action='/func/connectDiscord.php'>
 			<label style='margin-right:0.5rem;color:#7289DA !important;' class='noselect sm-text' for='discord'>DISCORD</label>
 			<br>
-			<input name='discord' type='text' id='discord' class='dark-box form-control' value='<?php echo $mydiscord; ?>'><p class='sm-text noselect'><strong>Example:</strong> DiscordUsername#1234</p></input>
+			<div class="input-group">
+				<input name='discord' type='text' id='discord' class='dark-box form-control' value='<?php echo $mydiscord; ?>'></input>
+				<button form='form7' id="sideButton7" class='btn btn-outline-success input-group-text' type='submit'><i class="bi bi-check-circle"></i></button>
+			</div>
+			<p class='sm-text noselect'><strong>Example:</strong> DiscordUsername#1234</p>
+
 			</form>
 
 		</div>
