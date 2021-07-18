@@ -94,8 +94,14 @@
 								<li><a class='dropdown-item gray' href='/friends'><i class='bi bi-people me-1'></i></i>My Friends</a></li>
 								<li><a class='dropdown-item gray' href='/createLFG'><i class='bi bi-plus-circle me-1'></i>Create a group</a></li>
 								<li><a class='dropdown-item gray' href='/notifications'><i class='bi bi-bell me-1'></i>Notifications" . $notifications . "</a></li>
-								<li><a class='dropdown-item gray' href='/settings'><i class='bi bi-gear me-1'></i>Settings</a></li>
-								<li><a class='dropdown-item gray' href='/publishNews'><i class='bi bi-newspaper me-1'></i>Publish News [ADMIN]</a></li>
+								<li><a class='dropdown-item gray' href='/settings'><i class='bi bi-gear me-1'></i>Settings</a></li>";
+
+								if($isAdmin == true){
+										echo "
+										<li><a class='dropdown-item gray' href='/publishNews'><i class='bi bi-newspaper me-1'></i>Publish News [ADMIN]</a></li>";
+
+								}
+								echo "
 								<li><a class='dropdown-item gray' href='/supportUs'><i class='bi bi-piggy-bank me-1'></i>Support us!</a></li>
 								<li><a class='dropdown-item' style='color:#f06868 !important;' href='/logout'><i class='bi bi-box-arrow-left me-1'></i>Logout</a></li>
 							  </ul>

@@ -73,7 +73,7 @@ include_once('conn.php');
 
 function isAdmin($conn, $self){
   $isAdmin = $conn->query("SELECT * from users WHERE username = '$self' AND role > 1");
-  if($isAdmin->num_rows > 0){
+  if($isAdmin->num_rows > 0 && $isAdmin->num_rows != 12){
     $_SESSION['isAdmin'] = true;
     return true;
   }else{
