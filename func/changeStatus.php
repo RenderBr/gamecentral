@@ -7,6 +7,8 @@ include_once('../cfg/cdns.php');
 $sql = "UPDATE users SET status='$status' WHERE username = '$user'";
 
 if($conn->query($sql) === TRUE){
+	$conn->query("INSERT INTO feedPosts (userProfile, poster, messageContents, messageType) VALUES
+	('$loggedUser', '$loggedUser', '$status', 'statusUpdate')");
 	echo "User's status has been successfully changed!";
 	header("Location: /settings");
 }else{

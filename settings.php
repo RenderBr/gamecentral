@@ -87,7 +87,7 @@ if($_SESSION['username']){
 			<input name='s' type='text' id='status' class='dark-box form-control' value='<?php echo $myStatus; ?>'></input>
 			<button form='form4' id="sideButton2" class='btn btn-outline-success input-group-text' type='submit'><i class="bi bi-check-circle"></i></button>
 		</div>
-			<p class='sm-text noselect'>This will be featured on the <a href='/findAFriend'><strong>Find a Friend</strong></a> page, and <a href='/user?u=<?php echo $myid; ?>'><strong>your profile page</strong></a>.</p>
+			<p class='sm-text noselect'>This will be featured on the <a href='/findAFriend'><strong>Find a Friend</strong></a> page, and posted to your feed on <a href='/user?u=<?php echo $myid; ?>'><strong>your profile page</strong></a>.</p>
 			</form>
 
 			<!--- AVATAR -->

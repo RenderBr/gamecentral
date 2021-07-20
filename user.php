@@ -111,7 +111,7 @@
     </div>
     <div class='container rounded pt-1'>
   <div class='d-flex align-items-center'>
-     <div class="me-auto p-2 bd-highlight"><h4 style='margin-bottom:0px !important;'><?php echo $usersname; ?><a title='User ID, not a placement.' style='text-decoration:none;' class='noselect mt-3 ms-1 gray'>#<?php echo $usersid; ?></a></h4>
+     <div class="me-auto p-2 bd-highlight"><h4 style='margin-bottom:0px !important;'><?php echo $usersname; ?></h4>
 </div>
      <div class='p-2'>			<a class='me-2'><?php
 
@@ -190,7 +190,9 @@
 
         }else{
 				      addKarmaButton($usersname);
-        }
+        }?>
+<a title='User ID, not a placement.' style='text-decoration:none;' class='noselect mt-3 ms-1 gray'>#<?php echo $usersid; ?></a>
+        <?php
         echo "
 			</p>
 		</label>";
@@ -270,7 +272,66 @@
 				}
 				echo '</ul></div>';
 			}
+
+      echo "<div class='bg-dark1 container user rounded mt-1 pb-3 mb-4'>
+
+      <hr class='nav-break'>
+      <label>
+      <p class='sm-text noselect'>FEED</p>
+      </label>
+      <hr class='nav-break mb-2'>";
+
+
+      if(isset($_SESSION['username'])){
+      echo "<form name='form8' method='POST' id='form8' action='/func/postTextOnFeed.php'>
+        <div class='input-group mb-2'>
+          <textarea name='messageOnFeed' placeholder='Write something on " . $usersname . "&#39;s feed!' class='form-control dark-box'></textarea>
+          <button form='form8' id='sideButton' class='btn btn-outline-success input-group-text' type='submit'><i class='bi bi-check-circle'></i></button>
+          <input name='userFeed' value='" . $usersname . "' style='display:none !important;'>
+        </div>
+      </form>";
+      }
+      $sql42 = "SELECT * FROM feedPosts WHERE userProfile = '$usersname' ORDER BY date_created DESC LIMIT 10";
+      $result42 = $conn->query($sql42);
+
+
+
+
+			if ($result42->num_rows > 0) {
+			// output data of each row
+				while($row42 = $result42->fetch_assoc()) {
+            $message = $row42['messageContents'];
+            $posterF = $row42['poster'];
+            $datecreatedF = $row42['date_created'];
+            $messageType = $row42['messageType'];
+
+            if(isset($posterF)){
+
+              $sql56 = "SELECT * FROM users WHERE username = '$posterF'";
+              $result56 = $conn->query($sql56);
+
+              if ($result56->num_rows > 0) {
+              // output data of each row
+                while($row56 = $result56->fetch_assoc()) {
+                    $avatarF = $row56['avatar'];
+                }
+              }
+
+
+            }
+            if($messageType == "text"){
+              echo '<div class="d-flex bd-highlight mt-1 bg-dark3" style="border-bottom: 1px solid #2F3133;"><div class="me-auto p-2"><a href="/user?u=' . $posterF . '" class="ms-2"><img class="icon-sm rounded-circle me-2" src="' . $avatarF . '">' . $posterF . ' <a class="gray noselect"> > </a> </a><i><a>' . $message . '</a></i></div><div class="p-2 gray noselect">' . $datecreatedF . '</div></div>';
+            }
+            if($messageType == "statusUpdate"){
+              echo '<div class="d-flex bd-highlight mt-1 bg-dark3" style="border-bottom: 1px solid #2F3133;"><div class="me-auto p-2"><a href="/user?u=' . $posterF . '" class="ms-2"><img class="icon-sm rounded-circle me-2" src="' . $avatarF . '">' . $posterF . ' <a class="noselect gray">is... </a> </a><i><a class="noselect">' . $message . '</a></i></div><div class="p-2 gray noselect">' . $datecreatedF . '</div></div>';
+            }
+          }
+        echo '</div>';
+      }
+
 			?>
+
+
 
     </body>
 </html>

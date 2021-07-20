@@ -5,6 +5,11 @@ if(isset($_SESSION['username'])){
 }else{
 	header("Location: /");
 }
+include_once('cfg/conn.php');
+$getFriendCount = $conn->query("SELECT * FROM friends WHERE friendCombo LIKE '%{$self}%'");
+
+$friendCount = $getFriendCount->num_rows;
+
 
 ?>
 
@@ -34,7 +39,7 @@ if(isset($_SESSION['username'])){
 		<div class='bg-dark1 container mb-4 pb-3 rounded' style="max-width: 100rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);width:80%;"><div class='text-center'>
 		<h4 class='noselect pt-2 pb-1'><i class="bi bi-people-fill me-1"></i>All your friends, <u>in one place...</u></h4><hr class='nav-break'></div>
 
-		<label><p class="sm-text noselect">MY FRIENDS</p></label>
+		<label><p class="sm-text noselect">MY FRIENDS (<a id='friendCount'><?php echo $friendCount; ?></a>)</p></label>
 
 
 <div class='container-fluid bg-dark2 px-4' style='max-width:98%;height:max-content;padding: 15px 0 15px 0px;border-radius: 10px;'>
@@ -66,7 +71,7 @@ if ($result->num_rows > 0) {
 									<img class='sm-icon rounded-circle ms-1 me-1' width=32 height=32 src='" . $avatar . "'><a style='color:white;' href='/user?u=" . $friendUser . "'>" . $friendUser . "</a>
 								</div>
 								<div class='p-2'>";
-
+								$friendCount++;
 								if($accepted == 1){
 								echo "<button id='acceptF' value='" . $friendUser . "' onclick='removeFriend(this)' title='Remove " . $friendUser . " from your friends list!' class='btn btn-danger btn'>Remove friend!</button><br>
 								";
@@ -74,7 +79,7 @@ if ($result->num_rows > 0) {
 									echo "<button id='acceptF' value='" . $friendUser . "' onclick='removeFriend(this)' title='Remove your friend request to " . $friendUser . "!' class='btn btn-secondary btn'>Remove your friend request!</button><br>";
 								}
 
-								echo "</div></div>";
+								echo "</div></div><script>$('friendCount').html('" . $friendCount . "')</script>";
 				}
 			}
 
