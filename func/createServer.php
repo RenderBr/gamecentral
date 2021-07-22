@@ -1,12 +1,12 @@
 <?php
-$serverName = $_POST['servername'];
-$serverGame = $_POST['game'];
-$serverIsOwner = $_POST['owner'];
+$serverName = htmlspecialchars($_POST['servername'], ENT_QUOTES, 'UTF-8');
+$serverGame = htmlspecialchars($_POST['game'], ENT_QUOTES, 'UTF-8');
+$serverIsOwner = htmlspecialchars($_POST['owner'], ENT_QUOTES, 'UTF-8');
+$serverDescription = htmlspecialchars($_POST['description'], ENT_QUOTES, 'UTF-8');
+$serverIp = htmlspecialchars($_POST['ip'], ENT_QUOTES, 'UTF-8');
+$serverPort = htmlspecialchars($_POST['port'], ENT_QUOTES, 'UTF-8');
+$bannerImage = htmlspecialchars($_POST['serverbanner'], ENT_QUOTES, 'UTF-8');
 
-$serverDescription = $_POST['description'];
-$serverIp = $_POST['ip'];
-$serverPort = $_POST['port'];
-$bannerImage = $_POST['serverbanner'];
 
 session_start();
 $self = $_SESSION['username'];

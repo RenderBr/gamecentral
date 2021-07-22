@@ -1,7 +1,6 @@
 <?php
 include_once('../cfg/conn.php');
-
-$newPassword = $_POST['pswd'];
+$newPassword = htmlspecialchars($_POST['pswd'], ENT_QUOTES, 'UTF-8');
 $user = $_POST['user'];
 $token = $_POST['token'];
 

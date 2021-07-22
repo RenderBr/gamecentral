@@ -1,8 +1,9 @@
 <?php
-$communityName = $_POST['communityname'];
-$communityDesc = $_POST['description'];
-$communityDiscord = $_POST['discordInvite'];
-$communityImg = $_POST['img'];
+$communityName = htmlspecialchars($_POST['communityname'], ENT_QUOTES, 'UTF-8');
+$communityDesc = htmlspecialchars($_POST['description'], ENT_QUOTES, 'UTF-8');
+$communityDiscord = htmlspecialchars($_POST['discordInvite'], ENT_QUOTES, 'UTF-8');
+$communityImg = htmlspecialchars($_POST['img'], ENT_QUOTES, 'UTF-8');
+
 
 if(!$communityDiscord){
 	$communityDiscord = NULL;

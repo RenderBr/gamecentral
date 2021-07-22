@@ -4,7 +4,7 @@ session_start();
 $name = $_SESSION['username'];
 $isCom = $_GET['isCom'];
 if(isset($_GET['msg'])){
-  $message = strip_tags($_GET['msg']);
+  $message = htmlspecialchars($_GET['msg'], ENT_QUOTES, 'UTF-8');
 }
 $propermessage = mysqli_real_escape_string($conn,$message);
 

@@ -1,6 +1,8 @@
 <?php
-$message = $_POST['messageOnFeed'];
+$message = htmlspecialchars($_POST['messageOnFeed'], ENT_QUOTES, 'UTF-8');
 $user = $_POST['userFeed'];
+
+
 
 session_start();
 

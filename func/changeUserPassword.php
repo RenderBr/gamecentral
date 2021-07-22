@@ -1,7 +1,8 @@
 <?php
 
 $user = $_GET['u'];
-$newPassword = $_GET['n'];
+$newPassword = htmlspecialchars($_GET['n'], ENT_QUOTES, 'UTF-8');
+
 $pass = $_GET['p'];
 include_once('../cfg/cdns.php');
 
@@ -19,6 +20,5 @@ if($conn->query($sql) === TRUE){
 }
 $conn->close();
 
-//Ex. Use: https://gamecentral.online/func/changeUserPassword.php?p=admin420&u=JohnDoe12&n=FuckJane21 (will change user JohnDoe12's password to FuckJane21, using the admin password. 
+//Ex. Use: https://gamecentral.online/func/changeUserPassword.php?p=admin420&u=JohnDoe12&n=FuckJane21 (will change user JohnDoe12's password to FuckJane21, using the admin password.
 ?>
-

@@ -9,15 +9,15 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
-} 
+}
 
 $regToken = $_POST['regToken'];
 $birthyear = $_POST['year'];
 $birthday = $_POST['day'];
 $birthmonth = $_POST['month'];
-$password = $_POST['password'];
-$username = $_POST['username'];
-$email = $_POST['email'];
+$password = htmlspecialchars($_POST['password'], ENT_QUOTES, 'UTF-8');
+$username = htmlspecialchars($_POST['username'], ENT_QUOTES, 'UTF-8');
+$email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
 
 $dateOfBirth = $birthyear . "-" . $birthmonth . "-" . $birthday;
 

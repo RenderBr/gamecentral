@@ -1,7 +1,7 @@
 <?php
 session_start();
 $user = $_SESSION['username'];
-$status = $_POST['s'];
+$status = htmlspecialchars($_POST['s'], ENT_QUOTES, 'UTF-8');
 include_once('../cfg/cdns.php');
 
 $sql = "UPDATE users SET status='$status' WHERE username = '$user'";

@@ -1,7 +1,7 @@
 <?php
 session_start();
 $user = $_SESSION['username'];
-$bg = $_POST['b'];
+$bg = htmlspecialchars($_POST['b'], ENT_QUOTES, 'UTF-8');
 include_once('../cfg/cdns.php');
 
 $sql = "UPDATE users SET bio='$bg' WHERE username = '$user'";
@@ -16,4 +16,3 @@ if($conn->query($sql) === TRUE){
 $conn->close();
 
 ?>
-

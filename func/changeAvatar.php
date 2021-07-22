@@ -1,7 +1,8 @@
 <?php
 session_start();
 $user = $_SESSION['username'];
-$avatar = $_POST['a'];
+$avatar = htmlspecialchars($_POST['a'], ENT_QUOTES, 'UTF-8');
+
 include_once('../cfg/cdns.php');
 
 $sql = "UPDATE users SET avatar='$avatar' WHERE username = '$user'";
@@ -16,4 +17,3 @@ if($conn->query($sql) === TRUE){
 $conn->close();
 
 ?>
-

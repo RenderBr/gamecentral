@@ -1,9 +1,10 @@
 <?php
-$title = $_POST['title'];
-$img = $_POST['img'];
-$body = $_POST['body'];
-$tags = $_POST['tags'];
-$tagline = $_POST['tagline'];
+$title = htmlspecialchars($_POST['title'], ENT_QUOTES, 'UTF-8');
+$img = htmlspecialchars($_POST['img'], ENT_QUOTES, 'UTF-8');
+$body = htmlspecialchars($_POST['body'], ENT_QUOTES, 'UTF-8');
+$tags = htmlspecialchars($_POST['tags'], ENT_QUOTES, 'UTF-8');
+$tagline = htmlspecialchars($_POST['tagline'], ENT_QUOTES, 'UTF-8');
+
 
 session_start();
 $self = $_SESSION['username'];

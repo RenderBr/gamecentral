@@ -1,10 +1,11 @@
 <?php
-$groupName = $_POST['groupname'];
-$groupGame = $_POST['game'];
-$groupVisibility = $_POST['visibility'];
-$groupDescription = $_POST['description'];
-$groupDiscord = $_POST['discordInvite'];
-$groupSize = $_POST['groupSize'];
+$groupName = htmlspecialchars($_POST['groupname'], ENT_QUOTES, 'UTF-8');
+$groupGame = htmlspecialchars($_POST['game'], ENT_QUOTES, 'UTF-8');
+$groupVisibility = htmlspecialchars($_POST['visibility'], ENT_QUOTES, 'UTF-8');
+$groupDescription = htmlspecialchars($_POST['description'], ENT_QUOTES, 'UTF-8');
+$groupDiscord = htmlspecialchars($_POST['discordInvite'], ENT_QUOTES, 'UTF-8');
+$groupSize = htmlspecialchars($_POST['groupSize'], ENT_QUOTES, 'UTF-8');
+
 
 if(!$groupDiscord){
 	$groupDiscord = NULL;
