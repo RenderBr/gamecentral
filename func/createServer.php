@@ -12,7 +12,7 @@ session_start();
 $self = $_SESSION['username'];
 
 if(!$self){
-	("Location: /servers");
+	header("Location: /login");
 }
 
 include_once('../cfg/cdns.php');
@@ -22,6 +22,8 @@ VALUES ('$serverName', '$serverDescription', '$self', $serverIsOwner, '$serverGa
 
 	if ($conn->query($sql54) === TRUE) {
 		 $createdServerId = $conn->insert_id;
+		 $conn->query("INSERT INTO feedPosts (userProfile, poster, messageContents, messageType) VALUES
+		 ('$loggedUser', '$loggedUser', '$createdServerId', 'serverCreation')");
 		 header("Location: /server?id=" . $createdServerId);
 	} else {
 		header("Location: /servers");

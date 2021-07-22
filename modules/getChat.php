@@ -1,8 +1,14 @@
-
 	<?php
 	$gid = $_GET['g'];
+	$isCom = $_GET['isCom'];
 	include_once('../cfg/conn.php');
-	$sql = "SELECT * FROM messages WHERE groupid = '$gid' ORDER BY date_created ASC";
+
+	if($isCom == "true"){
+		$sql = "SELECT * FROM messages WHERE communityId = '$gid' ORDER BY date_created ASC";
+	}else{
+		$sql = "SELECT * FROM messages WHERE groupid = '$gid' ORDER BY date_created ASC";
+	}
+	
 	$result = $conn->query($sql);
 
 	if ($result->num_rows > 0) {

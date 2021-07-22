@@ -84,6 +84,9 @@ function isAdmin($conn, $self){
 
 //DELETE EMPTY GROUPS
 $conn->query("DELETE FROM lfgPosts where currentUsers = 0");
+//DELETE EMPTY COMMUNITIES
+$conn->query("DELETE FROM communities where communityMembers = 0");
+
 $notifs = $conn->query("SELECT * from notifications WHERE user = '$loggedUser' AND seen = 0");
 $_SESSION['notifs'] = $notifs->num_rows;
 $conn->query("INSERT INTO views (user, ip, page) VALUES

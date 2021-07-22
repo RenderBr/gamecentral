@@ -1,4 +1,10 @@
-
+<?php
+if($isCommunity == true){
+  $putInGet = "&isCom=true";
+}else{
+  $putInGet = NULL;
+}
+?>
 <div id="page-wrap">
 
     <p id="name-area"></p>
@@ -14,7 +20,12 @@
 		<div class="input-group">
         <textarea class='dark-box form-control' name='msg' id="sendie"></textarea>
 		<input name='groupid' value='<?php echo $id; ?>' style='display:none;'></input>
-	  </form>
+    <?php
+    if($isCommunity == true){
+      echo "<input name='isCom' value='true' style='display:none;'></input>";
+    }
+    ?>
+    </form>
 		<a type='button' onclick='send()' class='btn btn-success mt-1 ms-1'>Send!</a>
 	</div>
 
@@ -34,7 +45,7 @@
     var refresh;
 
     function loadChat(){
-        $('#chat-area').load("/modules/getChat.php?g=<?php echo $id; ?>", function(){
+        $('#chat-area').load("/modules/getChat.php?g=<?php echo $id . $putInGet; ?>", function(){
 			element.scrollTop = element.scrollHeight;
            refresh = setTimeout(loadChat, 5000);
         });

@@ -3,21 +3,23 @@ $message = $_POST['messageOnFeed'];
 $user = $_POST['userFeed'];
 
 session_start();
-$self = $_SESSION['username'];
 
-if(!$self){
+if(isset($_SESSION['username'])){
+	$self = $_SESSION['username'];
+}else{
+	header("Location: /user?u=" . $user);
+
+}
+
+include_once ($_SERVER['DOCUMENT_ROOT'] . '/cfg/conn.php');
+
+$sql = "INSERT INTO feedPosts (userProfile, poster, messageContents, messageType)
+VALUES ('$user', '$self', '$message', 'text')";
+
+if ($conn->query($sql) === TRUE) {
+	header("Location: /user?u=" . $user);
+} else {
 	header("Location: /user?u=" . $user);
 }
 
-include_once('../cfg/conn.php');
-
-	$sql54 = "INSERT INTO feedPosts (userProfile, poster, messageContents, messageType)
-VALUES ('$user', '$self', '$message', 'text')";
-
-	if ($conn->query($sql54) === TRUE) {
-		 $createdServerId = $conn->insert_id;
-		 header("Location: /user?u=" . $user);
-	} else {
-		header("Location: /user?u=" . $user);
-	}
 ?>

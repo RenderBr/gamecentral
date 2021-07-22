@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$username = "2admin";
-$password = "Wv9bGBaolonxw98w";
+$username = "root";
+$password = "";
 $dbname = "gamecentral";
 
 // Create connection

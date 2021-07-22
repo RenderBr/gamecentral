@@ -13,8 +13,8 @@ session_start();
 	} else {
 	  echo "Error: " . $sql . "<br>" . $conn->error;
 	}
-	
-	
+
+
 	$sql = "UPDATE lfgPosts SET currentUsers = currentUsers+1 WHERE id = '$groupid'";
 
 	if($conn->query($sql) === TRUE){
