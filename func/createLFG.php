@@ -19,7 +19,7 @@ if(!$self){
 
 include_once('../cfg/cdns.php');
 
-$sql = "SELECT * from lfgPosts WHERE user = '$self'";
+$sql = "SELECT * from lfgPosts WHERE user = '$self' AND expired = 0";
 
 	$result = $conn->query($sql);
 

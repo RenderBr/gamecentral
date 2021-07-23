@@ -1,10 +1,5 @@
 <?php
 session_start();
-if(isset($_GET['l'])){
-	$atLimit = $_GET['l'];
-}else{
-	$atLimit = NULL;
-}
 
 if($_SESSION['username']){
 }else{
@@ -56,14 +51,6 @@ $self = $_SESSION['username'];
 		</div>
 		</form>
 		</div>
-		<?php
-
-				if($atLimit != NULL){
-			echo "<div style='max-width: 27rem;margin-top:0.5rem;' class='noselect container alert alert-danger' role='alert'>
-						<i style='margin-right:0.2rem;' class='bi bi-exclamation-circle'></i> We've noticed that you are currently at the max group limit for default users (3), please remove a group before proceeding.
-				</div>";
-		}
-		?>
 
         <!-- Bootstrap core JS-->
         <!-- Core theme JS-->

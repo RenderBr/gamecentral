@@ -8,6 +8,7 @@
 <?php
 $self = $_SESSION['username'];
 $sql = "SELECT * FROM friends WHERE friendCombo LIKE '%{$self}%'";
+$noFeed = NULL;
 
 $result = $conn->query($sql);
 
@@ -51,9 +52,6 @@ if ($result2->num_rows > 0) {
       </div>
       <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $date . "</a>
 </div></div>
-
-
-
       ";
     }
 
@@ -148,10 +146,25 @@ if($messageType == "communityCreation"){
 
 		//echo "<div id='" . $groupid . "l' style='border-radius:5px;' class='container bg-darkest p-4 position-relative mt-2'><a class='sm-text noselect me-2'>#" . $groupid . "</a><a style='color:white;' href='/user?u=" . $user . "'>" . $user . " <a class='gray'>&nbsp;is looking to play</a> </a><img title='" . $gameTooltip . "' width=32 class='ms-1' src='" . $iconSm . "'></img><a class='sm-text ms-1'>" . $gameName . ",</a> <a class='gray'>with a group of <a id='" . $groupid . "n'>" . $currentGroup . "</a> / " . $groupSize . " players. " . $groupName . "<div style='transform: translate(0%, -50%) !important;' class='position-absolute top-50 end-0 translate-middle'><a class='sm-text noselect' id='" . $groupid . "t'>" . $currentGroup . "</a><a class='sm-text noselect me-3'> / " . $groupSize . "</a>";
 }
+}else{
+  $noFeed = true;
 }
 }
+}else{
+  $noFeed = true;
 }
 
+if($noFeed == true){
+
+}else{
+  echo "
+
+	<div class='d-flex align-items-center justify-content-center' style='height: inherit;'>
+        <a class='sm-text' style='text-decoration:none;'><i style='margin-right:7px;' class='bi bi-exclamation-circle'></i>No feed posts to be displayed! Add some more friends!</a>
+    </div>
+
+	";
+}
 
 
 ?>
