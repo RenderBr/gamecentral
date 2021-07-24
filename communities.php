@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if($_SESSION['username']){
 $self = $_SESSION['username'];
 }else{
