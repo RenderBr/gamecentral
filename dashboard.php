@@ -1,10 +1,8 @@
 <?php
-if($_SESSION['username']){
-
-}else{
+//Check if user is logged in, if not, redirect to homepage.
+if(!isset($_SESSION['username'])){
 	header("Location: /");
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -33,9 +31,13 @@ if($_SESSION['username']){
 		<div class='bg-dark1 container mb-4 pb-3 rounded' style="max-width: 100rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);width:80%;"><div class='text-center'>
 		<h4 class='pt-2 pb-1 noselect'><a class='me-1 noselect'>👋</a> Hey, welcome back! How's it going, <u><?php echo $_SESSION['username']; ?></u>?</h4><hr class='nav-break'></div>
 
-		<?php include_once('modules/myfeed.php'); ?>
-		<?php include_once('modules/recentposts.php'); ?>
-		<?php include_once('modules/news.php'); ?>
+
+		<?php // MyFeed Include
+		 include_once('modules/myfeed.php'); ?>
+		<?php // Recent LFG Include
+		include_once('modules/recentposts.php'); ?>
+		<?php // News & Info Include
+		 include_once('modules/news.php'); ?>
 
 
 		</div>

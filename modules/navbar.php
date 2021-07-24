@@ -98,6 +98,7 @@
 								<li><a class='dropdown-item gray' href='/createLFG'><i class='bi bi-plus-circle me-1'></i>Create a group</a></li>
 								<li><a class='dropdown-item gray' href='/createCommunity'><i class='bi bi-plus-circle-dotted me-1'></i>Create a community</a></li>
 								<li><a class='dropdown-item gray' href='/notifications'><i class='bi bi-bell me-1'></i>Notifications" . $notifications . "</a></li>
+								<li><a class='dropdown-item gray' href='/manager'><i class='bi bi-archive me-1'></i>Management Portal</a></li>
 								<li><a class='dropdown-item gray' href='/settings'><i class='bi bi-gear me-1'></i>Settings</a></li>";
 
 								if($isAdmin == true){

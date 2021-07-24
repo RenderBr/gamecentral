@@ -1,5 +1,4 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/cdns.php');
 
 if($_SESSION['username']){
 $self = $_SESSION['username'];
@@ -22,6 +21,7 @@ if($pageOffset < 0){
 <!DOCTYPE html>
 <html lang="en">
     <head>
+			<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/cdns.php'); ?>
 		<meta name="description" content="GameCentral communities page, here you may join a gaming community, of like minded people.">
 		<meta name="keywords" content="gaming, lfg, discord lfg, video game, looking for group, looking for squad, gc, community, clan, find a clan, find a community, find gamers">
 		<meta name="robots" content="index, follow">

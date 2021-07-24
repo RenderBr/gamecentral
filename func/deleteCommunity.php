@@ -1,5 +1,4 @@
 <?php
-
 $username1 = $_POST['u'];
 $communityid = $_POST['cid'];
 include_once('../cfg/conn.php');

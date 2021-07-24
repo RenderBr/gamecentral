@@ -1,7 +1,10 @@
 <?php
-if($isCommunity == true){
+if(isset($isCommunity)){
+  if($isCommunity == true){
   $putInGet = "&isCom=true";
+  }
 }else{
+  $isCommunity = NULL;
   $putInGet = NULL;
 }
 ?>

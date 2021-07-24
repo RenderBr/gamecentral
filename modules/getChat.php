@@ -1,6 +1,9 @@
 	<?php
 	$gid = $_GET['g'];
 	$isCom = $_GET['isCom'];
+	if(!isset($isCom)){
+		$isCom = NULL;
+	}
 	include_once('../cfg/conn.php');
 
 	if($isCom == "true"){
@@ -8,7 +11,7 @@
 	}else{
 		$sql = "SELECT * FROM messages WHERE groupid = '$gid' ORDER BY date_created ASC";
 	}
-	
+
 	$result = $conn->query($sql);
 
 	if ($result->num_rows > 0) {
