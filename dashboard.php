@@ -29,7 +29,7 @@ if(!isset($_SESSION['username'])){
 
 		<br>
 		<div class='bg-dark1 container mb-4 pb-3 rounded' style="max-width: 100rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);width:80%;"><div class='text-center'>
-		<h4 class='pt-2 pb-1 noselect'><a class='me-1 noselect'>👋</a> Hey, welcome back! How's it going, <u><?php echo $_SESSION['username']; ?></u>?</h4><hr class='nav-break'></div>
+		<h4 class='pt-2 noselect' style='margin:0 !important;'><a class='me-1 noselect'>👋</a> Hey, welcome back! How's it going, <u><?php echo $_SESSION['username']; ?></u>?</h4><a class='gray noselect mb-2'><strong>Note:</strong> To anyone seeing this, you are using a very early-access version of Game Central, please use at your own risk and report any bugs you may find on the <a href='https://discord.gg/GVn8teTR6V' class='discord'>Discord!</a><a class='gray noselect'> Thank you.</a></a><hr class='nav-break'></div>
 
 
 		<?php // MyFeed Include

@@ -1,6 +1,5 @@
 <?php
 session_start();
-$key = $_GET['inv'];
 
 if(isset($_SESSION['username'])){
 	header("Location: /");
@@ -15,27 +14,6 @@ if(isset($_SESSION['username'])){
 <html lang="en">
     <head>
 		<?php include_once('cfg/cdns.php');
-
-			if(!$key){
-				header("Location: /woah");
-			}else{
-
-				$sql = "SELECT * from regTokens WHERE token = '$key' AND used = 0";
-
-				$result = $conn->query($sql);
-
-				if ($result->num_rows > 0) {
-				// output data of each row
-
-				}else{
-					header("Location: /woah");
-				}
-
-			}
-
-
-
-
 		?>
 		<meta name="description" content="GameCentral registration page, you may sign up to use our website here.">
 		<meta name="keywords" content="gaming, lfg, discord lfg, video game, looking for group, looking for squad, gc register">
@@ -240,7 +218,6 @@ if(isset($_SESSION['username'])){
 		</div>
 		</div><br>
 		<div class='text-center'>
-		<input name='regToken' value='<?php echo $key; ?>' style='display:none;'>
 		<button class="btn btn-primary" style='width:100%;' id="button-submit" type="submit">Continue</button>
 		</div>
 		</form>

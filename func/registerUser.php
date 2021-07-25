@@ -11,7 +11,6 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$regToken = $_POST['regToken'];
 $birthyear = $_POST['year'];
 $birthday = $_POST['day'];
 $birthmonth = $_POST['month'];
@@ -30,15 +29,6 @@ if ($conn->query($sql) === TRUE) {
   echo "New record created successfully";
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;
-}
-
-$sql = "UPDATE regTokens set used=1 WHERE token = '$regToken'";
-
-
-if ($conn->query($sql) === TRUE) {
-  echo "Record updated successfully";
-} else {
-  echo "Error updating record: " . $conn->error;
 }
 
 $conn->close();

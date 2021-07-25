@@ -30,21 +30,9 @@
 							<p class="light noselect" style="font-size: 25px;text-shadow: 2px 2px 2px #151515 !important;margin-bottom: 3px !important;">...find other gamers, instantly! </p>
 							<p class="light noselect" style="font-size: 17px;text-shadow: 2px 2px 2px #151515 !important;">the <a style='color:#59d059;'>best</a> place to look for a gaming group! </p>
                             <!-- Signup form-->
-							<?php
+							<a href='/register' class="btn btn-primary">Register!</a>
+              <a href='/login' class=" ms-2 btn btn-secondary">Login!</a>
 
-							if(isset($_GET['r']) == 1){
-								echo '<button type="button" class="btn btn-primary">Registered! <i class="bi bi-check-circle"></i></button>';
-							}else{
-
-                            echo '<form name="emailSignup" action="/func/registerEmail.php">
-								<a class="sm-text">ENTER EMAIL TO BE NOTIFIED ON RELEASE</a>
-                                <div class="input-group input-group-lg">
-                                    <input title="Must include at least 4 characters before submission is possible!" id="email" name="email" minlength="4" type="text" class="dark-box form-control" placeholder="john.doe@gmail.com" aria-label="Enter your email..." aria-describedby="button-submit" onkeyup="stoppedTyping()"/>
-                                    <button title="Must include at least 4 characters before submission is possible!" class="btn btn-primary" id="button-submit" type="submit" disabled>Notify me!</button>
-                                </div>
-                            </form>';
-							}
-							?>
                         </div>
                     </div>
                 </div>
@@ -160,7 +148,7 @@
             <div class="container position-relative">
                 <div class="row justify-content-center">
                     <div class="col-xl-6">
-                        <h2 class="mb-4">Interested? Join our Discord to stay up-to-date!</u></h2>
+                        <h2 class="mb-4">Join our Discord to stay up-to-date!</u></h2>
                         <!-- Signup form-->
                         <a href='https://discord.gg/f8aQNJMeVB' class="btn btn-primary" id="button-submit" style='background-color:#7289DA;border-color:#4E5D94;'><i class="bi bi-discord"></i> Join the Discord!</a>
                 </div>

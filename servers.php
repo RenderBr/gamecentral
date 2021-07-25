@@ -53,7 +53,7 @@ if($pageOffset < 0){
 
 		<br>
 		<div class='bg-dark1 container pb-3 mb-4 rounded' style="max-width: 100rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);width:80%;"><div class='text-center'>
-		<h4 class='pt-2 pb-1 noselect'><a class='me-1 noselect'></a>Want to <u>find a new server</u>? Boom!💥</h4><?php include_once($_SERVER['DOCUMENT_ROOT'] . '/modules/gameServerSearch.php'); ?><div>
+		<h4 class='pt-2 pb-1 noselect'><a class='me-1 noselect'></a>Want to <u>find a new server</u>? Boom!💥</h4><div>
 		<nav aria-label="Page navigation">
 		  <ul class="pagination">
 		    <li class="page-item"><a id='previous' class="page-link dark-box" href="/servers?p=<?php echo $pageOffset-10; ?>">Previous</a></li>
