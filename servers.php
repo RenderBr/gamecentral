@@ -1,7 +1,15 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/cdns.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/func/getMCServer.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/func/getRustServer.php');
+require ($_SERVER['DOCUMENT_ROOT'] . '/modules/sourceQuery/SourceQuery/bootstrap.php');
 
+	use xPaw\SourceQuery\SourceQuery;
+
+	define( 'SQ_TIMEOUT',     1 );
+	define( 'SQ_ENGINE',      SourceQuery::SOURCE );
+	// Edit this <-
+	$Query = new SourceQuery( );
 
 if(isset($_SESSION['username'])){
 	$self = $_SESSION['username'];
@@ -135,6 +143,7 @@ if ($result->num_rows > 0) {
 		}
 
 
+		if($serverGame == "Minecraft"){
 		$serverStatus = getMCStatus($serverAddress, $serverPort);
 
 		if($serverStatus == true){
@@ -146,12 +155,32 @@ if ($result->num_rows > 0) {
 		$maxPlayerCnt = "0";
 		$serverStatus = "<a class='ms-1 text-danger'>(OFFLINE)</a>";
 	}
+				if(isset($serverPort)){
+					$serverPort = ":" . $serverPort;
+				}else{
+					$serverPort = NULL;
+				}
+		}
+
+		if($serverGame == "Rust"){
+			$serverStatus = getRustStatus($serverAddress, $serverPort, $Query);
+
+			if($serverStatus == true){
+			$currentPlayerCount = getRustPlayerCnt($serverAddress, $serverPort, $Query);
+			$maxPlayerCnt = getRustMaxPlayerCnt($serverAddress, $serverPort, $Query);
+			$serverStatus = NULL;
+		}else{
+			$currentPlayerCount = "0";
+			$maxPlayerCnt = "0";
+			$serverStatus = "<a class='ms-1 text-danger'>(OFFLINE)</a>";
+		}
 
 				if(isset($serverPort)){
 					$serverPort = ":" . $serverPort;
 				}else{
 					$serverPort = NULL;
 				}
+		}
 
 
 
