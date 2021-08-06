@@ -41,7 +41,7 @@
 		  }
 		}
 
-		$sql = "SELECT * FROM dailyKarmaRewards WHERE user = '" . $_SESSION['username'] . "'";
+		$sql = "SELECT * FROM dailykarmarewards WHERE user = '" . $_SESSION['username'] . "'";
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {
