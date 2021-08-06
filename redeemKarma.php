@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
 		<?php include_once('cfg/cdns.php');
-
+    session_start();
     if(isset($_SESSION['username'])){
       $self = $_SESSION['username'];
     }else{
@@ -13,7 +13,7 @@
       header("Location: /login");
     }
 
-    $redeemedRewards = $conn->query("SELECT * from dailyKarmaRewards WHERE user = '$self' AND date_created > now() - interval 1 day;");
+    $redeemedRewards = $conn->query("SELECT * from dailykarmarewards WHERE user = '$self' AND date_created > now() - interval 1 day;");
     if($redeemedRewards->num_rows > 0){
       $canRedeemReward = false;
     }else{
