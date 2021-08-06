@@ -2,6 +2,8 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/cdns.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/func/getMCServer.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/func/getRustServer.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/func/getArkServer.php');
+
 require ($_SERVER['DOCUMENT_ROOT'] . '/modules/sourceQuery/SourceQuery/bootstrap.php');
 
 	use xPaw\SourceQuery\SourceQuery;
@@ -139,7 +141,6 @@ if ($result->num_rows > 0) {
 
 		  }
 		}else{
-			echo "Game could not be retrieved";
 		}
 
 
@@ -168,6 +169,30 @@ if ($result->num_rows > 0) {
 			if($serverStatus == true){
 			$currentPlayerCount = getRustPlayerCnt($serverAddress, $serverPort, $Query);
 			$maxPlayerCnt = getRustMaxPlayerCnt($serverAddress, $serverPort, $Query);
+			$serverStatus = NULL;
+		}else{
+			$currentPlayerCount = "0";
+			$maxPlayerCnt = "0";
+			$serverStatus = "<a class='ms-1 text-danger'>(OFFLINE)</a>";
+		}
+
+				if(isset($serverPort)){
+					$serverPort = ":" . $serverPort;
+				}else{
+					$serverPort = NULL;
+				}
+		}
+
+		if($serverGame == "Garry's Mod"){
+			$serverStatus = NULL;
+			$currentPlayerCount = NULL;
+			$maxPlayerCnt = NULL;
+
+			$serverStatus = getArkStatus($serverAddress, $serverPort, $Query);
+
+			if($serverStatus == true){
+			$currentPlayerCount = getArkPlayerCnt($serverAddress, $serverPort, $Query);
+			$maxPlayerCnt = getArkMaxPlayerCnt($serverAddress, $serverPort, $Query);
 			$serverStatus = NULL;
 		}else{
 			$currentPlayerCount = "0";

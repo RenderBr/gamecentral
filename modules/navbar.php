@@ -41,6 +41,20 @@
 		  }
 		}
 
+		$sql = "SELECT * FROM dailyKarmaRewards WHERE user = '" . $_SESSION['username'] . "'";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+			// output data of each row
+			while($row = $result->fetch_assoc()) {
+				$karmaRewardAvailable = NULL;
+			}
+		}else{
+			$karmaRewardAvailable = "<li class='nav-item'>
+										<a class='nav-link' aria-current='page' href='/redeemKarma' style='color:#bf51b8 !important;'>Claim Daily Reward!</a>
+									</li>";
+		}
+
 		if($_SESSION['notifs'] > 0){
 			$notifications = " <span class='badge rounded-pill bg-danger ms-1'>" . $_SESSION['notifs'] . "</span>";
 		}else{
@@ -83,7 +97,8 @@
 						</li>
 						<li class='nav-item'>
 							<a class='nav-link' aria-current='page' href='/lfg'>LFG</a>
-						</li>
+						</li>" . $karmaRewardAvailable . "
+
 					</ul>
 
 					<span class='d-flex'>
