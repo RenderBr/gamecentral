@@ -123,15 +123,14 @@ if ($result->num_rows > 0) {
 		$notifs = $conn->query("UPDATE servers SET votes = '$votes' WHERE id = '$serverId'");
 		$notifs = $conn->query("UPDATE servers SET rank = '$rank' WHERE id = '$serverId'");
 
-
-		$sql1 = "SELECT * FROM games WHERE name = '$serverGame'";
+		$sql1 = sprintf("SELECT * FROM games WHERE name = '%s'", mysqli_real_escape_string($conn, $serverGame));
 		$result1 = $conn->query($sql1);
 
 		if ($result1->num_rows > 0) {
 
 		  while($row1 = $result1->fetch_assoc()) {
 			$iconSm = $row1['sm_icon'];
-			$gameTooltip = $row1['name'];
+			$gameTooltip = sprintf($row1['name']);
 
 			if($row1['shortName']){
 				$gameName = $row1['shortName'];
@@ -207,14 +206,13 @@ if ($result->num_rows > 0) {
 				}
 		}
 
-
-
+		$gameTooltip = 'title="' . $gameTooltip . '"';
 
 		echo "<div id='" . $rank . "l' class='d-flex bg-darkest rounded mt-2 align-items-center'>
 		<div class='me-auto p-2'>
 			<a title='Rank " . $rank . " out of " . $rank . "' class='sm-text noselect me-2'>#" . $rank . "</a>
 			<a href='/server?id=" . $serverId . "'><img title='" . $serverName . "' width=512rem height=68rem class='img-fluid rounded border border-dark' src='" . $banner . "' style='overflow:hidden;'></a><br>
-			<a href='/server?id=" . $serverId . "'><h2 style='color:white;' class='ms-4'>" . $serverName . $serverStatus .  "</a><img src='" . $iconSm . "' title='" . $gameTooltip . "' class='icon-sm ms-2'> <a class='sm-text'>(" . $votes . " votes)</a> </h2>
+			<a href='/server?id=" . $serverId . "'><h2 style='color:white;' class='ms-4'>" . $serverName . $serverStatus .  "</a><img src='" . $iconSm . "'" . $gameTooltip . "' class='icon-sm ms-2'> <a class='sm-text'>(" . $votes . " votes)</a> </h2>
 			<a class='gray ms-4'>" . $description . "</a>
 		</div>
 		<div class='p-2'><button onclick='copyThis(this)' value='" . $serverAddress . $serverPort . "' id='copyIP' title='click to copy IP' class='gray me-2 btn btn-outline-secondary'><i class='me-2 bi bi-clipboard-plus' style='color:white;'></i>" . $serverAddress . $serverPort . "</button><a href='/server?id=" . $serverId . "' class='btn btn-success me-2 ms-1'>View more info...</a><div class='d-flex justify-content-center border border-dark mt-2'><a class='sm-text noselect' id='" . $rank . "t'>Players online: " . $currentPlayerCount . " </a>

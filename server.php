@@ -5,6 +5,7 @@
 		include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/cdns.php');
     include_once($_SERVER['DOCUMENT_ROOT'] . '/func/getMCServer.php');
     include_once($_SERVER['DOCUMENT_ROOT'] . '/func/getRustServer.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/func/getArkServer.php');
     include_once($_SERVER['DOCUMENT_ROOT'] . '/modules/voteServerButton.php');
     require ($_SERVER['DOCUMENT_ROOT'] . '/modules/sourceQuery/SourceQuery/bootstrap.php');
     use xPaw\SourceQuery\SourceQuery;
@@ -15,14 +16,13 @@
   	$Query = new SourceQuery( );
 
 		$serverId = $_GET['id'];
-
-		$sql = "SELECT * FROM servers WHERE id = '$serverId'";
-		$result = $conn->query($sql);
-
     $sql3 = "SELECT * FROM servers";
 
     $result3 = $conn->query($sql3);
     $serversTotal = $result3->num_rows;
+
+		$sql = "SELECT * FROM servers WHERE id = $serverId";
+		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {
 		  // output data of each row
@@ -69,19 +69,43 @@
           if($serverStatus == true){
           $currentPlayerCount = getRustPlayerCnt($serverAddress, $serverPort, $Query);
           $maxPlayerCnt = getRustMaxPlayerCnt($serverAddress, $serverPort, $Query);
-          $serverStatus = NULL;
+          $serverStatus = "<a class='ms-1 sm-text text-success noselect'>ONLINE!</a>";
         }else{
           $currentPlayerCount = "0";
           $maxPlayerCnt = "0";
-          $serverStatus = "<a class='ms-1 text-danger'>(OFFLINE)</a>";
+          $serverStatus = "<a class='ms-1 sm-text text-danger noselect'>OFFLINE!</a>";
         }
 
-            if(isset($serverPort)){
-              $serverPort = ":" . $serverPort;
-            }else{
-              $serverPort = NULL;
-            }
+        if(isset($serverPort)){
+          $serverPort = ":" . $serverPort;
+        }else{
+          $serverPort = NULL;
         }
+
+        }
+
+
+      if($serverGame == "Garry's Mod"){
+        $serverStatus = getRustStatus($serverAddress, $serverPort, $Query);
+
+        if($serverStatus == true){
+        $currentPlayerCount = getRustPlayerCnt($serverAddress, $serverPort, $Query);
+        $maxPlayerCnt = getRustMaxPlayerCnt($serverAddress, $serverPort, $Query);
+        $serverStatus = "<a class='ms-1 sm-text text-success noselect'>ONLINE!</a>";
+      }else{
+        $currentPlayerCount = "0";
+        $maxPlayerCnt = "0";
+        $serverStatus = "<a class='ms-1 sm-text text-danger noselect'>OFFLINE!</a>";
+      }
+
+      if(isset($serverPort)){
+        $serverPort = ":" . $serverPort;
+      }else{
+        $serverPort = NULL;
+      }
+
+      }
+
 
         if(isset($rank)){
           $rank = $rank;
@@ -89,13 +113,13 @@
           $rank = NULL;
         }
 
-        $sql = "SELECT * FROM games WHERE name = '$serverGame'";
-        $result = $conn->query($sql);
+        $sql1 = sprintf("SELECT * FROM games WHERE name = '%s'", mysqli_real_escape_string($conn, $serverGame));
+        $result6 = $conn->query($sql1);
 
 
-        if ($result->num_rows > 0) {
+        if ($result6->num_rows > 0) {
     		  // output data of each row
-    		  while($row = $result->fetch_assoc()) {
+    		  while($row = $result6->fetch_assoc()) {
               $icon = $row['sm_icon'];
               $shortname = $row['shortName'];
           }
