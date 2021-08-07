@@ -151,12 +151,12 @@
 	<?php include_once('modules/navbar.php'); ?>
 
 		<br><div class='bg-dark1 container user pb-1 rounded' style='padding:0px;'>
-			<div class='container-fluid bg-warning bg-gradient rounded' style="background: url(<?php echo $banner; ?>) no-repeat !important;background-size: contain !important;" width=100%>
-			<img title='This is a <?php echo $serverGame; ?> server!' class='rounded-circle mb-1 mt-2' width=128rem height=128rem src='<?php echo $icon; ?>'>
+			<div class='container-fluid bg-warning bg-gradient rounded' style="background: url(<?php echo $banner; ?>) no-repeat !important;background-size: cover !important;
+background-position: center !important;height:8rem !important;" width=100% >
     </div>
     <div class='container rounded pt-1'>
   <div class='d-flex align-items-center'>
-     <div class="me-auto p-2 bd-highlight"><h4 style='margin-bottom:0px !important;'><?php echo $serverName; ?><a title='Server ranking <?php echo $rank; ?> out of <?php echo $serversTotal; ?>' style='text-decoration:none;' class='noselect mt-3 ms-1 gray'>#<?php echo $rank . $serverStatus; voteButton($serverId, $conn); ?></a></h4>
+     <div class="me-auto p-2 bd-highlight"><h4 style='margin-bottom:0px !important;'><img title='This is a <?php echo $serverGame; ?> server!' class='rounded-circle mb-1 mt-2 me-2' width=32rem height=32rem src='<?php echo $icon; ?>'><?php echo $serverName; ?><a title='Server ranking <?php echo $rank; ?> out of <?php echo $serversTotal; ?>' style='text-decoration:none;' class='noselect mt-3 ms-1 gray'>#<?php echo $rank . $serverStatus; voteButton($serverId, $conn); ?></a></h4>
 </div>
      <div class='p-2'><a></div>
   </div>
@@ -164,7 +164,8 @@
 
 
 		<label>
-			<p class="sm-text">DESCRIPTION</p>
+			<p class="sm-text">DESCRIPTION
+</p>
 		</label>
 		<p style='margin-bottom:0.75rem !important;'>
 			<?php echo $description; ?>

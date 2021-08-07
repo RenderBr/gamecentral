@@ -21,6 +21,7 @@
 			  $usersbg = $row['bg'];
 			  $isGC = $row['gc'];
 			  $usersDiscord = $row['discord'];
+        $usersTwitch = $row['twitch'];
 			  $discordVerified = $row['discordVerified'];
         $userLastSeen = $row['lastLoggedIn'];
         $banner = $row['bannerImage'];
@@ -202,7 +203,7 @@
 		</div>
 			<?php
 
-			if($usersDiscord){
+			if($usersDiscord || $usersTwitch){
 
 				echo "
 				<div class='bg-dark1 container user rounded' style='margin-top:0.5rem !important;'>
@@ -212,7 +213,7 @@
 				<p class='sm-text noselect'>SOCIAL MEDIA</p>
 			</label>
 			<hr class='nav-break'>
-			<div class='box'>";
+			";
 
 			if($discordVerified == 1){
 				$discordVerified = '<i title="This user&#39;s discord is verified!" class="bi bi-patch-check ms-1" style="color:white;"></i>';
@@ -220,15 +221,23 @@
 				$discordVerified = "";
 			}
 
+      if($usersDiscord){
 				echo "
 					<i style='color: #7289DA !important;font-size: 1.5rem;vertical-align:middle !important;' class='bi bi-discord me-1'></i>
 					<span role='button' title='click to copy' id='discord' class='sm-text' style='margin-bottom:0px !important;'>" . $usersDiscord . $discordVerified . "</span>
-				";
+				<br>";
+      }
+
+      if($usersTwitch){
+        echo "
+          <i style='color: #9147ff !important;font-size: 1.5rem;vertical-align:middle !important;' class='bi bi-twitch me-1'></i>
+          <a href='https://twitch.tv/" . $usersTwitch . "' title='click to visit " . $usersTwitch . " on Twitch' id='twitch' class='sm-text' style='margin-bottom:0px !important;'>" . $usersTwitch . "</a>
+        ";
+      }
 
 			}
 
 			?>
-			</div>
 
 		</div>
 

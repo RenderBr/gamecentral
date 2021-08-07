@@ -27,6 +27,7 @@ if($_SESSION['username']){
 			  $mydiscord = $row['discord'];
 				$myStatus = $row['status'];
 				$myBanner = $row['bannerImage'];
+				$myTwitch = $row['twitch'];
 		  }
 
 		}
@@ -138,6 +139,18 @@ border-bottom-right-radius: 0.25rem !important;'><i class="bi bi-check-circle"><
 				<button form='form7' id="sideButton7" class='btn btn-outline-success input-group-text' type='submit'><i class="bi bi-check-circle"></i></button>
 			</div>
 			<p class='sm-text noselect'><strong>Example:</strong> DiscordUsername#1234</p>
+
+			</form>
+
+			<!--- TWITCH -->
+			<form name='form57' class='mb-3' method='POST' id='form57' action='/func/connectTwitch.php'>
+			<label style='margin-right:0.5rem;color:#9147ff !important;' class='noselect sm-text' for='twitch'>TWITCH</label>
+			<br>
+			<div class="input-group">
+				<input name='twitch' type='text' id='twitch' class='dark-box form-control' value='<?php echo $myTwitch; ?>'></input>
+				<button form='form57' id="sideButton57" class='btn btn-outline-success input-group-text' type='submit'><i class="bi bi-check-circle"></i></button>
+			</div>
+			<p class='sm-text noselect'><strong>Example:</strong> twitchusername</p>
 
 			</form>
 
