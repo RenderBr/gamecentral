@@ -3,7 +3,7 @@ session_start();
 $user = $_SESSION['username'];
 $twitch = htmlspecialchars($_POST['twitch'], ENT_QUOTES, 'UTF-8');
 
-include_once('../cfg/cdns.php');
+include_once('../cfg/conn.php');
 
 $sql = "UPDATE users SET twitch='$twitch' WHERE username = '$user'";
 
