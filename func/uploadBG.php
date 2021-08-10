@@ -1,7 +1,7 @@
 
 <?php
 include_once('../cfg/conn.php');
-$target_dir = "../images/";
+$target_dir = "/var/www/html/gamecentral.online/userData/userBG/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 $newName = bin2hex(random_bytes(5));
@@ -54,10 +54,10 @@ if ($uploadOk == 0) {
     echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
 
 
-    $avatar = "https://data.gamecentral.online/avatars/" . $newName . "." .  $imageFileType;
+    $avatar = "https://data.gamecentral.online/userBG/" . $newName . "." .  $imageFileType;
     echo $avatar;
 
-    $sql = "UPDATE users SET avatar='$avatar' WHERE username = '$user'";
+    $sql = "UPDATE users SET bg='$avatar' WHERE username = '$user'";
 
     if($conn->query($sql) === TRUE){
     	echo "User's avatar has been successfully changed!";

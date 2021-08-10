@@ -92,17 +92,16 @@ if($_SESSION['username']){
 			</form>
 
 			<!--- AVATAR -->
-			<label style='margin-right:0.5rem;' class='noselect sm-text' for='avatar'>AVATAR</label>
-			<form id='formAv' action="/func/uploadImage.php" method="post" enctype="multipart/form-data">
+			<label style='margin-right:0.5rem;' class='noselect sm-text' for='avatar'>AVATAR - UPLOAD OR USE DIRECT LINK</label>
+			<form id='formAv' action="/func/uploadAvatar.php" method="post" enctype="multipart/form-data">
 				<div class="input-group">
 				  <label for="formFile">
 				  <input name='fileToUpload' id='fileToUpload' class="form-control dark-box" type="file" id="formFile"></label>
 					<button form='formAv' type="submit" class='btn btn-outline-success input-group-text rounded rounded-right' name="submit"><i class="bi bi-check-circle"></i></button>
 				</div>
 			</form>
-
-			<form id='form2' class='mb-3' method='post' action='/func/changeAvatar.php'>
-			<br>
+			<form id='form2' class='mb-3' method='post' action='/func/changeAvatar.php' style='margin-top:0px !important;'>
+				<br>
 			<div class="input-group">
 				<input name='a' type='text' id='avatar' class='dark-box form-control' value='<?php echo $myavatar; ?>'></input>
 				<input form='form2' type="submit" style="display: none"></input>
@@ -114,8 +113,17 @@ border-bottom-right-radius: 0.25rem !important;'><i class="bi bi-check-circle"><
 			</form>
 
 			<!--- BANNER -->
+
+			<label style='margin-right:0.5rem;' class='noselect sm-text' for='avatar'>BANNER - UPLOAD OR USE DIRECT LINK</label>
+			<form id='formBG' action="/func/uploadBG.php" method="post" enctype="multipart/form-data">
+				<div class="input-group">
+					<label for="formFile">
+					<input name='fileToUpload' id='fileToUpload' class="form-control dark-box" type="file" id="formFile"></label>
+					<button form='formBG' type="submit" class='btn btn-outline-success input-group-text rounded rounded-right' name="submit"><i class="bi bi-check-circle"></i></button>
+				</div>
+			</form>
+
 			<form id='form6' class='mb-3' method='post' action='/func/changeBanner.php'>
-			<label style='margin-right:0.5rem;' class='noselect sm-text' for='banner'>BANNER</label>
 			<br>
 			<div class="input-group">
 				<input name='b' type='text' id='banner' class='dark-box form-control' value='<?php echo $myBanner; ?>'></input>
