@@ -3,7 +3,7 @@ session_start();
 $user = $_SESSION['username'];
 $avatar = htmlspecialchars($_POST['a'], ENT_QUOTES, 'UTF-8');
 
-include_once('../cfg/cdns.php');
+include_once('../cfg/conn.php');
 
 $sql = "UPDATE users SET avatar='$avatar' WHERE username = '$user'";
 

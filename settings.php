@@ -92,8 +92,16 @@ if($_SESSION['username']){
 			</form>
 
 			<!--- AVATAR -->
-			<form id='form2' class='mb-3' method='post' action='/func/changeAvatar.php'>
 			<label style='margin-right:0.5rem;' class='noselect sm-text' for='avatar'>AVATAR</label>
+			<form action="/func/uploadImage.php" method="post" enctype="multipart/form-data">
+				<div class="input-group">
+				  <label for="formFile">
+				  <input name='fileToUpload' id='fileToUpload' class="form-control dark-box" type="file" id="formFile"></label>
+					<button type="submit" class='btn btn-outline-success input-group-text rounded rounded-right' value="Upload Image" name="submit"><i class="bi bi-check-circle"></i></button>
+				</div>
+			</form>
+
+			<form id='form2' class='mb-3' method='post' action='/func/changeAvatar.php'>
 			<br>
 			<div class="input-group">
 				<input name='a' type='text' id='avatar' class='dark-box form-control' value='<?php echo $myavatar; ?>'></input>
