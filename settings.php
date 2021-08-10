@@ -107,8 +107,8 @@ if($_SESSION['username']){
 				<input form='form2' type="submit" style="display: none"></input>
 				<button form='form2' id="sideButton" class='btn btn-outline-success input-group-text rounded rounded-right' type='submit' style='border-top-right-radius: 0.25rem !important;
 border-bottom-right-radius: 0.25rem !important;'><i class="bi bi-check-circle"></i></button>
-				<p class='sm-text noselect'><strong>Notice:</strong> Image link must be direct (make sure the link ends in .PNG or .JPG, etc), and it must use the HTTPS security protocol . Currently, there's no way to upload directly to Game Central. Image uploading to GC will be implemented in the future.</p>
 			</div>
+			<p class='sm-text noselect'><strong>Notice:</strong> Image link must be direct (make sure the link ends in .PNG or .JPG, etc), and it must use the HTTPS security protocol.</p>
 
 			</form>
 
