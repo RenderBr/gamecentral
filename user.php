@@ -243,6 +243,15 @@
 
 			<?php
 
+
+                echo "<div class='bg-dark1 container user rounded mt-1'>
+
+        			<hr class='nav-break'>
+        			<label>
+        				<p class='sm-text noselect'>IN GROUPS</p>
+        			</label>
+        			<hr class='nav-break mb-2'><ul>";
+
 			$sql1 = "SELECT * FROM groupMembers WHERE username = '$usersname'";
 			$result1 = $conn->query($sql1);
 
@@ -260,14 +269,6 @@
 
 					if ($result2->num_rows > 0) {
 					// output data of each row
-
-          echo "<div class='bg-dark1 container user rounded mt-1'>
-
-  			<hr class='nav-break'>
-  			<label>
-  				<p class='sm-text noselect'>IN GROUPS</p>
-  			</label>
-  			<hr class='nav-break mb-2'><ul>";
 						while($row = $result2->fetch_assoc()) {
 
 							$groupName = $row['groupName'];

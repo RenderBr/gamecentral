@@ -113,13 +113,12 @@ border-bottom-right-radius: 0.25rem !important;'><i class="bi bi-check-circle"><
 			</form>
 
 			<!--- BANNER -->
-
 			<label style='margin-right:0.5rem;' class='noselect sm-text' for='avatar'>BANNER - UPLOAD OR USE DIRECT LINK</label>
-			<form id='formBG' action="/func/uploadBG.php" method="post" enctype="multipart/form-data">
+			<form id='formBanner' action="/func/uploadBanner.php" method="post" enctype="multipart/form-data">
 				<div class="input-group">
 					<label for="formFile">
 					<input name='fileToUpload' id='fileToUpload' class="form-control dark-box" type="file" id="formFile"></label>
-					<button form='formBG' type="submit" class='btn btn-outline-success input-group-text rounded rounded-right' name="submit"><i class="bi bi-check-circle"></i></button>
+					<button form='formBanner' type="submit" class='btn btn-outline-success input-group-text rounded rounded-right' name="submit"><i class="bi bi-check-circle"></i></button>
 				</div>
 			</form>
 
@@ -134,6 +133,15 @@ border-bottom-right-radius: 0.25rem !important;'><i class="bi bi-check-circle"><
 			</form>
 
 			<!--- BG IMAGE -->
+			<label style='margin-right:0.5rem;' class='noselect sm-text' for='avatar'>BACKGROUND - UPLOAD OR USE DIRECT LINK</label>
+			<form id='formBG' action="/func/uploadBG.php" method="post" enctype="multipart/form-data">
+				<div class="input-group">
+					<label for="formFile">
+					<input name='fileToUpload' id='fileToUpload' class="form-control dark-box" type="file" id="formFile"></label>
+					<button form='formBG' type="submit" class='btn btn-outline-success input-group-text rounded rounded-right' name="submit"><i class="bi bi-check-circle"></i></button>
+				</div>
+			</form>
+
 			<form name='form3' class='mb-3' method='POST' id='form3' action='/func/changeBackground.php'>
 			<label style='margin-right:0.5rem;' class='noselect sm-text' for='bg'>BACKGROUND</label>
 			<br>
