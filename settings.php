@@ -93,11 +93,11 @@ if($_SESSION['username']){
 
 			<!--- AVATAR -->
 			<label style='margin-right:0.5rem;' class='noselect sm-text' for='avatar'>AVATAR</label>
-			<form action="/func/uploadImage.php" method="post" enctype="multipart/form-data">
+			<form id='formAv' action="/func/uploadImage.php" method="post" enctype="multipart/form-data">
 				<div class="input-group">
 				  <label for="formFile">
 				  <input name='fileToUpload' id='fileToUpload' class="form-control dark-box" type="file" id="formFile"></label>
-					<button type="submit" class='btn btn-outline-success input-group-text rounded rounded-right' value="Upload Image" name="submit"><i class="bi bi-check-circle"></i></button>
+					<button form='formAv' type="submit" class='btn btn-outline-success input-group-text rounded rounded-right' name="submit"><i class="bi bi-check-circle"></i></button>
 				</div>
 			</form>
 
