@@ -37,7 +37,7 @@
     		$dateCreated = $row['date_created'];
     		$serverAddress = $row['ip'];
     		$serverPort = $row['port'];
-    		$banner = $row['bannerImage'];
+    		$banner = $row['bgImage'];
     		$rank = $row['rank'];
     		$description = $row['serverDescription'];
     		$votes = $row['votes'];
@@ -106,6 +106,8 @@
 
       }
 
+      $gameTooltip = 'title="This is a ' . $serverGame . ' server!"';
+
 
         if(isset($rank)){
           $rank = $rank;
@@ -156,7 +158,7 @@ background-position: center !important;height:8rem !important;" width=100% >
     </div>
     <div class='container rounded pt-1'>
   <div class='d-flex align-items-center'>
-     <div class="me-auto p-2 bd-highlight"><h4 style='margin-bottom:0px !important;'><img title='This is a <?php echo $serverGame; ?> server!' class='rounded-circle mb-1 mt-2 me-2' width=32rem height=32rem src='<?php echo $icon; ?>'><?php echo $serverName; ?><a title='Server ranking <?php echo $rank; ?> out of <?php echo $serversTotal; ?>' style='text-decoration:none;' class='noselect mt-3 ms-1 gray'>#<?php echo $rank . $serverStatus; voteButton($serverId, $conn); ?></a></h4>
+     <div class="me-auto p-2 bd-highlight"><h4 style='margin-bottom:0px !important;'><img <?php echo $gameTooltip; ?> server!' class='rounded-circle mb-1 mt-2 me-2' width=32rem height=32rem src='<?php echo $icon; ?>'><?php echo $serverName; ?><a title='Server ranking <?php echo $rank; ?> out of <?php echo $serversTotal; ?>' style='text-decoration:none;' class='noselect mt-3 ms-1 gray'>#<?php echo $rank . $serverStatus; voteButton($serverId, $conn); ?></a></h4>
 </div>
      <div class='p-2'><a></div>
   </div>

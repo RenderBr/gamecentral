@@ -41,7 +41,11 @@ $self = $_SESSION['username'];
 		<label for='game'><p class="sm-text">GAME</p></label>
 		<div class="input-group input-group-md sm"><input autocomplete="off" id='game' name="game" type="text" class="dark-box form-control" placeholder="Start typing to select a game for your server..." aria-label="Select a game for your server..." aria-describedby="button-submit" /><div id='gameList'></div></div>
 		<label for='serverbanner'><p class="sm-text">BANNER DIRECT IMAGE</p></label>
-		<div class="input-group input-group-md sm"><input id='serverbanner' name="serverbanner" type="text" class="dark-box form-control" placeholder="https://link-to-image.png" aria-describedby="button-submit" /></div>
+		<div class="input-group input-group-md"><input id='serverbanner' name="serverbanner" type="text" class="dark-box form-control" placeholder="https://link-to-banner-image.png" aria-describedby="button-submit" /></div>
+		<p class='sm-text noselect sm' style='font-size: 12px;'>Recommended size: <strong>468x80 px</strong></p>
+		<label for='serverbg'><p class="sm-text">BACKGROUND DIRECT IMAGE</p></label>
+		<div class="input-group input-group-md"><input id='serverbg' name="serverbg" type="text" class="dark-box form-control" placeholder="https://link-to-background-image.png" aria-describedby="button-submit" /></div>
+		<p class='sm-text noselect sm' style='font-size: 12px;'>Recommended size: <strong>512x256 px</strong></p>
 		<label for='description'><p class="sm-text">SERVER INFO</p></label>
 		<div class="input-group input-group-md sm"><textarea id='description' name="description" type="textarea" class="dark-box form-control" placeholder="Tell the world about your server... why should people play, and what makes it unique?" aria-label="Tell the world about your server..." aria-describedby="button-submit" /></textarea></div>
 		<div class='row'>

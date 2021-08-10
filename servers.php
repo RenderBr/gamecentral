@@ -211,7 +211,7 @@ if ($result->num_rows > 0) {
 		echo "<div id='" . $rank . "l' class='d-flex bg-darkest rounded mt-2 align-items-center'>
 		<div class='me-auto p-2'>
 			<a title='Rank " . $rank . " out of " . $rank . "' class='sm-text noselect me-2'>#" . $rank . "</a>
-			<a href='/server?id=" . $serverId . "'><img title='" . $serverName . "' width=512px height=68px class='img rounded border border-dark' src='" . $banner . "' style='overflow:hidden;'></a><br>
+			<a href='/server?id=" . $serverId . "'><img title='" . $serverName . "' width=468px height=80px class='img rounded border border-dark' src='" . $banner . "' style='overflow:hidden;'></a><br>
 			<a href='/server?id=" . $serverId . "'><h2 style='color:white;' class='ms-4'>" . $serverName . $serverStatus .  "</a><img src='" . $iconSm . "'" . $gameTooltip . "' class='icon-sm ms-2'> <a class='sm-text'>(" . $votes . " votes)</a> </h2>
 			<a class='gray ms-4'>" . $description . "</a>
 		</div>
