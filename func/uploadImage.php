@@ -1,9 +1,18 @@
 
 <?php
+include_once('../cfg/conn.php');
 $target_dir = "../images/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+$newName = bin2hex(random_bytes(5));
+$target_file = $target_dir . $newName . "." . $imageFileType;
+$uploadOk = 1;
+session_start();
+if(isset($_SESSION['username'])){
+$user = $_SESSION['username'];
+}else{
+  header("Location: /login");
+}
 
 // Check if image file is a actual image or fake image
 if(isset($_POST["submit"])) {
@@ -44,9 +53,9 @@ if ($uploadOk == 0) {
   if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
 
-    include_once('../cfg/conn.php');
 
-    $avatar = "https://data.gamecentral.online/avatars/" . $_FILES['fileToUpload']['name'] . "." .  $imageFileType;
+    $avatar = "https://data.gamecentral.online/avatars/" . $newName . "." .  $imageFileType;
+    echo $avatar;
 
     $sql = "UPDATE users SET avatar='$avatar' WHERE username = '$user'";
 
@@ -61,7 +70,7 @@ if ($uploadOk == 0) {
 
   } else {
     echo "Sorry, there was an error uploading your file.";
-    header("Location: /settings");
+    header("Location: /settings?e=1");
   }
 }
 ?>
