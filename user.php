@@ -282,8 +282,8 @@
 
 
 				}
-				echo '</ul></div>';
 			}
+      echo '</ul></div>';
 
       echo "<div class='bg-dark1 container user rounded mt-1 pb-3 mb-4'>
 
