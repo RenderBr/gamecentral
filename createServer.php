@@ -3,7 +3,7 @@ session_start();
 
 if($_SESSION['username']){
 }else{
-	header("Location: /");
+	header("Location: /login");
 }
 $self = $_SESSION['username'];
 

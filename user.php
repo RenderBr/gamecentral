@@ -6,6 +6,12 @@
 		include_once($_SERVER['DOCUMENT_ROOT'] . "/modules/karmaButtons.php");
 		$user = $_GET['u'];
 
+    if(isset($_SESSION['username'])){
+      $self = $_SESSION['username'];
+    }else{
+      $self = NULL;
+    }
+
 		$sql = "SELECT * FROM users WHERE username = '$user' || id = '$user'";
 		$result = $conn->query($sql);
 
@@ -179,18 +185,18 @@
 				echo $friendCount . " FRIENDS";
 			}
 
-        if($_SESSION['username'] == $usersname){
+        if($self == $usersname){
 
         }else{
-          removeKarmaButton($usersname);
+          removeKarmaButton($usersname, $self);
         }
         echo "
 				<a id='karma'>" . $userskarma .  "</a>
 				<a id='karma2'>KARMA</a>";
-        if($_SESSION['username'] == $usersname){
+        if($self == $usersname){
 
         }else{
-				      addKarmaButton($usersname);
+				      addKarmaButton($usersname, $self);
         }?>
 <a title='User ID, not a placement.' style='text-decoration:none;' class='noselect mt-3 ms-1 gray'>#<?php echo $usersid; ?></a>
         <?php
@@ -294,7 +300,7 @@
       <hr class='nav-break mb-2'>";
 
 
-      if(isset($_SESSION['username'])){
+      if($self){
       echo "<form name='form8' method='POST' id='form8' action='/func/postTextOnFeed.php'>
         <div class='input-group mb-2'>
           <textarea name='messageOnFeed' placeholder='Write something on " . $usersname . "&#39;s feed!' class='form-control dark-box'></textarea>

@@ -7,6 +7,12 @@
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/cdns.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/modules/viewGroupButton.php');
+if(isset($self)){
+	$disabled = NULL;
+}else{
+	$disabled = "disabled title='Please register or login to join a group!' style='pointer-events: auto !important;'";
+}
+
 $sql = "SELECT * FROM lfgPosts WHERE public = 0 AND expired = 0 ORDER BY date_created DESC LIMIT 5";
 $result = $conn->query($sql);
 
@@ -83,7 +89,7 @@ if ($result->num_rows > 0) {
 
 		//echo "<div id='" . $groupid . "l' style='border-radius:5px;' class='container bg-darkest p-4 position-relative mt-2'><a class='sm-text noselect me-2'>#" . $groupid . "</a><a style='color:white;' href='/user?u=" . $user . "'>" . $user . " <a class='gray'>&nbsp;is looking to play</a> </a><img title='" . $gameTooltip . "' width=32 class='ms-1' src='" . $iconSm . "'></img><a class='sm-text ms-1'>" . $gameName . ",</a> <a class='gray'>with a group of <a id='" . $groupid . "n'>" . $currentGroup . "</a> / " . $groupSize . " players. " . $groupName . "<div style='transform: translate(0%, -50%) !important;' class='position-absolute top-50 end-0 translate-middle'><a class='sm-text noselect' id='" . $groupid . "t'>" . $currentGroup . "</a><a class='sm-text noselect me-3'> / " . $groupSize . "</a>";
 
-		$sql2 = "SELECT * FROM groupMembers WHERE groupid = '$groupid' AND username = '" . $_SESSION['username'] . "'";
+		$sql2 = "SELECT * FROM groupMembers WHERE groupid = '$groupid' AND username = '$self'";
 		$result2 = $conn->query($sql2);
 
 		if ($result2->num_rows > 0) {
@@ -101,11 +107,11 @@ if ($result->num_rows > 0) {
 		  }
 
 		}else{
-			viewGroupButton($groupid, $_SESSION['username'], $conn);
+			viewGroupButton($groupid, $self, $conn);
 			if($currentGroup < $groupSize){
-			echo "<button id='" . $groupid . "' value='" . $groupid . "' onclick='joinGroup(this)' class='btn btn-success'>Join group!</button>";
+			echo "<button id='" . $groupid . "' value='" . $groupid . "' onclick='joinGroup(this)' class='btn btn-success' " . $disabled . ">Join group!</button>";
 			}
-			if($_SESSION['username'] == $user){
+			if($self == $user){
 			echo "<button value='" . $groupid . "' onclick='deleteGroup(this)' title='Delete this group!' class='sm-text btn'><i class='bi bi-x'></i></button>";
 		}else{
 			echo "<a style='margin-right: 50px;'></a>";

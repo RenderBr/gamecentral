@@ -1,10 +1,10 @@
 <?php
 echo "<a style='display:none;'>Friend module loaded successfully.</a>";
 include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/cdns.php');
-$self = $_SESSION['username'];
 if(!$self){
-	header("Location: /");
+	return;
 }
+
 if(isset($friendFAF)){
 	$friend = $friendFAF;
 }else{

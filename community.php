@@ -11,7 +11,7 @@
 		if($self){
 
 		}else{
-			header("Location: /");
+			header("Location: /login");
 		}
 
 

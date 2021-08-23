@@ -10,7 +10,7 @@
 		if($uName){
 
 		}else{
-			header("Location: /");
+			header("Location: /login");
 		}
 
 

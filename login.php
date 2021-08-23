@@ -48,8 +48,8 @@ if(isset($_GET['r'])){
 		</div>
 		<input name='r' style='display:none;' value='<?php echo $redirect; ?>'>
 		</form>
-		<p class='sm-text'>If you'd like to register, please join our <a href='https://discord.gg/GVn8teTR6V' style='color:#7289DA;text-decoration:underline;'>Discord and contact an admin!</a></p>
-    <p class='sm-text'>Forgot your password? <a href='/forgetPassword.php' style='color:#ffff !important;text-decoration:underline;'>click here to reset it!</a></p>
+		<p class='sm-text'>Don't have an account? <a href='/register' style='text-decoration:underline;color:white !important;'>Register here!</a></p>
+    <p class='sm-text'>Forgot your password? <a href='/forgetPassword.php' style='color:#ffff !important;text-decoration:underline;'>Click here to reset it!</a></p>
 
     </div>
 

@@ -2,7 +2,9 @@
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/cdns.php');
 
-function addKarmaButton($user){
+function addKarmaButton($user, $self){
+
+	if($self){
 
 		echo "
 	<button type='button' title='Add karma to this user!' id='addKarmaButton' class='badge bg-success ms-1 no-border' onclick='addKarma()'>+</button>
@@ -26,10 +28,12 @@ function addKarmaButton($user){
 
 	</script>";
 }
+}
 
 
-function removeKarmaButton($user){
+function removeKarmaButton($user, $self){
 
+		if($self){
 		echo "
 	<button type='button' title='Remove karma to this user!' id='removeKarmaButton' class='badge bg-danger ms-1 no-border' onclick='remKarma()'>-</button>
 
@@ -53,7 +57,7 @@ function removeKarmaButton($user){
 	</script>";
 
 
-
+}
 }
 
 ?>
