@@ -28,9 +28,11 @@ if ($result6->num_rows > 0) {
 	  $author = $row6['author'];
 	  $image = $row6['img'];
 	  $tagLine = $row6['tagline'];
+    $date = $row6['date_created'];
+    $timeAgo = time_elapsed_string($date);
 
 		echo '<div class="col-sm-3 ">
-				<div class="p-3 bg-darkest rounded"><a style="color:white;" href="/news?n=' . $newsId . '"><img class="img-fluid img-thumbnail" src="' . $image . '"><h3>' . $title . ' </a><p class="sm-text">by <a style="text-decoration:none;color:white;" href="/user?u=' . $author . '">' . $author . '</a></p></h3><hr class="nav-break"><p style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;"><a>' . $tagLine . '</a></p></div>
+				<div class="p-3 bg-darkest rounded"><a style="color:white;" href="/news?n=' . $newsId . '"><img class="img-fluid img-thumbnail" src="' . $image . '"><h3>' . $title . ' </a><p class="sm-text" style="margin-bottom:0.5rem !important;">by <a style="text-decoration:none;color:white;" href="/user?u=' . $author . '">' . $author . '</a></p></h3><hr class="nav-break"><p style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;"><a>' . $tagLine . '</a></p><br><a class="sm-text noselect">posted ' . $timeAgo . '</a></div>
 			</div>';
 
 

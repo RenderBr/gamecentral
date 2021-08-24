@@ -54,6 +54,7 @@
     		$communityName = $row['communityName'];
     		$communityImage = $row['communityImage'];
         $dateCreated = $row['date_created'];
+        $timeAgo = time_elapsed_string($dateCreated);
         $description = $row['description'];
         $discordInv = $row['discordInv'];
 
@@ -88,13 +89,12 @@
 		<br><div class='bg-dark1 container news rounded mb-4 pb-3'>
 		<div class='text-center'>
 			<h2 class='mb-0' style='margin-bottom:1rem;'><?php echo $communityName; ?><img class='icon-md ms-1 rounded-circle' title='<?php echo $communityName; ?>' src='<?php echo $communityImage; ?>'></h2>
-				<?php
+				<p class="sm-text noselect">OWNER: <a class='sm-text noselect' style='color:white;text-decoration:none;' href='/user?u=<?php echo $owner; ?>'><?php echo $owner; ?></a></p>
+				<p class="sm-text noselect">Created <?php echo $timeAgo; ?></p>
+        <?php
         getCommunityButton($self, $communityid, $conn);
 
 				?>
-				<p class="sm-text noselect">OWNER: <a class='sm-text noselect' style='color:white;text-decoration:none;' href='/user?u=<?php echo $owner; ?>'><?php echo $owner; ?></a></p>
-				<p class="sm-text noselect">DATE CREATED: <?php echo $dateCreated; ?></p>
-
 
 			<hr class='nav-break mt-2'>
 
@@ -126,6 +126,8 @@
 
 				while($row = $result2->fetch_assoc()) {
             $gMember = $row['username'];
+            $date_joined = $row['date_joined'];
+            $date_joined = time_elapsed_string($date_joined);
 						if($gMember == $self){
 							$yes = 1;
 						}
@@ -146,7 +148,7 @@
 								$karma = $row['karma'];
 
 
-								echo "<img class='icon-sm rounded-circle me-2 mt-1 mb-1' src='" . $avatar . "'><a title='" . $karma . " karma' class='nd' href='/user?u=" . $gMember . "'>" . $gMember . $role . "</a><br>";
+								echo "<img class='icon-sm rounded-circle me-2 mt-1 mb-1' src='" . $avatar . "'><a title='" . $karma . " karma' class='nd' href='/user?u=" . $gMember . "'>" . $gMember . $role . "<a class='sm-text noselect'> joined " . $date_joined . "</a></a><br>";
 
 							}
 						}

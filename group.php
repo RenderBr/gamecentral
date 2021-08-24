@@ -56,6 +56,7 @@
 				$public = $row['public'];
 				$currentUsers = $row['currentUsers'];
 				$dateCreated = $row['date_created'];
+        $timeAgo = time_elapsed_string($dateCreated);
 				$groupName = $row['groupName'];
 				$owner = $row['user'];
 				$discordInv = $row['discordInv'];
@@ -112,17 +113,16 @@
 		<br><div class='bg-dark1 container news rounded mb-4 pb-3'>
 		<div class='text-center'>
 			<h2 class='mb-0' style='margin-bottom:1rem;'><?php echo $groupName; ?><img class='icon-md ms-1' title='<?php echo $gameName; ?>' src='<?php echo $gameSmIcon; ?>'></h2>
-				<?php
+
+				<p class="sm-text noselect">OWNER: <a class='sm-text noselect' style='color:white;text-decoration:none;' href='/user?u=<?php echo $owner; ?>'><?php echo $owner; ?></a></p>
+				<p class="sm-text noselect">Created <?php echo $timeAgo; ?></p>
+        <?php
 				if($notAMember == 1){
-					echo "<button id='" . $group . "' value='" . $group . "' onclick='joinGroup(this)' class='btn btn-success'>Join group!</button>";
+					echo "<button id='" . $group . "' value='" . $group . "' onclick='joinGroup(this)' class='btn btn-success mb-2'>Join group!</button>";
 				}else{
-					echo "<button id='" . $group . "' value='" . $group . "' onclick='leaveGroup(this)' class='btn btn-danger'>Leave group!</button>";
+					echo "<button id='" . $group . "' value='" . $group . "' onclick='leaveGroup(this)' class='btn btn-danger mb-2'>Leave group!</button>";
 				}
 				?>
-				<p class="sm-text noselect">OWNER: <a class='sm-text noselect' style='color:white;text-decoration:none;' href='/user?u=<?php echo $owner; ?>'><?php echo $owner; ?></a></p>
-				<p class="sm-text noselect">PUBLICITY: <?php echo $public; ?></p>
-				<p class="sm-text noselect">DATE CREATED: <?php echo $dateCreated; ?></p>
-
 
 			<hr class='nav-break mt-2'>
 
@@ -140,10 +140,10 @@
 				}
 
 			include_once('modules/chat.php');
-			?>
+			?><br>
+      <hr class='mt-2 nav-break'>
 
-			<br>
-			<strong><a class='sm-text mt-2'>GROUP MEMBERS - <?php echo $currentUsers . "/" . $groupSize; ?></a></strong><br>
+			<strong><a class='sm-text mt-2'>GROUP MEMBERS - <?php echo $currentUsers . "/" . $groupSize; ?> - <?php echo $public; ?></a></strong><br>
 
 			<?php
 
@@ -154,6 +154,8 @@
 
 				while($row = $result2->fetch_assoc()) {
             $gMember = $row['username'];
+            $dateJoined = $row['date_joined'];
+            $dateJoined = time_elapsed_string($dateJoined);
 						if($gMember == $uName){
 							$yes = 1;
 						}
@@ -174,7 +176,7 @@
 								$karma = $row['karma'];
 
 
-								echo "<img class='icon-sm rounded-circle me-2 mt-1 mb-1' src='" . $avatar . "'><a title='" . $karma . " karma' class='nd' href='/user?u=" . $gMember . "'>" . $gMember . $role . "</a><br>";
+								echo "<img class='icon-sm rounded-circle me-2 mt-1 mb-1' src='" . $avatar . "'><a title='" . $karma . " karma' class='nd' href='/user?u=" . $gMember . "'>" . $gMember . $role . "<a class='sm-text noselect'> joined " . $dateJoined . "</a></a><br>";
 
 							}
 						}

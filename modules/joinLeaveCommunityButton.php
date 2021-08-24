@@ -8,10 +8,10 @@ function getCommunityButton($self, $communityid, $conn){
 
 	if($isMember == 1){
 
-	echo "<button id='" . $communityid . "' value='" . $communityid . "' onclick='leaveCommunity(this)' class='btn btn-danger'>Leave group!</button>";
+	echo "<button id='" . $communityid . "' value='" . $communityid . "' onclick='leaveCommunity(this)' class='btn btn-danger mb-2'>Leave group!</button>";
 
 	}else{
-		echo "<button id='" . $communityid . "' value='" . $communityid . "' onclick='joinCommunity(this)' class='btn btn-success'>Join group!</button>";
+		echo "<button id='" . $communityid . "' value='" . $communityid . "' onclick='joinCommunity(this)' class='btn btn-success mb-2'>Join group!</button>";
 	}
 }
 

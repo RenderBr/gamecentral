@@ -333,6 +333,7 @@
             $message = $row42['messageContents'];
             $posterF = $row42['poster'];
             $datecreatedF = $row42['date_created'];
+            $timeAgoF = time_elapsed_string($datecreatedF);
             $messageType = $row42['messageType'];
 
             if(isset($posterF)){
@@ -350,10 +351,10 @@
 
             }
             if($messageType == "text"){
-              echo '<div class="d-flex bd-highlight mt-1 bg-dark3" style="border-bottom: 1px solid #2F3133;"><div class="me-auto p-2"><a href="/user?u=' . $posterF . '" class="ms-2"><img class="icon-sm rounded-circle me-2" src="' . $avatarF . '">' . $posterF . ' <a class="gray noselect"> > </a> </a><i><a>' . $message . '</a></i></div><div class="p-2 gray noselect">' . $datecreatedF . '</div></div>';
+              echo '<div class="d-flex bd-highlight mt-1 bg-dark3" style="border-bottom: 1px solid #2F3133;"><div class="me-auto p-2"><a href="/user?u=' . $posterF . '" class="ms-2"><img class="icon-sm rounded-circle me-2" src="' . $avatarF . '">' . $posterF . ' <a class="gray noselect"> > </a> </a><i><a>' . $message . '</a></i></div><div class="p-2 gray noselect">' . $timeAgoF . '</div></div>';
             }
             if($messageType == "statusUpdate"){
-              echo '<div class="d-flex bd-highlight mt-1 bg-dark3" style="border-bottom: 1px solid #2F3133;"><div class="me-auto p-2"><a href="/user?u=' . $posterF . '" class="ms-2"><img class="icon-sm rounded-circle me-2" src="' . $avatarF . '">' . $posterF . ' <a class="noselect gray">is... </a> </a><i><a class="noselect">' . $message . '</a></i></div><div class="p-2 gray noselect">' . $datecreatedF . '</div></div>';
+              echo '<div class="d-flex bd-highlight mt-1 bg-dark3" style="border-bottom: 1px solid #2F3133;"><div class="me-auto p-2"><a href="/user?u=' . $posterF . '" class="ms-2"><img class="icon-sm rounded-circle me-2" src="' . $avatarF . '">' . $posterF . ' <a class="noselect gray">is... </a> </a><i><a class="noselect">' . $message . '</a></i></div><div class="p-2 gray noselect">' . $timeAgoF . '</div></div>';
             }
           }
         echo '</div>';

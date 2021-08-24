@@ -51,6 +51,7 @@ if(isset($self)){
 
       $poster = $row2['poster'];
       $date = $row2['date_created'];
+      $timeAgo = time_elapsed_string($date);
       $messageType = $row2['messageType'];
       $userProfile = $row2['userProfile'];
       $messageContents = $row2['messageContents'];
@@ -72,7 +73,7 @@ if(isset($self)){
           <img title='" . $poster . "' width=32 height=32 class='ms-1 rounded-circle me-1' src='" . $posterAvatar . "'></img>
           <a style='color:white;' href='/user?u=" . $poster . "'>" . $poster . " <a class='gray'>wrote on <a href='/user?u=" . $userProfile . "' style='color:white;'>" . $userProfile . "'s profile</a> <a class='gray'>></a> " . $messageContents . "</a>
         </div>
-        <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $date . "</a>
+        <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $timeAgo . "</a>
   </div></div>
         ";
       }
@@ -83,7 +84,7 @@ if(isset($self)){
           <img title='" . $poster . "' width=32 height=32 class='ms-1 rounded-circle me-1' src='" . $posterAvatar . "'></img>
           <a style='color:white;' href='/user?u=" . $poster . "'>" . $poster . " <a class='gray'>is... <a>" . $messageContents . "</a></a>
         </div>
-        <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $date . "</a>
+        <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $timeAgo . "</a>
   </div></div>
 
 
@@ -107,7 +108,7 @@ if(isset($self)){
             <img title='" . $poster . "' width=32 height=32 class='ms-1 rounded-circle me-1' src='" . $posterAvatar . "'></img>
             <a style='color:white;' href='/user?u=" . $poster . "'>" . $poster . " <a class='gray'>created a new group called... <a href='/group?g=" . $messageContents . "'>" . $lfgName . "</a></a>
           </div>
-          <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $date . "</a>
+          <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $timeAgo . "</a>
     </div></div>
 
         ";
@@ -132,7 +133,7 @@ if(isset($self)){
         <img title='" . $poster . "' width=32 height=32 class='ms-1 rounded-circle me-1' src='" . $posterAvatar . "'></img>
         <a style='color:white;' href='/user?u=" . $poster . "'>" . $poster . " <a class='gray'>listed a new server... <a href='/server?id=" . $messageContents . "'>" . $serverName . "</a></a>
       </div>
-      <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $date . "</a>
+      <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $timeAgo . "</a>
   </div></div>
 
     ";
@@ -156,7 +157,7 @@ if(isset($self)){
         <img title='" . $poster . "' width=32 height=32 class='ms-1 rounded-circle me-1' src='" . $posterAvatar . "'></img>
         <a style='color:white;' href='/user?u=" . $poster . "'>" . $poster . " <a class='gray'>created a new community... <a href='/community?id=" . $messageContents . "'>" . $communityName . "</a></a>
       </div>
-      <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $date . "</a>
+      <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $timeAgo . "</a>
   </div></div>
 
     ";
@@ -182,6 +183,7 @@ if(isset($self)){
 
       $poster = $row2['poster'];
       $date = $row2['date_created'];
+      $timeAgo = time_elapsed_string($date);
       $messageType = $row2['messageType'];
       $userProfile = $row2['userProfile'];
       $messageContents = $row2['messageContents'];
@@ -203,7 +205,7 @@ if(isset($self)){
           <img title='" . $poster . "' width=32 height=32 class='ms-1 rounded-circle me-1' src='" . $posterAvatar . "'></img>
           <a style='color:white;' href='/user?u=" . $poster . "'>" . $poster . " <a class='gray'>wrote on <a href='/user?u=" . $userProfile . "' style='color:white;'>" . $userProfile . "'s profile</a> <a class='gray'>></a> " . $messageContents . "</a>
         </div>
-        <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $date . "</a>
+        <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $timeAgo . "</a>
   </div></div>
         ";
       }
@@ -214,7 +216,7 @@ if(isset($self)){
           <img title='" . $poster . "' width=32 height=32 class='ms-1 rounded-circle me-1' src='" . $posterAvatar . "'></img>
           <a style='color:white;' href='/user?u=" . $poster . "'>" . $poster . " <a class='gray'>is... <a>" . $messageContents . "</a></a>
         </div>
-        <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $date . "</a>
+        <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $timeAgo . "</a>
   </div></div>
 
 
@@ -238,7 +240,7 @@ if(isset($self)){
             <img title='" . $poster . "' width=32 height=32 class='ms-1 rounded-circle me-1' src='" . $posterAvatar . "'></img>
             <a style='color:white;' href='/user?u=" . $poster . "'>" . $poster . " <a class='gray'>created a new group called... <a href='/group?g=" . $messageContents . "'>" . $lfgName . "</a></a>
           </div>
-          <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $date . "</a>
+          <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $timeAgo . "</a>
     </div></div>
 
         ";
@@ -263,7 +265,7 @@ if(isset($self)){
         <img title='" . $poster . "' width=32 height=32 class='ms-1 rounded-circle me-1' src='" . $posterAvatar . "'></img>
         <a style='color:white;' href='/user?u=" . $poster . "'>" . $poster . " <a class='gray'>listed a new server... <a href='/server?id=" . $messageContents . "'>" . $serverName . "</a></a>
       </div>
-      <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $date . "</a>
+      <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $timeAgo . "</a>
   </div></div>
 
     ";
@@ -287,7 +289,7 @@ if(isset($self)){
         <img title='" . $poster . "' width=32 height=32 class='ms-1 rounded-circle me-1' src='" . $posterAvatar . "'></img>
         <a style='color:white;' href='/user?u=" . $poster . "'>" . $poster . " <a class='gray'>created a new community... <a href='/community?id=" . $messageContents . "'>" . $communityName . "</a></a>
       </div>
-      <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $date . "</a>
+      <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $timeAgo . "</a>
   </div></div>
 
     ";

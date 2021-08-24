@@ -12,10 +12,13 @@ if($pageOffset < 0){
 }
 
 ?>
-
+<script>
+</script>
 <!DOCTYPE html>
 <html lang="en">
     <head>
+			<script src="/css/colorify/scripts/colorify.js"></script>
+
 		<meta name="description" content="GameCentral games listing page, find all games in our database and some information about them.">
 		<meta name="keywords" content="gaming, lfg, discord lfg, video game, looking for group, looking for squad, gc, games page, about games, what games to play">
 		<meta name="robots" content="index, follow">
@@ -69,13 +72,31 @@ if ($result->num_rows > 0) {
 		$gameName = $row['name'];
 		$shortName = $row['shortName'];
 		$icon = $row['sm_icon'];
+		$color = $row['bgColor'];
+		$textColor = $row['textColor'];
 
-		echo "<div id='" . $gameId . "l' class='d-flex bg-darkest rounded mt-2 align-items-center'>
+		if(isset($color)){
+			$color = 'background-color: ' . $color . ' !important;';
+		}
+
+		if(isset($textColor)){
+			$textColor = 'color: ' . $textColor . ' !important;';
+		}else{
+			$textColor = 'color:white !important;';
+		}
+
+
+		echo "<div id='" . $gameId . "l' class='d-flex bg-darkest rounded mt-2 align-items-center' style='" . $color . "'>
 		<div class='me-auto p-2'>
-			<img title='" . $gameName . "' width=32 class='ms-1 me-1' src='" . $icon . "'></img>
-			<a style='color:white;' href='/game?id=" . $gameId . "'>" . $gameName . "  </a>
+			<img title='" . $gameName . "' width=32 class='ms-1 me-1' id='" . $gameId . "g' src='" . $icon . "'></img>
+			<a style='" . $textColor . "' href='/game?id=" . $gameId . "'>" . $gameName . "  </a>
 			<a class='sm-text ms-1 noselect'>" . $shortName . "
 		</div>
+
+		<script>
+
+		</script>
+
 		<div class='p-2'>
 
 
@@ -208,7 +229,6 @@ function joinGroup (button) {
 </html>
 
 <script src='https://unpkg.com/@wanoo21/countdown-time@1.2.0/dist/countdown-time.js'></script>
-
 
 <style>
 .btn-primary:focus{
