@@ -12,6 +12,18 @@
       $self = NULL;
     }
 
+    $googleAd = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8564713175090072"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="fluid"
+     data-ad-layout-key="-gw-3+1f-3d+2z"
+     data-ad-client="ca-pub-8564713175090072"
+     data-ad-slot="4917170909"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>';
+
 		$sql = "SELECT * FROM users WHERE username = '$user' || id = '$user'";
 		$result = $conn->query($sql);
 
@@ -291,7 +303,7 @@
 			}
       echo '</ul></div>';
 
-      echo "<div class='bg-dark1 container user rounded mt-1 pb-3 mb-4'>
+      echo "<div class='bg-dark1 container user rounded mt-1 pb-3 mb-2'>
 
       <hr class='nav-break'>
       <label>
@@ -349,7 +361,15 @@
 
 			?>
 
+      <div class='bg-dark1 container user rounded mt-1 pb-3 mb-4'>
 
+      <hr class='nav-break'>
+      <label>
+      <p class='sm-text noselect'>AD (SUPPORTS GAME CENTRAL)</p>
+      </label>
+      <hr class='nav-break mb-2'>
+      <?php echo $googleAd; ?>
+    </div>
 
     </body>
 </html>

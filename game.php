@@ -20,6 +20,19 @@
 		$sql = "SELECT * FROM games WHERE id = $gameId";
 		$result = $conn->query($sql);
 
+    $googleAd = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8564713175090072"
+         crossorigin="anonymous"></script>
+    <!-- DisplayAd -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-8564713175090072"
+         data-ad-slot="7188111027"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>';
+
 		if ($result->num_rows > 0) {
 		  // output data of each row
 		  while($row = $result->fetch_assoc()) {
@@ -57,7 +70,7 @@
 
 		<br><div class='bg-dark1 container user pb-1 rounded' style='padding:0px;'>
 			<div class='container-fluid bg-warning bg-gradient rounded' style="background: url(<?php echo $banner; ?>) no-repeat !important;background-size: cover !important;
-background-position: center !important;height:8rem !important;" width=100% >
+background-position: center !important;height:12rem !important;" width=100% >
     </div>
     <div class='container rounded pt-1'>
   <div class='d-flex align-items-center'>
@@ -92,6 +105,16 @@ background-position: center !important;height:8rem !important;" width=100% >
 			</div>
 
 		</div>
+
+    <div class='bg-dark1 container user rounded mt-1 pb-3 mb-4'>
+
+    <hr class='nav-break'>
+    <label>
+    <p class='sm-text noselect'>AD (SUPPORTS GAME CENTRAL)</p>
+    </label>
+    <hr class='nav-break mb-2'>
+    <?php echo $googleAd; ?>
+  </div>
 
     </body>
 </html>
