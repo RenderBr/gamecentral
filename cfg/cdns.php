@@ -1,11 +1,15 @@
 <?php
+// If session doesn't exist, create one.
 if(session_status() == PHP_SESSION_NONE){
     //session has not started
     session_start();
 }
+
+// Check LFG posts and see if expired ones should be dealt with
 include_once ($_SERVER['DOCUMENT_ROOT'] . '/func/checkLFG.php');
  ?>
 
+ <!-- meta & link tags for favicon/branding -->
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -13,28 +17,40 @@ include_once ($_SERVER['DOCUMENT_ROOT'] . '/func/checkLFG.php');
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
+
+<!-- Bootstrap 5.0.2 min -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2XQERWM7KW"></script>
+
+<!-- Bootstrap 5.0.2 JS bundle min -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<!-- GSAP, GreenSock 3.7.0 min -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
 
+<!-- Jquery 3.6.0 min -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<!-- Jquery UI 1.12.1 min -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 
+<!-- Definition of hide(element) function, removes the function -->
 <script>
-
   function hide(hideThis){
     $(hideThis).remove();
   }
 </script>
 
+<!-- Font imports from GoogleAPIs -->
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');</style>
 
 <?php
+//Definition of time_elapsed_string(timestamp) function, ex. outputs "1 month ago..."
 function time_elapsed_string($datetime, $full = false) {
     $now = new DateTime;
     $ago = new DateTime($datetime);
@@ -64,21 +80,28 @@ function time_elapsed_string($datetime, $full = false) {
     return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
 
+//Function to check if user is on mobile device, returns true if
 function isMobile() {
     return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
 }
+
+//Checks if user is guest or logged in.
 if(isset($_SESSION['username'])){
 	$loggedUser = $_SESSION['username'];
 }else{
 	$loggedUser = "Guest";
 }
+//Gets user IP
 $loggedIp = $_SERVER['REMOTE_ADDR'];
+//Gets user visited page
 $loggedPage = $_SERVER['REQUEST_URI'];
+//Global admin password for various things
 $adminPassword = "admin420";
 
+//Include conn.php, the mysqldb passthrough
 include_once('conn.php');
 
-
+// Check if is admin, returns true or false. Requires MysqlDB $conn var and user var as $self
 function isAdmin($conn, $self){
   $isAdmin = $conn->query("SELECT * from users WHERE username = '$self' AND role > 1");
   if($isAdmin->num_rows > 0 && $isAdmin->num_rows != 12){
@@ -95,13 +118,20 @@ $conn->query("DELETE FROM lfgPosts where currentUsers = 0");
 //DELETE EMPTY COMMUNITIES
 $conn->query("DELETE FROM communities where communityMembers = 0");
 
+//Retrieve unseen notifications for logged User
 $notifs = $conn->query("SELECT * from notifications WHERE user = '$loggedUser' AND seen = 0");
+//Get number of notifications for user, and put it into session variable, so it is globally available.
 $_SESSION['notifs'] = $notifs->num_rows;
+
+//Log user action, what page, ip, which user into mysqldb
 $conn->query("INSERT INTO views (user, ip, page) VALUES
 ('$loggedUser', '$loggedIp', '$loggedPage')");
 
+//Echo proper viewport scaling for mobile, pc, all platforms
 echo '<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">';
+
+//Echo custom styling, uncached.
 echo '
 <style>
 .no-border{
@@ -257,11 +287,9 @@ a {
 </style>
 
 ';
-echo "<a style='display:none;'>CDNS loaded successfully</a> ";
+
+//Website name, motto, and URL globally available through CDNS.php
 $websitename = "GameCentral";
 $websitemotto = "Never play solo again! Find other gamers, instantly.";
 $websitedir = "https://gamecentral.online";
-
-
-
 ?>
