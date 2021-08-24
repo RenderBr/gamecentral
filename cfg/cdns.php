@@ -21,32 +21,13 @@ include_once ($_SERVER['DOCUMENT_ROOT'] . '/func/checkLFG.php');
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-<!-- Global site tag (gtag.js) - Google Ads: 976900057 -->
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-976900057');
-</script>
-<!-- Event snippet for Website traffic conversion page -->
-<script>
-  gtag('event', 'conversion', {'send_to': 'AW-976900057/5XxqCNbN8MwCENmf6dED'});
-</script>
 
 <script>
 
   function hide(hideThis){
     $(hideThis).remove();
   }
-
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2XQERWM7KW');
 </script>
-<!-- Clarity tracking code for https://gamecentral.online/ -->
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
