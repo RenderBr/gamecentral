@@ -43,12 +43,6 @@ include_once ($_SERVER['DOCUMENT_ROOT'] . '/func/checkLFG.php');
   }
 </script>
 
-<!-- Font imports from GoogleAPIs -->
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');</style>
-
 <?php
 //Definition of time_elapsed_string(timestamp) function, ex. outputs "1 month ago..."
 function time_elapsed_string($datetime, $full = false) {
@@ -134,6 +128,16 @@ echo '<meta charset="utf-8">
 //Echo custom styling, uncached.
 echo '
 <style>
+@font-face{
+  font-family: "Dela Gothic One";
+  src: url(/css/DelaGothicOne-Regular.ttf);
+}
+
+@font-face{
+  font-family: "Raleway";
+  src: url(/css/Raleway-Light.ttf);
+}
+
 .no-border{
   border:none !important;
 }
