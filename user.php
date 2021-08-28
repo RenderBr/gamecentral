@@ -360,8 +360,8 @@
               echo '<div class="d-flex bd-highlight mt-1 bg-dark3" style="border-bottom: 1px solid #2F3133;"><div class="me-auto p-2"><a href="/user?u=' . $posterF . '" class="ms-2"><img class="icon-sm rounded-circle me-2" src="' . $avatarF . '">' . $posterF . ' <a class="noselect gray">is... </a> </a><i><a class="noselect">' . $message . '</a></i></div><div class="p-2 gray noselect">' . $timeAgoF . '</div></div>';
             }
           }
-        echo '</div>';
       }
+      echo '</div>';
 
 			?>
 
