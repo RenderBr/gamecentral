@@ -1,16 +1,21 @@
 <?php
+//Start the session
 session_start();
+//Get username from session variable
 $user = $_SESSION['username'];
+//Get background
 $bg = htmlspecialchars($_POST['b'], ENT_QUOTES, 'UTF-8');
-include_once('../cfg/cdns.php');
+//Include MYSQLDB passthrough
+include_once('../cfg/conn.php');
 
-$sql = "UPDATE users SET bio='$bg' WHERE username = '$user'";
+//Update user's BG
+$sql = "UPDATE users SET bg='$bg' WHERE username = '$user'";
 
 if($conn->query($sql) === TRUE){
-	echo "User's bio has been successfully changed!";
+	echo "User's BG has been successfully changed!";
 	header("Location: /settings");
 }else{
-	echo "There was an error changing this user's bio: " . $conn->error;
+	echo "There was an error changing this user's BG: " . $conn->error;
 	header("Location: /settings?e=1");
 }
 $conn->close();

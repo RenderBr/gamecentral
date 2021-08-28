@@ -1,4 +1,5 @@
 <?php
+//Retrieve all POST variables necessary for creating a server
 $serverName = htmlspecialchars($_POST['servername'], ENT_QUOTES, 'UTF-8');
 $serverGame = $_POST['game'];
 $serverIsOwner = htmlspecialchars($_POST['owner'], ENT_QUOTES, 'UTF-8');
@@ -8,9 +9,11 @@ $serverPort = htmlspecialchars($_POST['port'], ENT_QUOTES, 'UTF-8');
 $bannerImage = htmlspecialchars($_POST['serverbanner'], ENT_QUOTES, 'UTF-8');
 $bgImage = htmlspecialchars($_POST['serverBG'], ENT_QUOTES, 'UTF-8');
 
-
+//Create a session
 session_start();
+//Retrieve session username
 $self = $_SESSION['username'];
+//
 
 if(!$self){
 	header("Location: /login");

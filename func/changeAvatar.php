@@ -20,5 +20,5 @@ if($conn->query($sql) === TRUE){
 	header("Location: /settings?e=1");
 }
 $conn->close();
-
+//Close the connection
 ?>

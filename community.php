@@ -197,7 +197,8 @@
             data: {
     			u: "<?php echo $self; ?>",
     			gid:$(button).val(),
-    			inv:"<?php echo $invCodeGenerated; ?>"
+    			inv:"<?php echo $invCodeGenerated; ?>",
+          isCom:"true"
     		},
     		success:function(data){
     			$(button).html("https://gcnt.xyz/inv?i=<?php echo $invCodeGenerated; ?>");

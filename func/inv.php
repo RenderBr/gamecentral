@@ -16,10 +16,18 @@ if($invCode){
 	if ($result->num_rows > 0) {
 	  // output data of each row
 	  while($row = $result->fetch_assoc()) {
+			$invComId = $row['forCom'];
+			$invGroupId = $row['forServer'];
 		  $invId = $row['id'];
-		  $invGroupId = $row['forServer'];
 		  $notifs = $conn->query("UPDATE groupInvCodes SET uses=uses+1 WHERE id=$invId");
-		  header("Location: /group?g=" . $invGroupId);
+
+			if(isset($invComId)){
+				header("Location: /community?id=" . $invComId);
+			}
+			if(isset($invGroupId)){
+				header("Location: /group?g=" . $invGroupId);
+			}
+
 	  }
 
 	}else{
