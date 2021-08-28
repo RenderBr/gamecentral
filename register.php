@@ -222,7 +222,7 @@ if(isset($_SESSION['username'])){
 		</div>
 		</form>
 		<a style='text-decoration:none;color: #0d6efd;' href='/login'><p style='font-size: 12px;'>Already have an account?</p></a>
-		<p style='font-size:12px;' class='sm-text'>By registering, you agree to our Terms of Service and Privacy Policy.</p>
+		<p style='font-size:12px;' class='sm-text'>By registering, you agree to our <a href='/tos'>Terms of Service</a> and <a href='/privacypolicy'>Privacy Policy</a>.</p>
 		</div>
 
         <!-- Bootstrap core JS-->
