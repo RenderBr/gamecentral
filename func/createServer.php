@@ -27,7 +27,7 @@ VALUES ('$serverName', '$serverDescription', '$self', $serverIsOwner, '%s', '$se
 	if ($conn->query($sql54) === TRUE) {
 		 $createdServerId = $conn->insert_id;
 		 $conn->query("INSERT INTO feedPosts (userProfile, poster, messageContents, messageType) VALUES
-		 ('$loggedUser', '$loggedUser', '$createdServerId', 'serverCreation')");
+		 ('$self', '$self', '$createdServerId', 'serverCreation')");
 		 header("Location: /server?id=" . $createdServerId);
 	} else {
 		header("Location: /servers");
