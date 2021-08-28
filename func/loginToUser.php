@@ -3,7 +3,7 @@ include_once('../cfg/conn.php');
 
 $email = $_POST['email'];
 $password = $_POST['password'];
-$redirect = $_GET['r'];
+$redirect = $_POST['r'];
 
 $sql = "SELECT * FROM users WHERE email = '$email'";
 $result = $conn->query($sql);
