@@ -84,11 +84,11 @@ if ($result->num_rows > 0) {
 
 		echo "<div id='" . $communityid . "l' class='d-flex bg-darkest rounded mt-2 align-items-center'>
 		<div class='me-auto p-2 align-middle'>
-			<h4 class='ms-1' style='margin:0px !important;vertical-align: middle;
-align-content: center;'><img title='" . $communityName . "' width=64rem height=64rem class='ms-1 rounded-circle' src='" . $communityImage . "'></img><a class='ms-1'>
-" . $communityName . "<a class='sm-text ms-4 noselect' style='vertical-align: middle !important;'>OWNER: <a class='sm-text noselect' style='vertical-align: middle !important;' href='/user?u=" . $owner . "'>" . $owner . "</a></a></h4> </a>
+			<a href='/community?id=" . $communityid . "'><h4 class='ms-1' style='margin:0px !important;vertical-align: middle;
+align-content: center;'><img title='" . $communityName . "' width=64rem height=64rem class='ms-1 rounded-circle' src='" . $communityImage . "'></img><a href='/community?id=" . $communityid . "' class='ms-1'>
+" . $communityName . "</a></h4> </a>
 		</div>
-		<div class='p-2'><a class='sm-text noselect' id='" . $communityid . "t'>" . $peopleInGroup . "</a>
+		<div class='p-2'><a class='sm-text ms-4 noselect' style='vertical-align: middle !important;'>OWNER: <a class='sm-text noselect me-2' style='vertical-align: middle !important;' href='/user?u=" . $owner . "'>" . $owner . "</a></a><a class='sm-text noselect' id='" . $communityid . "t'>" . $peopleInGroup . "</a>
 		<a class='sm-text noselect me-3'> / " . $communityMaxPeople . "</a>
 
 

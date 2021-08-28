@@ -12,6 +12,8 @@ if(isset($isDM)){
   if($isDM == true){
     $putInGet = "&isDM=true";
   }
+}else{
+  $isDM = NULL;
 }
 ?>
 <div id="page-wrap">

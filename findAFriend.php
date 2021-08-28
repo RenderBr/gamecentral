@@ -117,7 +117,7 @@ if($pageOffset < 0){
 	<div class='row gx-2'>
 <?php
 
-$sql = "SELECT * FROM users ORDER BY RAND() LIMIT 10 OFFSET $pageOffset";
+$sql = "SELECT * FROM users ORDER BY id DESC LIMIT 10 OFFSET $pageOffset";
 
 $result = $conn->query($sql);
 
