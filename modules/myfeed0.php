@@ -40,8 +40,8 @@ if(isset($self)){
 $friendCount = count($friendList);
 
 if(isset($self)){
-  $friends = join("', '",$friendList);
-  $sql2 = "SELECT * FROM feedPosts WHERE userProfile IN ('$friends') OR poster IN ('$friends') ORDER BY id DESC LIMIT 10";
+  for($i = 0; $i < $friendCount; $i++){
+  $sql2 = "SELECT * FROM feedPosts WHERE userProfile = '$friendList[$i]' OR poster = '$friendList[$i]' ORDER BY date_created DESC LIMIT 5";
 
   $result2 = $conn->query($sql2);
 
@@ -64,111 +64,106 @@ if(isset($self)){
         while($row1 = $result1->fetch_assoc()) {
             $posterAvatar = $row1['avatar'];
 
-
-
-                  if($messageType == "text"){
-                    echo "<div class='d-flex bg-darkest rounded mt-2 align-items-center'>
-                    <div class='p-2 me-auto align-items-center'>
-                      <img title='" . $poster . "' width=32 height=32 class='ms-1 rounded-circle me-1' src='" . $posterAvatar . "'></img>
-                      <a style='color:white;' href='/user?u=" . $poster . "'>" . $poster . " <a class='gray'>wrote on <a href='/user?u=" . $userProfile . "' style='color:white;'>" . $userProfile . "'s profile</a> <a class='gray'>></a> " . $messageContents . "</a>
-                    </div>
-                    <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $timeAgo . "</a>
-              </div></div>
-                    ";
-                  }
-
-                  if($messageType == "statusUpdate"){
-                    echo "<div class='d-flex bg-darkest rounded mt-2 align-items-center'>
-                    <div class='p-2 me-auto align-items-center'>
-                      <img title='" . $poster . "' width=32 height=32 class='ms-1 rounded-circle me-1' src='" . $posterAvatar . "'></img>
-                      <a style='color:white;' href='/user?u=" . $poster . "'>" . $poster . " <a class='gray'>is... <a>" . $messageContents . "</a></a>
-                    </div>
-                    <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $timeAgo . "</a>
-              </div></div>
-
-
-
-                    ";
-                  }
-
-                  if($messageType == "groupCreation"){
-
-                    $sql3 = "SELECT * FROM lfgPosts WHERE id = '$messageContents'";
-                    $result3 = $conn->query($sql3);
-
-                    if ($result3->num_rows > 0) {
-
-                      while($row3 = $result3->fetch_assoc()) {
-
-                        $lfgName = $row3['groupName'];
-
-                      echo "<div class='d-flex bg-darkest rounded mt-2 align-items-center'>
-                      <div class='p-2 me-auto align-items-center'>
-                        <img title='" . $poster . "' width=32 height=32 class='ms-1 rounded-circle me-1' src='" . $posterAvatar . "'></img>
-                        <a style='color:white;' href='/user?u=" . $poster . "'>" . $poster . " <a class='gray'>created a new group called... <a href='/group?g=" . $messageContents . "'>" . $lfgName . "</a></a>
-                      </div>
-                      <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $timeAgo . "</a>
-                </div></div>
-
-                    ";
-                  }
-                }
-              }
-
-              if($messageType == "serverCreation"){
-
-                $sql3 = "SELECT * FROM servers WHERE id = '$messageContents'";
-                $result3 = $conn->query($sql3);
-
-                if ($result3->num_rows > 0) {
-
-                  while($row3 = $result3->fetch_assoc()) {
-
-                    $serverName = $row3['serverName'];
-                    $serverGame = $row3['forGame'];
-
-                  echo "<div class='d-flex bg-darkest rounded mt-2 align-items-center'>
-                  <div class='p-2 me-auto align-items-center'>
-                    <img title='" . $poster . "' width=32 height=32 class='ms-1 rounded-circle me-1' src='" . $posterAvatar . "'></img>
-                    <a style='color:white;' href='/user?u=" . $poster . "'>" . $poster . " <a class='gray'>listed a new server... <a href='/server?id=" . $messageContents . "'>" . $serverName . "</a></a>
-                  </div>
-                  <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $timeAgo . "</a>
-              </div></div>
-
-                ";
-              }
-              }
-              }
-
-              if($messageType == "communityCreation"){
-
-                $sql3 = "SELECT * FROM communities WHERE id = '$messageContents'";
-                $result3 = $conn->query($sql3);
-
-                if ($result3->num_rows > 0) {
-
-                  while($row3 = $result3->fetch_assoc()) {
-
-                    $communityName = $row3['communityName'];
-
-                  echo "<div class='d-flex bg-darkest rounded mt-2 align-items-center'>
-                  <div class='p-2 me-auto align-items-center'>
-                    <img title='" . $poster . "' width=32 height=32 class='ms-1 rounded-circle me-1' src='" . $posterAvatar . "'></img>
-                    <a style='color:white;' href='/user?u=" . $poster . "'>" . $poster . " <a class='gray'>created a new community... <a href='/community?id=" . $messageContents . "'>" . $communityName . "</a></a>
-                  </div>
-                  <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $timeAgo . "</a>
-              </div></div>
-
-                ";
-              }
-              }
-              }
-
-
-
         }
       }
 
+      if($messageType == "text"){
+        echo "<div class='d-flex bg-darkest rounded mt-2 align-items-center'>
+        <div class='p-2 me-auto align-items-center'>
+          <img title='" . $poster . "' width=32 height=32 class='ms-1 rounded-circle me-1' src='" . $posterAvatar . "'></img>
+          <a style='color:white;' href='/user?u=" . $poster . "'>" . $poster . " <a class='gray'>wrote on <a href='/user?u=" . $userProfile . "' style='color:white;'>" . $userProfile . "'s profile</a> <a class='gray'>></a> " . $messageContents . "</a>
+        </div>
+        <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $timeAgo . "</a>
+  </div></div>
+        ";
+      }
+
+      if($messageType == "statusUpdate"){
+        echo "<div class='d-flex bg-darkest rounded mt-2 align-items-center'>
+        <div class='p-2 me-auto align-items-center'>
+          <img title='" . $poster . "' width=32 height=32 class='ms-1 rounded-circle me-1' src='" . $posterAvatar . "'></img>
+          <a style='color:white;' href='/user?u=" . $poster . "'>" . $poster . " <a class='gray'>is... <a>" . $messageContents . "</a></a>
+        </div>
+        <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $timeAgo . "</a>
+  </div></div>
+
+
+
+        ";
+      }
+
+      if($messageType == "groupCreation"){
+
+        $sql3 = "SELECT * FROM lfgPosts WHERE id = '$messageContents'";
+        $result3 = $conn->query($sql3);
+
+        if ($result3->num_rows > 0) {
+
+          while($row3 = $result3->fetch_assoc()) {
+
+            $lfgName = $row3['groupName'];
+
+          echo "<div class='d-flex bg-darkest rounded mt-2 align-items-center'>
+          <div class='p-2 me-auto align-items-center'>
+            <img title='" . $poster . "' width=32 height=32 class='ms-1 rounded-circle me-1' src='" . $posterAvatar . "'></img>
+            <a style='color:white;' href='/user?u=" . $poster . "'>" . $poster . " <a class='gray'>created a new group called... <a href='/group?g=" . $messageContents . "'>" . $lfgName . "</a></a>
+          </div>
+          <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $timeAgo . "</a>
+    </div></div>
+
+        ";
+      }
+    }
+  }
+
+  if($messageType == "serverCreation"){
+
+    $sql3 = "SELECT * FROM servers WHERE id = '$messageContents'";
+    $result3 = $conn->query($sql3);
+
+    if ($result3->num_rows > 0) {
+
+      while($row3 = $result3->fetch_assoc()) {
+
+        $serverName = $row3['serverName'];
+        $serverGame = $row3['forGame'];
+
+      echo "<div class='d-flex bg-darkest rounded mt-2 align-items-center'>
+      <div class='p-2 me-auto align-items-center'>
+        <img title='" . $poster . "' width=32 height=32 class='ms-1 rounded-circle me-1' src='" . $posterAvatar . "'></img>
+        <a style='color:white;' href='/user?u=" . $poster . "'>" . $poster . " <a class='gray'>listed a new server... <a href='/server?id=" . $messageContents . "'>" . $serverName . "</a></a>
+      </div>
+      <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $timeAgo . "</a>
+  </div></div>
+
+    ";
+  }
+  }
+  }
+
+  if($messageType == "communityCreation"){
+
+    $sql3 = "SELECT * FROM communities WHERE id = '$messageContents'";
+    $result3 = $conn->query($sql3);
+
+    if ($result3->num_rows > 0) {
+
+      while($row3 = $result3->fetch_assoc()) {
+
+        $communityName = $row3['communityName'];
+
+      echo "<div class='d-flex bg-darkest rounded mt-2 align-items-center'>
+      <div class='p-2 me-auto align-items-center'>
+        <img title='" . $poster . "' width=32 height=32 class='ms-1 rounded-circle me-1' src='" . $posterAvatar . "'></img>
+        <a style='color:white;' href='/user?u=" . $poster . "'>" . $poster . " <a class='gray'>created a new community... <a href='/community?id=" . $messageContents . "'>" . $communityName . "</a></a>
+      </div>
+      <div class='align-self-center'><a class='sm-text noselect me-2'  style='vertical-align: text-bottom !important;'>" . $timeAgo . "</a>
+  </div></div>
+
+    ";
+  }
+  }
+  }
 
 
 
@@ -176,6 +171,7 @@ if(isset($self)){
   }
   }else{
   }
+}
 }else{
   $sql2 = "SELECT * FROM feedPosts ORDER BY date_created DESC LIMIT 5";
 
