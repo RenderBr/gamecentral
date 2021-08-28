@@ -8,7 +8,7 @@ $newPassword = htmlspecialchars($_GET['n'], ENT_QUOTES, 'UTF-8');
 $pass = $_GET['p'];
 
 //Include MYSQLDB passthrough
-include_once('../cfg/conn.php');
+include_once('../cfg/cdns.php');
 
 //Check if $pass is the same as global admin password
 if($pass === $adminPassword){

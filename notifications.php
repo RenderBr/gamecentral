@@ -94,16 +94,45 @@ if ($result->num_rows > 0) {
 
 
 			}
-		}
-		echo "</div></div>";
-
-
-
 
 
 
 	}
   }
+
+	if($type == "DM"){
+
+	$sql1 = "SELECT * FROM messages WHERE id = $associatedId";
+	$result1 = $conn->query($sql1);
+
+	if ($result1->num_rows > 0) {
+
+		while($row1 = $result1->fetch_assoc()) {
+
+		$sender = $row1['author'];
+		$msg = $row1['message'];
+		$authorId = $row1['authorId'];
+
+		echo "<div id='" . $associatedId . "l' class='d-flex bg-darkest rounded mt-2 align-items-center'>
+		<div class='me-auto p-2'>
+			<a class='sm-text noselect me-2'>#" . $associatedId . "</a>
+			<a style='color:white;' href='/user?u=" . $sender . "'>" . $sender . " <a class='gray'>&nbsp; has sent you a message!</a> </a>
+		</div>
+		<div class='p-2'>
+
+		<button id='$authorId' value='" . $associatedId . "' onclick='seeMessage(this)' title='Click to view your DMs with this user!' class='btn btn-secondary'>View message!</button><br>
+		";
+
+
+		}
+}
+echo "</div></div>";
+
+
+
+
+
+
 } else {
 	echo "
 
@@ -113,7 +142,8 @@ if ($result->num_rows > 0) {
 
 	";
 }
-
+}
+}
 $conn->close();
 
 
@@ -159,6 +189,18 @@ function acceptFriend(button){
 					$(button).html("Accepted!");
 					$(button).removeClass("btn-secondary");
 					$(button).addClass("btn-success");
+                }
+            });
+}
+function seeMessage(button){
+	        $.ajax({
+                type: 'POST',
+                url: '/func/seeMessage.php',
+				data: {
+					mid: $(button).val(),
+				},
+                success: function(data) {
+								window.location.replace("/message?u=" + $(button).attr('id'));
                 }
             });
 }

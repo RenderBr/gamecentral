@@ -1,4 +1,6 @@
 	<?php
+	session_start();
+	$name = $_SESSION['username'];
 	$gid = $_GET['g'];
 
 	if(isset($_GET['isCom'])){
@@ -7,12 +9,34 @@
 		$isCom = NULL;
 	}
 
+	if(isset($_GET['isDM'])){
+		$isDM = $_GET['isDM'];
+	}else{
+		$isDM = NULL;
+	}
+
 	include_once('../cfg/cdns.php');
+
+	$sql = "SELECT id FROM users WHERE username = '$name'";
+	$result = $conn->query($sql);
+
+	if ($result->num_rows > 0) {
+	  // output data of each row
+	  while($row = $result->fetch_assoc()) {
+	    $userId = $row['id'];
+	  }
+	} else {
+	  echo "0 results";
+	}
 
 	if($isCom == "true"){
 		$sql = "SELECT * FROM messages WHERE communityId = '$gid' ORDER BY date_created ASC";
 	}else{
 		$sql = "SELECT * FROM messages WHERE groupid = '$gid' ORDER BY date_created ASC";
+	}
+
+	if($isDM == "true"){
+		$sql = "SELECT * FROM messages WHERE userId IN ('$gid', '$userId') AND authorId IN ('$gid', '$userId') ORDER BY date_created ASC";
 	}
 
 	$result = $conn->query($sql);

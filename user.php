@@ -130,7 +130,10 @@
     </div>
     <div class='container rounded pt-1'>
   <div class='d-flex align-items-center'>
-     <div class="me-auto p-2 bd-highlight"><h4 style='margin-bottom:0px !important;'><?php echo $usersname; ?></h4>
+     <div class="me-auto p-2 bd-highlight"><h4 style='margin-bottom:0px !important;'><?php echo $usersname;     if(isset($self)){
+         echo "<a href='/message?u=" . $usersid . "'<button type='button' title='DM this user!' id='addKarmaButton' class='badge bg-success ms-2 no-border'><i class='bi bi-chat-left'></i></button></a>";
+
+         }?></h4>
 </div>
      <div class='p-2'>			<a class='me-2'><?php
 

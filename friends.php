@@ -71,6 +71,7 @@ if ($result->num_rows > 0) {
 									<img class='sm-icon rounded-circle ms-1 me-1' width=32 height=32 src='" . $avatar . "'><a style='color:white;' href='/user?u=" . $friendUser . "'>" . $friendUser . "</a>
 								</div>
 								<div class='p-2'>";
+								echo "<a href='/message?u=" . $friendUser . "' title='Chat with user!' class='btn btn-secondary btn me-2'><i class='bi bi-chat-left'></i></a>";
 								$friendCount++;
 								if($accepted == 1){
 								echo "<button id='acceptF' value='" . $friendUser . "' onclick='removeFriend(this)' title='Remove " . $friendUser . " from your friends list!' class='btn btn-danger btn'>Remove friend!</button><br>

@@ -7,6 +7,12 @@ if(isset($isCommunity)){
   $isCommunity = NULL;
   $putInGet = NULL;
 }
+
+if(isset($isDM)){
+  if($isDM == true){
+    $putInGet = "&isDM=true";
+  }
+}
 ?>
 <div id="page-wrap">
 
@@ -26,6 +32,9 @@ if(isset($isCommunity)){
     <?php
     if($isCommunity == true){
       echo "<input name='isCom' value='true' style='display:none;'></input>";
+    }
+    if($isDM == true){
+      echo "<input name='isDM' value='true' style='display:none;'></input>";
     }
     ?>
     </form>
