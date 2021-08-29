@@ -21,6 +21,9 @@
           $dmId = $row['id'];
           $id = $dmId;
           $dmUser = $row['username'];
+          if($dmUser == $uName){
+            header("Location: /friends");
+          }
           $dmAvatar = $row['avatar'];
           $joinedWebsite = $row['dateCreated'];
           $joinedWebsite = time_elapsed_string($joinedWebsite);
