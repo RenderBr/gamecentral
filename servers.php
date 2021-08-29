@@ -208,14 +208,14 @@ if ($result->num_rows > 0) {
 
 		$gameTooltip = 'title="' . $gameTooltip . '"';
 
-		echo "<div id='" . $rank . "l' class='d-flex bg-darkest rounded mt-2 align-items-center'>
+		echo "<div id='" . $rank . "l' class='d-flex bg-darkest rounded align-items-center'>
 		<div class='me-auto p-2'>
 			<a title='Rank " . $rank . " out of " . $rank . "' class='sm-text noselect me-2'>#" . $rank . "</a>
 			<a href='/server?id=" . $serverId . "'><img title='" . $serverName . "' width=468px height=80px class='img rounded border border-dark' src='" . $banner . "' style='overflow:hidden;'></a><br>
 			<a href='/server?id=" . $serverId . "'><h2 style='color:white;' class='ms-4'>" . $serverName . $serverStatus .  "</a><img src='" . $iconSm . "'" . $gameTooltip . "' class='icon-sm ms-2'> <a class='sm-text'>(" . $votes . " votes)</a> </h2>
 			<a class='gray ms-4'>" . $description . "</a>
 		</div>
-		<div class='p-2'><button onclick='copyThis(this)' value='" . $serverAddress . $serverPort . "' id='copyIP' title='click to copy IP' class='gray me-2 btn btn-outline-secondary'><i class='me-2 bi bi-clipboard-plus' style='color:white;'></i>" . $serverAddress . $serverPort . "</button><a href='/server?id=" . $serverId . "' class='btn btn-success me-2 ms-1'>View more info...</a><div class='d-flex justify-content-center border border-dark mt-2'><a class='sm-text noselect' id='" . $rank . "t'>Players online: " . $currentPlayerCount . " </a>
+		<div class='p-2'><button onclick='copyThis(this)' value='" . $serverAddress . $serverPort . "' id='copyIP' title='click to copy IP' class='gray me-2 btn btn-outline-secondary btn-sm'><i class='me-2 bi bi-clipboard-plus' style='color:white;'></i>" . $serverAddress . $serverPort . "</button><a href='/server?id=" . $serverId . "' class='btn btn-success me-2 ms-1 btn-sm'>View more info...</a><div class='d-flex justify-content-center border border-dark mt-2'><a class='sm-text noselect' id='" . $rank . "t'>Players online: " . $currentPlayerCount . " </a>
 		<a class='sm-text noselect ms-1 me-3'> / " . $maxPlayerCnt . "</a></div>
 
 
@@ -224,7 +224,8 @@ if ($result->num_rows > 0) {
 
 		//echo "<div id='" . $groupid . "l' style='border-radius:5px;' class='container bg-darkest p-4 position-relative mt-2'><a class='sm-text noselect me-2'>#" . $groupid . "</a><a style='color:white;' href='/user?u=" . $user . "'>" . $user . " <a class='gray'>&nbsp;is looking to play</a> </a><img title='" . $gameTooltip . "' width=32 class='ms-1' src='" . $iconSm . "'></img><a class='sm-text ms-1'>" . $gameName . ",</a> <a class='gray'>with a group of <a id='" . $groupid . "n'>" . $currentGroup . "</a> / " . $groupSize . " players. " . $groupName . "<div style='transform: translate(0%, -50%) !important;' class='position-absolute top-50 end-0 translate-middle'><a class='sm-text noselect' id='" . $groupid . "t'>" . $currentGroup . "</a><a class='sm-text noselect me-3'> / " . $groupSize . "</a>";
 
-		echo "</div></div>";
+		echo "</div></div>		<hr class='nav-break'>
+";
 
 
 

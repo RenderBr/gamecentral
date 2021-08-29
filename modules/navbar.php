@@ -26,9 +26,9 @@
 
 
 					  <span class='d-flex'>
-					  	<a role='button' href='https://discord.gg/f8aQNJMeVB' class='btn btn-success discord blurple me-2 no-bs' style='color:white !important;background-color:#7289DA !important;border-color:#4E5D94 !important;'><i class='bi bi-discord me-1'></i>Join the Discord!</a>
-							<a role='button' style='color:white !important;' href='/register' class='btn btn-primary no-bs me-2'>Register</a>
-						<a role='button' style='color:white !important;' href='/login' class='btn btn-secondary no-bs'>Login</a>
+					  	<a role='button' href='https://discord.gg/f8aQNJMeVB' class='btn btn-success discord blurple me-2 no-bs btn-sm' style='color:white !important;background-color:#7289DA !important;border-color:#4E5D94 !important;'><i class='bi bi-discord me-1'></i>Join the Discord!</a>
+							<a role='button' style='color:white !important;' href='/register' class='btn btn-primary no-bs me-2 btn-sm'>Register</a>
+						<a role='button' style='color:white !important;' href='/login' class='btn btn-secondary no-bs btn-sm'>Login</a>
 					  </span>
 					</div>
 

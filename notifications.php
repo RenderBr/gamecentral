@@ -33,7 +33,7 @@ if($_SESSION['username']){
 
 		<br>
 		<div class='bg-dark1 container mb-4 pb-3 rounded' style="padding-bottom: 25px;max-width: 100rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);width:80%;"><div class='text-center'>
-		<h4 class='noselect pt-2 pb-1'><i class="bi bi-bell me-1"></i>Your notifications? Right here.</h4><hr class='nav-break'></div>
+		<h4 class='noselect pt-2 pb-1'><i class="bi bi-bell me-1"></i>Your notifications? Right here.<button onclick='clearNotifications()' class='btn btn-success btn-sm float-end'>Clear all!</button></h4><hr class='nav-break'></div>
 
 		<label><p class="sm-text noselect">NOTIFICATIONS</p></label>
 
@@ -82,16 +82,18 @@ if ($result->num_rows > 0) {
 			$friendUser = str_replace($self,"",$friendcombo);
 			$friendUser = str_replace(" - ","",$friendUser);
 
-			echo "<div id='" . $id . "l' class='d-flex bg-darkest rounded mt-2 align-items-center'>
+			echo "<div id='" . $id . "l' class='d-flex bg-darkest rounded align-items-center'>
 			<div class='me-auto p-2'>
 				<a class='sm-text noselect me-2'>#" . $id . "</a>
 				<a style='color:white;' href='/user?u=" . $friendUser . "'>" . $friendUser . " <a class='gray'>&nbsp;has requested to become friends with you.</a> </a>
 			</div>
 			<div class='p-2'>
 
-			<button id='acceptF' value='" . $friendUser . "' onclick='acceptFriend(this)' title='Friend request pending!' class='btn btn-secondary'>Accept request!</button><br>
+			<button id='acceptF' value='" . $friendUser . "' onclick='acceptFriend(this)' title='Friend request pending!' class='btn btn-secondary btn-sm'>Accept request!</button><br>
 			";
 
+			echo "</div></div>		<hr class='nav-break'>
+";
 
 			}
 
@@ -113,22 +115,22 @@ if ($result->num_rows > 0) {
 		$msg = $row1['message'];
 		$authorId = $row1['authorId'];
 
-		echo "<div id='" . $associatedId . "l' class='d-flex bg-darkest rounded mt-2 align-items-center'>
+		echo "<div id='" . $associatedId . "l' class='d-flex bg-darkest rounded align-items-center'>
 		<div class='me-auto p-2'>
 			<a class='sm-text noselect me-2'>#" . $associatedId . "</a>
 			<a style='color:white;' href='/user?u=" . $sender . "'>" . $sender . " <a class='gray'>&nbsp; has sent you a message!</a> </a>
 		</div>
 		<div class='p-2'>
 
-		<button id='$authorId' value='" . $associatedId . "' onclick='seeMessage(this)' title='Click to view your DMs with this user!' class='btn btn-secondary'>View message!</button><br>
+		<button id='$authorId' value='" . $associatedId . "' onclick='seeMessage(this)' title='Click to view your DMs with this user!' class='btn btn-secondary btn-sm'>View message!</button><br>
 		";
+		echo "</div></div><hr class='nav-break'>";
 
 
 		}
 }
 }
 }
-echo "</div></div>";
 
 
 
@@ -189,6 +191,17 @@ function acceptFriend(button){
 					$(button).html("Accepted!");
 					$(button).removeClass("btn-secondary");
 					$(button).addClass("btn-success");
+					$(button).addClass("btn-sm");
+                }
+            });
+}
+function clearNotifications(){
+	        $.ajax({
+                type: 'POST',
+                url: '/func/clearAllNotifs.php',
+				data: {},
+                success: function(data) {
+										$(".row").empty();
                 }
             });
 }
