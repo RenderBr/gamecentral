@@ -82,7 +82,7 @@ if ($result->num_rows > 0) {
 		$result1 = $conn->query($sql1);
 		$peopleInGroup = $result1->num_rows;
 
-		echo "<div id='" . $communityid . "l' class='d-flex bg-darkest rounded mt-2 align-items-center'>
+		echo "<div id='" . $communityid . "l' class='d-flex bg-darkest rounded align-items-center'>
 		<div class='me-auto p-2 align-middle'>
 			<a href='/community?id=" . $communityid . "'><h4 class='ms-1' style='margin:0px !important;vertical-align: middle;
 align-content: center;'><img title='" . $communityName . "' width=64rem height=64rem class='ms-1 rounded-circle' src='" . $communityImage . "'></img><a href='/community?id=" . $communityid . "' class='ms-1'>
@@ -103,28 +103,30 @@ align-content: center;'><img title='" . $communityName . "' width=64rem height=6
 		if ($result2->num_rows > 0) {
 
 		  while($row2 = $result2->fetch_assoc()) {
-				echo '<a id="gpage' . $communityid . '" class="btn btn-secondary me-2" href="/community?id=' . $communityid . '">View Community</a>';
-			  echo "<button id='" . $communityid . "' value='" . $communityid . "' class='btn btn-danger' onclick='leaveCommunity(this)'>Leave!</button>";
+				echo '<a id="gpage' . $communityid . '" class="btn btn-secondary me-2 btn-sm" href="/community?id=' . $communityid . '">View Community</a>';
+			  echo "<button id='" . $communityid . "' value='" . $communityid . "' class='btn btn-danger btn-sm' onclick='leaveCommunity(this)'>Leave!</button>";
 			  if($_SESSION['username'] == $owner){
-				echo "<button value='" . $communityid . "' onclick='deleteCommunity(this)' title='Delete your community!' class='sm-text btn'><i class='bi bi-x'></i></button>";
+				echo "<button value='" . $communityid . "' onclick='deleteCommunity(this)' title='Delete your community!' class='sm-text btn btn-sm'><i class='bi bi-x'></i></button>";
 			}else{
 			echo "<a style='margin-right: 50px;'></a>";
 		}
 
-		echo "</div></div>";
+		echo "</div></div>              <hr class='nav-break'>
+";
 		  }
 
 		}else{
 			if($peopleInGroup < $communityMaxPeople){
-			echo "<button id='" . $communityid . "' value='" . $communityid . "' onclick='joinCommunity(this)' class='btn btn-success'>Join group!</button>";
+			echo "<button id='" . $communityid . "' value='" . $communityid . "' onclick='joinCommunity(this)' class='btn btn-success btn-sm'>Join group!</button>";
 			}
 			if($_SESSION['username'] == $owner){
-			echo "<button value='" . $communityid . "' onclick='deleteCommunity(this)' title='Delete this group!' class='sm-text btn'><i class='bi bi-x'></i></button>";
+			echo "<button value='" . $communityid . "' onclick='deleteCommunity(this)' title='Delete this group!' class='sm-text btn btn-sm'><i class='bi bi-x'></i></button>";
 		}else{
 			echo "<a style='margin-right: 50px;'></a>";
 		}
 
-		echo "</div></div>";
+		echo "</div></div>              <hr class='nav-break'>
+";
 		}
 
 
@@ -182,10 +184,11 @@ function joinCommunity (button) {
 			$(button).attr("onclick", "leaveCommunity(this)");
 			$(button).removeClass("btn-success");
 			$(button).addClass("btn-danger");
+			$(button).addClass("btn-sm");
 			var groupid = $(button).val();
 			var t = document.getElementById('' + groupid + 't');
 			var currentPlayers = parseInt(t.textContent);
-			$(button).before('<a id="gpage' + groupid + '" class="btn btn-secondary me-2" href="/community?id=' + groupid + '">View Community</a>');
+			$(button).before('<a id="gpage' + groupid + '" class="btn btn-secondary me-2 btn-sm" href="/community?id=' + groupid + '">View Community</a>');
 
 			t.textContent = currentPlayers + 1 + "";
 
@@ -206,6 +209,7 @@ function joinCommunity (button) {
 			$(button).attr("onclick", "joinCommunity(this)");
 			$(button).removeClass("btn-danger");
 			$(button).addClass("btn-success");
+			$(button).addClass("btn-sm");
 			var groupid = $(button).val();
 			var t = document.getElementById('' + groupid + 't');
 			var currentPlayers = parseInt(t.textContent);

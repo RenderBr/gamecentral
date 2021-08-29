@@ -86,7 +86,7 @@ if ($result->num_rows > 0) {
 		}
 
 
-		echo "<div id='" . $gameId . "l' class='d-flex bg-darkest rounded mt-2 align-items-center' style='" . $color . "'>
+		echo "<div id='" . $gameId . "l' class='d-flex bg-darkest rounded align-items-center' style='" . $color . "'>
 		<div class='me-auto p-2'>
 			<img title='" . $gameName . "' width=32 class='ms-1 me-1' id='" . $gameId . "g' src='" . $icon . "'></img>
 			<a style='" . $textColor . "' href='/game?id=" . $gameId . "'>" . $gameName . "  </a>
@@ -102,9 +102,9 @@ if ($result->num_rows > 0) {
 
 
 		";
-			  echo "<a href='/game?id=" . $gameId ."' id='" . $gameId . "' value='" . $gameId . "' class='btn btn-success'>Find more info..</a>";
+			  echo "<a href='/game?id=" . $gameId ."' id='" . $gameId . "' value='" . $gameId . "' class='btn btn-success btn-sm'>Find more info..</a>";
 
-		echo "</div></div>";
+		echo "</div></div><hr class='nav-break'>";
 
 
 

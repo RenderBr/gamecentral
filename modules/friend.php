@@ -14,7 +14,7 @@ if(isset($friendFAF)){
 $friendcombo = $self . " - " . $friend;
 $friendcombo2 = $friend . " - " . $self;
 if($self == $friend){
-	echo "<a id='settings' title='Settings' href='/settings' class='btn btn-secondary'><i class='bi bi-gear'></i></a><br>";
+	echo "<a id='settings' title='Settings' href='/settings' class='btn btn-secondary btn-sm'><i class='bi bi-gear'></i></a><br>";
 }else {
 
 
@@ -26,9 +26,9 @@ if($self == $friend){
 		while($row = $result->fetch_assoc()) {
 			$accepted = $row['accepted'];
 			if($accepted == 1){
-				echo "<button id='rem' onclick='removeFriend()' title='Remove friend!' class='btn btn-danger'><i class='bi bi-person-x'></i></button><br>";
+				echo "<button id='rem' onclick='removeFriend()' title='Remove friend!' class='btn btn-danger btn-sm'><i class='bi bi-person-x'></i></button><br>";
 			}else{
-				echo "<button id='req' title='Friend request pending!' class='btn btn-secondary'>Request pending...</button><br>";
+				echo "<button id='req' title='Friend request pending!' class='btn btn-secondary btn-sm'>Request pending...</button><br>";
 			}
 
 
@@ -43,15 +43,15 @@ if($self == $friend){
 		while($row = $result->fetch_assoc()) {
 			$accepted = $row['accepted'];
 			if($accepted == 1){
-				echo "<button id='rem' onclick='removeFriend()' title='Remove friend!' class='btn btn-danger'><i class='bi bi-person-x'></i></button><br>";
+				echo "<button id='rem' onclick='removeFriend()' title='Remove friend!' class='btn btn-danger btn-sm'><i class='bi bi-person-x'></i></button><br>";
 			}else{
-				echo "<button id='acceptF' onclick='acceptFriend()' title='Friend request pending!' class='btn btn-secondary'>Accept request!</button><br>";
+				echo "<button id='acceptF' onclick='acceptFriend()' title='Friend request pending!' class='btn btn-secondary btn-sm'>Accept request!</button><br>";
 			}
 
 
 		}
 	}else{
-		echo "<button id='addF' onclick='addFriend()' title='Add friend!' class='btn btn-success'><i class='bi bi-person-plus'></i></button><br>";
+		echo "<button id='addF' onclick='addFriend()' title='Add friend!' class='btn btn-success btn-sm'><i class='bi bi-person-plus'></i></button><br>";
 	}
 
 	}
@@ -95,6 +95,8 @@ function addFriend(){
 					$("#addF").html("Requested!");
 					$("#addF").removeClass("btn-danger");
 					$("#addF").addClass("btn-secondary");
+					$("#addF").addClass("btn-sm");
+
                 }
             });
 }
@@ -112,6 +114,8 @@ function acceptFriend(){
 					$("#acceptF").html("Accepted!");
 					$("#acceptF").removeClass("btn-secondary");
 					$("#acceptF").addClass("btn-success");
+					$("#addF").addClass("btn-sm");
+
                 }
             });
 }

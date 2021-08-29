@@ -29,9 +29,9 @@ function isFriends($friend, $otherFriend, $conn){
 				while($row = $result->fetch_assoc()) {
 					$accepted = $row['accepted'];
 					if($accepted == 1){
-						echo "<button id='rem' value='" . $otherFriend . "' onclick='removeFriend(this)' title='Remove friend!' class='btn btn-danger'><i class='bi bi-person-x'></i></button><br>";
+						echo "<button id='rem' value='" . $otherFriend . "' onclick='removeFriend(this)' title='Remove friend!' class='btn btn-danger btn-sm'><i class='bi bi-person-x'></i></button><br>";
 					}else{
-						echo "<button value='" . $otherFriend . "' title='Friend request pending!' class='btn btn-secondary'>Request pending...</button><br>";
+						echo "<button value='" . $otherFriend . "' title='Friend request pending!' class='btn btn-secondary btn-sm'>Request pending...</button><br>";
 					}
 
 
@@ -46,15 +46,15 @@ function isFriends($friend, $otherFriend, $conn){
 				while($row = $result->fetch_assoc()) {
 					$accepted = $row['accepted'];
 					if($accepted == 1){
-						echo "<button value='" . $otherFriend . "' id='rem' onclick='removeFriend(this)' title='Remove friend!' class='btn btn-danger'><i class='bi bi-person-x'></i></button><br>";
+						echo "<button value='" . $otherFriend . "' id='rem' onclick='removeFriend(this)' title='Remove friend!' class='btn btn-danger btn-sm'><i class='bi bi-person-x'></i></button><br>";
 					}else{
-						echo "<button value='" . $otherFriend . "' id='acceptF' onclick='acceptFriend(this)' title='Friend request pending!' class='btn btn-secondary'>Accept request!</button><br>";
+						echo "<button value='" . $otherFriend . "' id='acceptF' onclick='acceptFriend(this)' title='Friend request pending!' class='btn btn-secondary btn-sm'>Accept request!</button><br>";
 					}
 
 
 				}
 			}else{
-				echo "<button value='" . $otherFriend . "' id='addF' onclick='addFriend(this)' title='Add friend!' class='btn btn-success'><i class='bi bi-person-plus'></i></button><br>";
+				echo "<button value='" . $otherFriend . "' id='addF' onclick='addFriend(this)' title='Add friend!' class='btn btn-success btn-sm'><i class='bi bi-person-plus'></i></button><br>";
 			}
 
 			}
@@ -135,7 +135,7 @@ if ($result->num_rows > 0) {
 		}
 
 
-		echo "<div class='d-flex bg-darkest rounded mt-2 align-items-center'>
+		echo "<div class='d-flex bg-darkest rounded align-items-center'>
 		<div class='me-auto p-2'>
 			<a class='sm-text noselect me-2'>#" . $userid . "</a>
 			<img width=32 height=32 class='ms-1 me-1 rounded-circle' src='" . $avatar . "'></img>
@@ -152,7 +152,8 @@ if ($result->num_rows > 0) {
 		isFriends($self, $username, $conn);
 
 
-		 echo "</a></div></div>
+		 echo "</a></div></div>              <hr class='nav-break'>
+
 
 
 
@@ -224,6 +225,8 @@ function addFriend(button){
 					$(button).html("Requested!");
 					$(button).removeClass("btn-danger");
 					$(button).addClass("btn-secondary");
+          $(button).addClass("btn-sm");
+
                 }
             });
 }
@@ -241,6 +244,8 @@ function acceptFriend(button){
 					$(button).html("Accepted!");
 					$(button).removeClass("btn-secondary");
 					$(button).addClass("btn-success");
+          $(button).addClass("btn-sm");
+
                 }
             });
 }

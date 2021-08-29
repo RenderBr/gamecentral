@@ -84,7 +84,7 @@ if ($result->num_rows > 0) {
 
 	?>
 
-	<div class='row gx-2'>
+	<div class='row'>
 
 	<?php
   while($row = $result->fetch_assoc()) {
@@ -133,7 +133,7 @@ if ($result->num_rows > 0) {
 			echo "Game could not be retrieved";
 		}
 
-		echo "<div id='" . $groupid . "l' class='d-flex bg-darkest rounded mt-2 align-items-center'>
+		echo "<div id='" . $groupid . "l' class='d-flex bg-darkest rounded align-items-center'>
 		<div class='me-auto p-2'>
 			<a class='sm-text noselect me-2'>#" . $groupid . "</a>
 			<a style='color:white;' href='/user?u=" . $user . "'>" . $user . " <a class='gray'>&nbsp;is looking to play</a> </a>
@@ -156,28 +156,30 @@ if ($result->num_rows > 0) {
 
 		  while($row2 = $result2->fetch_assoc()) {
 			  viewGroupButton($groupid, $_SESSION['username'], $conn);
-			  echo "<button id='" . $groupid . "' value='" . $groupid . "' class='btn btn-danger' onclick='leaveGroup(this)'>Leave!</button>";
+			  echo "<button id='" . $groupid . "' value='" . $groupid . "' class='btn btn-danger btn-sm' onclick='leaveGroup(this)'>Leave!</button>";
 			  if($_SESSION['username'] == $user){
-				echo "<button value='" . $groupid . "' onclick='deleteGroup(this)' title='Delete this group!' class='sm-text btn'><i class='bi bi-x'></i></button>";
+				echo "<button value='" . $groupid . "' onclick='deleteGroup(this)' title='Delete this group!' class='sm-text btn btn-sm'><i class='bi bi-x'></i></button>";
 			}else{
 			echo "<a style='margin-right: 50px;'></a>";
 		}
 
-		echo "</div></div>";
+		echo "</div></div>              <hr class='nav-break'>
+";
 		  }
 
 		}else{
 			viewGroupButton($groupid, $_SESSION['username'], $conn);
 			if($currentGroup < $groupSize){
-			echo "<button id='" . $groupid . "' value='" . $groupid . "' onclick='joinGroup(this)' class='btn btn-success'>Join group!</button>";
+			echo "<button id='" . $groupid . "' value='" . $groupid . "' onclick='joinGroup(this)' class='btn btn-success btn-sm'>Join group!</button>";
 			}
 			if($_SESSION['username'] == $user){
-			echo "<button value='" . $groupid . "' onclick='deleteGroup(this)' title='Delete this group!' class='sm-text btn'><i class='bi bi-x'></i></button>";
+			echo "<button value='" . $groupid . "' onclick='deleteGroup(this)' title='Delete this group!' class='sm-text btn btn-sm'><i class='bi bi-x'></i></button>";
 		}else{
 			echo "<a style='margin-right: 50px;'></a>";
 		}
 
-		echo "</div></div>";
+		echo "</div></div>              <hr class='nav-break'>
+";
 		}
 
 
@@ -235,11 +237,12 @@ function joinGroup (button) {
 			$(button).attr("onclick", "leaveGroup(this)");
 			$(button).removeClass("btn-success");
 			$(button).addClass("btn-danger");
+			$(button).addClass("btn-sm");
 			var groupid = $(button).val();
 			var n = document.getElementById('' + groupid + 'n');
 			var t = document.getElementById('' + groupid + 't');
 			var currentPlayers = parseInt(n.textContent);
-			$(button).before('<a id="gpage' + groupid + '" class="btn btn-secondary me-2" href="/group?g=' + groupid + '">Open Group Page</a>');
+			$(button).before('<a id="gpage' + groupid + '" class="btn btn-secondary me-2 btn-sm" href="/group?g=' + groupid + '">Open Group Page</a>');
 
 			n.textContent = currentPlayers + 1 + "";
 			t.textContent = currentPlayers + 1 + "";
@@ -261,6 +264,7 @@ function joinGroup (button) {
 			$(button).attr("onclick", "joinGroup(this)");
 			$(button).removeClass("btn-danger");
 			$(button).addClass("btn-success");
+			$(button).addClass("btn-sm");
 			var groupid = $(button).val();
 			var n = document.getElementById('' + groupid + 'n');
 			var t = document.getElementById('' + groupid + 't');
