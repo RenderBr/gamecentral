@@ -23,7 +23,7 @@
 		}
 
 		?>
-		<meta name="description" content="<?php echo $newsContent; ?>">
+		<meta name="description" content="<?php echo htmlspecialchars($newsContent); ?>">
 		<meta name="keywords" content="<?php echo $newsTags; ?>">
 		<meta name="robots" content="index, follow">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
