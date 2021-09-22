@@ -32,7 +32,7 @@ if ($result6->num_rows > 0) {
     $timeAgo = time_elapsed_string($date);
 
 		echo '<div class="col-sm-3 ">
-				<div class="p-3 bg-darkest rounded"><a style="color:white;" href="/news?n=' . $newsId . '"><img class="img-fluid img-thumbnail" style="padding:inherit !important;border: none !important;" src="' . $image . '"><h3 style="font-size: large !important;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">' . $title . ' </a><p class="sm-text" style="margin-bottom:0.5rem !important;">by <a style="text-decoration:none;color:white;" href="/user?u=' . $author . '">' . $author . '</a></p></h3><p style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;margin-bottom:0rem !important;" class="gray noselect">' . $tagLine . '</p><a class="sm-text noselect" style="color:#525457 !important;">posted ' . $timeAgo . '</a></div>
+				<div class="p-3 bg-darkest rounded"><a style="color:white;" href="/news?n=' . $newsId . '"><img class="img-fluid img-thumbnail" style="padding:inherit !important;border: none !important;height: 13.7rem;" src="' . $image . '"><h3 style="font-size: large !important;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">' . $title . ' </a><p class="sm-text" style="margin-bottom:0.5rem !important;">by <a style="text-decoration:none;color:white;" href="/user?u=' . $author . '">' . $author . '</a></p></h3><p style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;margin-bottom:0rem !important;" class="gray noselect">' . $tagLine . '</p><a class="sm-text noselect" style="color:#525457 !important;">posted ' . $timeAgo . '</a></div>
 			</div>';
 
 
