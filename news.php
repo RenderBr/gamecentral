@@ -44,7 +44,7 @@
 
 		<br><div class='bg-dark1 container news rounded mb-4 pb-3'>
 		<div class='text-center'>
-			<h2 class='mt-2 display-2'><?php echo $newsTitle; ?></h2>
+			<h2 class='mt-2'><?php echo $newsTitle; ?></h2>
 			<hr class='nav-break'>
 			<label style='text-align:none !important;'>
 				<p class="sm-text noselect">AUTHOR: <a class='sm-text noselect' style='color:white;text-decoration:none;' href='/user?u=<?php echo $newsAuthor; ?>'><?php echo $newsAuthor; ?></a></p>
@@ -59,7 +59,7 @@
 
 		<p style='margin-bottom:0.75rem !important;'>
 			<?php echo $newsContent; ?>
-      <hr class='nav-break mt-2'>
+      <hr class='nav-break mt-2' style='margin-bottom: 0.3rem !important;'>
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8564713175090072"
      crossorigin="anonymous"></script>
 <!-- DisplayAd -->
