@@ -33,13 +33,13 @@ if(!isset($_SESSION['username'])){
 		<div class='bg-dark1 container mb-4 pb-3 rounded' style="max-width: 100rem;height: max-content;box-shadow: bax;-webkit-box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);box-shadow: -3px 5px 18px 2px rgba(0,0,0,0.72);width:80%;"><div class='text-center'>
 		<h4 class='pt-2 noselect' style='margin:0 !important;'><a class='me-1 noselect'><?php if(isset($self)){ echo "👋</a> Hey, welcome back! How's it going, <u>" . $self . "</u>?"; }else{ echo "👋</a> Hey, welcome to Game Central!"; }; ?></h4><a class='gray noselect mb-2'><strong>Note:</strong> To anyone seeing this, you are using a very early-access version of Game Central, please use at your own risk and report any bugs you may find on the <a href='https://discord.gg/GVn8teTR6V' class='discord'>Discord!</a><a class='gray noselect'> Thank you.</a></a><hr class='nav-break'></div>
 
-
+			<?php // News & Info Include
+			 include_once('modules/news.php'); ?>
+			 <hr class='nav-break mt-2'>
 		<?php // MyFeed Include
 		 include_once('modules/myfeed.php'); ?>
 		<?php // Recent LFG Include
 		include_once('modules/recentposts.php'); ?>
-		<?php // News & Info Include
-		 include_once('modules/news.php'); ?>
 
 
 		</div>

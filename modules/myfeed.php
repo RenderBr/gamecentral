@@ -1,4 +1,6 @@
 <?php
+
+include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/cdns.php');
   if(isset($self)){
     $feedLabel = "MY FEED";
   }else{
