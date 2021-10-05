@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 }
 
 
-$sql6 = "SELECT * FROM blogs ORDER by date_created DESC LIMIT 4";
+$sql6 = "SELECT * FROM blogs WHERE approved = 1 ORDER by date_created DESC LIMIT 4";
 $result6 = $conn->query($sql6);
 
 if ($result6->num_rows > 0) {

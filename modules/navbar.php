@@ -17,6 +17,9 @@
 						<a class='nav-link active' aria-current='page' href='/'>Home</a>
 					</li>
 					<li class='nav-item'>
+						<a class='nav-link' aria-current='page' href='/latest'>News</a>
+					</li>
+					<li class='nav-item'>
 						<a class='nav-link' aria-current='page' href='/servers'>Game Servers</a>
 					</li>
 					<li class='nav-item'>
@@ -69,12 +72,6 @@
 			$notifications = NULL;
 		}
 
-		if(isAdmin($conn, $_SESSION['username']) == true){
-			$isAdmin = true;
-		}else{
-			$isAdmin = false;
-		}
-
 		echo "<nav class='navbar navbar-expand-md navbar-dark bg-dark sticky-top'>
 				<div class='container-xxl'>
 					<a class='navbar-brand noselect' href='/'>
@@ -93,6 +90,9 @@
 						</li>
 						<li class='nav-item'>
 							<a class='nav-link' aria-current='page' href='/createLFG'>Create a group!</a>
+						</li>
+						<li class='nav-item'>
+							<a class='nav-link' aria-current='page' href='/latest'>News</a>
 						</li>
 						<li class='nav-item'>
 							<a class='nav-link' aria-current='page' href='/findAFriend'>Users</a>
@@ -125,13 +125,11 @@
 								<li><a class='dropdown-item gray' href='/createCommunity'><i class='bi bi-plus-circle-dotted me-1'></i>Create a community</a></li>
 								<li><a class='dropdown-item gray' href='/notifications'><i class='bi bi-bell me-1'></i>Notifications" . $notifications . "</a></li>
 								<li><a class='dropdown-item gray' href='/manager'><i class='bi bi-archive me-1'></i>Management Portal</a></li>
-								<li><a class='dropdown-item gray' href='/settings'><i class='bi bi-gear me-1'></i>Settings</a></li>";
+								<li><a class='dropdown-item gray' href='/settings'><i class='bi bi-gear me-1'></i>Settings</a></li>
+								<li><a class='dropdown-item gray' href='/publishNews'><i class='bi bi-newspaper me-1'></i>Publish News</a></li>";
 
-								if($isAdmin == true){
-										echo "
-										<li><a class='dropdown-item gray' href='/publishNews'><i class='bi bi-newspaper me-1'></i>Publish News [ADMIN]</a></li>";
 
-								}
+
 								echo "
 								<li><a class='dropdown-item gray' href='/supportUs'><i class='bi bi-piggy-bank me-1'></i>Support us!</a></li>
 								<li><a class='dropdown-item' style='color:#f06868 !important;' href='/logout'><i class='bi bi-box-arrow-left me-1'></i>Logout</a></li>

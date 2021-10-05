@@ -1,3 +1,4 @@
+<meta name="description" content="GameCentral, aiming to be the preeminent independent looking-for-group platform built for players all around the world.">
 <?php
 session_start();
 

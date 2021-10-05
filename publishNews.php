@@ -6,12 +6,6 @@ if($_SESSION['username']){
 	header("Location: /");
 }
 $self = $_SESSION['username'];
-
-if($_SESSION['isAdmin'] == true){
-
-}else{
-	header("Location: /");
-}
 ?>
 
 <!DOCTYPE html>
@@ -23,8 +17,8 @@ if($_SESSION['isAdmin'] == true){
 		<meta name="robots" content="index, follow">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="language" content="English">
-		<title><?php echo $websitename . " - publish a newsletter! [ADMIN ONLY]"; ?></title>
-		<meta name="title" content="GameCentral - publish a newsletter! [ADMIN ONLY]">
+		<title><?php echo $websitename . " - publish a newsletter!"; ?></title>
+		<meta name="title" content="GameCentral - publish a newsletter!">
         <!-- Favicon-->
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
@@ -46,7 +40,7 @@ if($_SESSION['isAdmin'] == true){
 		<label for='img'><p class="sm-text">ARTICLE IMAGE</p></label>
 		<div class="input-group input-group-md sm"><input autocomplete="off" id='img' name="img" type="text" class="dark-box form-control" placeholder="https://link-to-image.png" aria-label="Add an image to the article!" aria-describedby="button-submit" /></div>
 		<label for='body'><p class="sm-text">ARTICLE CONTENTS</p></label>
-		<div class="input-group input-group-md sm"><textarea id='body' name="body" class="dark-box form-control" placeholder="Blah blah blah..." aria-describedby="button-submit"></textarea></div>
+		<div class="input-group input-group-md sm"><textarea id='body' name="body" class="dark-box form-control" placeholder="Blah blah blah... (html formatting)" aria-describedby="button-submit"></textarea></div>
 		<label for='tags'><p class="sm-text">ARTICLE TAGS/KEYWORDS</p></label>
 		<div class="input-group input-group-md sm"><input autocomplete="off" id='tags' name="tags" type="text" class="dark-box form-control" placeholder="things related to article, blog, tags, keywords.. seperate with commas." aria-label="Enter tags for your article!" aria-describedby="button-submit" /></div>
 		<label for='tagline'><p class="sm-text">ARTICLE TAGLINE</p></label>
@@ -55,6 +49,7 @@ if($_SESSION['isAdmin'] == true){
 
 		<div>
 		<div class='text-center'>
+		<p class='sm-text noselect mb-1 mt-1'>If you are not an admin, upon publishing, it will be put into an approval wait-list. Once approved, your news post will show on Game Central.</p>
 		<button class="btn btn-primary" style='width:100%;' id="button-submit" type="submit">Publish newsletter!</button>
 		</div>
 		</form>
