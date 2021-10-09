@@ -4,6 +4,7 @@ if(session_status() == PHP_SESSION_NONE){
     //session has not started
     session_start();
 }
+$blacklist = array("dick", "fuck", "shit", "asshole", "penis", "vagina", "nigger", "dickhead", "bitch");
 
 // Check LFG posts and see if expired ones should be dealt with
 include_once ($_SERVER['DOCUMENT_ROOT'] . '/func/checkLFG.php');

@@ -1,10 +1,11 @@
 <?php
-
 include_once($_SERVER['DOCUMENT_ROOT'] . '/cfg/cdns.php');
   if(isset($self)){
     $feedLabel = "MY FEED";
+    $censoring = false;
   }else{
     $feedLabel = "WHAT'S HAPPENING ON GAME CENTRAL?";
+    $censoring = true;
   }
  ?>
 
@@ -57,6 +58,10 @@ if(isset($self)){
       $messageType = $row2['messageType'];
       $userProfile = $row2['userProfile'];
       $messageContents = $row2['messageContents'];
+
+      if($censoring === true){
+        $messageContents = str_replace($blacklist, "***", $messageContents);
+      }
 
       $sql1 = "SELECT * FROM users WHERE username = '$poster'";
       $result1 = $conn->query($sql1);
@@ -193,6 +198,10 @@ if(isset($self)){
       $messageType = $row2['messageType'];
       $userProfile = $row2['userProfile'];
       $messageContents = $row2['messageContents'];
+
+      if($censoring === true){
+        $messageContents = str_replace($blacklist, "***", $messageContents);
+      }
 
       $sql1 = "SELECT * FROM users WHERE username = '$poster'";
       $result1 = $conn->query($sql1);
