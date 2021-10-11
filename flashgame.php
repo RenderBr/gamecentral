@@ -73,7 +73,7 @@
         });
     </script>
 </div>
-    <a class='sm-text noselect'><?php echo $gameDescription; ?></a>
+    <a class='sm-text noselect'>Game doesn't work? Click <a class='sm-text noselect' style='color:white !important;' href='<?php echo $gameURL; ?>'>here to download.</a><br><a class='sm-text noselect'><?php echo $gameDescription; ?></a>
 <hr class='mt-2 nav-break' style='margin-bottom: 0.3rem !important;'>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8564713175090072"
      crossorigin="anonymous"></script>
