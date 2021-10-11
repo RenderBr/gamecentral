@@ -22,6 +22,7 @@
         $gameURL = $row['gameURL'];
         $gameName = $row['gameName'];
         $gameVisitCount = $row['visits'] + 1;
+        $gameDescription = $row['description'];
       }
     }
 
@@ -29,8 +30,8 @@
     if ($conn->query($sql) === TRUE) {}
 
 		?>
-		<meta name="description" content="Play <?php echo $gameName; ?> Flash Version @ Game Central. This still works even though Flash is no longer available.">
-		<meta name="keywords" content="gaming, lfg, discord lfg, video game, looking for group, looking for squad, gc group, <?php echo $gameName; ?>, flash, play flash games">
+		<meta name="description" content="Play <?php echo $gameName; ?> Flash Version @ Game Central. This still works even though Flash is no longer available. <?php echo $gameDescription; ?>">
+		<meta name="keywords" content="gaming, lfg, discord lfg, video game, looking for group, looking for squad, gc group, <?php echo $gameName; ?>, flash, play flash games, <?php echo $gameDescription; ?>">
 		<meta name="robots" content="index, follow">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="language" content="English">
