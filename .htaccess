@@ -3,6 +3,12 @@ php_value post_max_size 10250M
 php_value safe_mode off
 php_value session.cookie_domain "gamecentral"
 
+<IfModule mod_headers.c>
+  Header add Access-Control-Allow-Origin "*"
+  Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
+  Header add Access-Control-Allow-Methods "PUT, GET, POST, DELETE, OPTIONS"
+</IfModule>
+
 RewriteEngine On
 RewriteBase /
 

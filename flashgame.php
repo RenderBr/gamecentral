@@ -21,9 +21,12 @@
       while($row = $result->fetch_assoc()) {
         $gameURL = $row['gameURL'];
         $gameName = $row['gameName'];
-        $gameVisitCount = $row['visits'];
+        $gameVisitCount = $row['visits'] + 1;
       }
     }
+
+    $sql = "UPDATE flashgame SET visits=visits+1 WHERE id='$gameId'";
+    if ($conn->query($sql) === TRUE) {}
 
 		?>
 		<meta name="description" content="Play <?php echo $gameName; ?> Flash Version @ Game Central. This still works even though Flash is no longer available.">
@@ -49,7 +52,8 @@
 		<div class='text-center'>
 
 			<h2 class='mb-0' style='margin-bottom:1rem;'><?php echo $gameName; ?><!--<img class='icon-md ms-1' title='<?php echo $gameName; ?>' src='<?php echo $gameSmIcon; ?>'> --></h2>
-      <a class='sm-text noselect text-center'>Made possible by <a href='https://ruffle.rs/'>Ruffle.js</a></a>
+      <a class='sm-text noselect text-center'>Made possible by <a href='https://ruffle.rs/'>Ruffle.js</a>
+      <a class='sm-text noselect text-center'> | Visits: <?php echo $gameVisitCount; ?></a></a>
 
 
 

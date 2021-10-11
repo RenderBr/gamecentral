@@ -25,6 +25,9 @@
 					<li class='nav-item'>
 						<a class='nav-link' aria-current='page' href='/games'>Games</a>
 					</li>
+					<li class='nav-item'>
+						<a class='nav-link' aria-current='page' href='/flashgames'>Flash Archive</a>
+					</li>
 					</ul>
 
 
@@ -105,10 +108,13 @@
 						</li>
 						<li class='nav-item'>
 							<a class='nav-link' aria-current='page' href='/lfg'>LFG</a>
-						</li>" . $karmaRewardAvailable . "
+						</li>
 						<li class='nav-item'>
 							<a class='nav-link' aria-current='page' href='/games'>Games</a>
 						</li>
+						<li class='nav-item'>
+							<a class='nav-link' aria-current='page' href='/flashgames'>Flash Archive</a>
+						</li>" . $karmaRewardAvailable . "
 					</ul>
 
 					<span class='d-flex'>
