@@ -41,8 +41,8 @@ if($pageOffset < 0){
 		<h4 class='pt-2 pb-1 noselect'><a class='me-1 noselect'>🎮</a>Play old flash games, yeah, that's right!</h4>
 		<nav aria-label="Page navigation">
 		  <ul class="pagination">
-		    <li class="page-item"><a id='previous' class="page-link dark-box" href="/lfg?p=<?php echo $pageOffset-10; ?>">Previous</a></li>
-		    <li class="page-item"><a id='next' class="page-link dark-box" href="/lfg?p=<?php echo $pageOffset+10; ?>">Next</a></li>
+		    <li class="page-item"><a id='previous' class="page-link dark-box" href="/flashgames?p=<?php echo $pageOffset-10; ?>">Previous</a></li>
+		    <li class="page-item"><a id='next' class="page-link dark-box" href="/flashgames?p=<?php echo $pageOffset+10; ?>">Next</a></li>
 		  </ul>
 		</nav>
 		<hr class='nav-break'></div>
