@@ -72,8 +72,19 @@
         });
     </script>
 </div>
-<hr class='mt-2 nav-break'>
-
+<hr class='mt-2 nav-break' style='margin-bottom: 0.3rem !important;'>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8564713175090072"
+crossorigin="anonymous"></script>
+<!-- DisplayAd -->
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-8564713175090072"
+data-ad-slot="7188111027"
+data-ad-format="auto"
+data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 
 
