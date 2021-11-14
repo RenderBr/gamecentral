@@ -1,5 +1,9 @@
-
 <?php
+require_once "../vendor/autoload.php";
+use ArtisansWeb\Optimizer;
+
+$img = new Optimizer();
+
 include_once('../cfg/conn.php');
 $target_dir = "/var/www/html/gamecentral.online/userData/userBanner/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -52,6 +56,7 @@ if ($uploadOk == 0) {
 } else {
   if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
+    $img->optimize($target_file);
 
 
     $avatar = "https://data.gamecentral.online/userBanner/" . $newName . "." .  $imageFileType;
