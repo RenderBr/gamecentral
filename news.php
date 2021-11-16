@@ -52,15 +52,12 @@
 		<div class='text-center'>
 			<h2 class='mt-2'><?php echo $newsTitle; ?></h2>
 			<hr class='nav-break'>
-			<label style='text-align:none !important;'>
-				<p class="sm-text noselect">AUTHOR: <a class='sm-text noselect' style='color:white;text-decoration:none;' href='/user?u=<?php echo $newsAuthor; ?>'><?php echo $newsAuthor . $approved; ?></a></p>
-			</label>
-			<img class='img-fluid rounded img-thumbnail' src='<?php echo $newsImage; ?>'>
+			<img class='img-fluid rounded' src='<?php echo $newsImage; ?>'>
 			<hr class='nav-break mt-2'>
 
 		</div>
 		<label>
-			<p class="sm-text noselect">DATE CREATED: <?php echo $newsDatePublished; ?></p>
+			<p class="sm-text noselect">DATE CREATED: <?php echo $newsDatePublished; ?> | AUTHOR: <a class='sm-text noselect' style='color:white;text-decoration:none;' href='/user?u=<?php echo $newsAuthor; ?>'><?php echo $newsAuthor . $approved; ?></a></p>
 		</label>
 
 		<p style='margin-bottom:0.75rem !important;'>
